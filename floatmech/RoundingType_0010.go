@@ -183,6 +183,51 @@ func (rt *RoundingType) String() string {
 	}
 }
 
+// IsValid
+//
+// Returns true if the RoundingType value is one of the six supported IEEE
+// 754-2008 rounding modes (ToNearestEvenVal, ToNearestAwayVal, ToZeroVal,
+// AwayFromZeroVal, ToNegativeInfVal, or ToPositiveInfVal).
+//
+// Input Parameters
+// ----------------
+//
+// # None
+//
+// Return Parameters
+// -----------------
+//
+// bool
+//
+//	Returns true if the value is a valid rounding mode, otherwise false.
+func (rt *RoundingType) IsValid() bool {
+	switch *rt {
+
+	case ToNearestEvenVal:
+		return true
+
+	case ToNearestAwayVal:
+		return true
+
+	case ToZeroVal:
+		return true
+
+	case AwayFromZeroVal:
+		return true
+
+	case ToNegativeInfVal:
+		return true
+
+	case ToPositiveInfVal:
+		return true
+
+	default:
+
+	}
+
+	return false
+}
+
 // GetBigMathRoundingMode
 //
 // Returns the equivalent math/big RoundingMode value for the current
