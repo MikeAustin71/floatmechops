@@ -1,5 +1,12 @@
 package floatmech
 
+import (
+	"fmt"
+	"math/big"
+
+	ePref "github.com/MikeAustin71/errpref/v2"
+)
+
 // RoundingType
 //
 // Represents the IEEE 754-2008 rounding mode used when converting a numeric
@@ -173,6 +180,68 @@ func (rt *RoundingType) String() string {
 		return "ToPositiveInf"
 	default:
 		return "NOT SET - INVALID"
+	}
+}
+
+// GetBigMathRoundingMode
+//
+// Returns the equivalent math/big RoundingMode value for the current
+// RoundingType instance. The RoundingType enumeration closely parallels the
+// math/big RoundingMode type; this method maps the RoundingType value onto
+// its math/big counterpart so it can be used directly with big.Float and the
+// math/big rounding API.
+//
+// Input Parameters
+// ----------------
+//
+// # None
+//
+// Return Parameters
+// -----------------
+//
+// big.RoundingMode
+//
+//	Returns the equivalent math/big RoundingMode value for the RoundingType
+//	instance.
+//
+// error
+//
+//	Returns nil on success, or a non-nil error if the RoundingType instance is
+//	in an uninitialized / invalid state with no math/big RoundingMode
+//	equivalent.
+func (rt *RoundingType) GetBigMathRoundingMode() (big.RoundingMode, error) {
+	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
+		"RoundingType_0010.go",
+		"RoundingType",
+		"GetBigMathRoundingMode()")
+
+	switch *rt {
+	case ToNearestEvenVal:
+		return big.ToNearestEven, nil
+
+	case ToNearestAwayVal:
+		return big.ToNearestAway, nil
+
+	case ToZeroVal:
+		return big.ToZero, nil
+
+	case AwayFromZeroVal:
+		return big.AwayFromZero, nil
+
+	case ToNegativeInfVal:
+		return big.ToNegativeInf, nil
+
+	case ToPositiveInfVal:
+		return big.ToPositiveInf, nil
+
+	default:
+		return 0, errGenericCfg.GetErrorNativeToFunction(
+			"",
+			"",
+			"",
+			"",
+			fmt.Sprintf("RoundingType value (%d) has no math/big RoundingMode equivalent", int(*rt)),
+			"RoundingType instance is in an uninitialized / invalid state")
 	}
 }
 
