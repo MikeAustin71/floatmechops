@@ -72,5 +72,51 @@
 --- PASS: TestNumericSignType_Values (0.00s)
 === RUN   TestNumericSignTypeNames
 --- PASS: TestNumericSignTypeNames (0.00s)
+=== RUN   TestNumericValueType_String
+=== RUN   TestNumericValueType_String/Integer
+=== RUN   TestNumericValueType_String/FloatingPoint
+=== RUN   TestNumericValueType_String/invalid_zero_value
+=== RUN   TestNumericValueType_String/invalid_value_greater_than_floating_point
+=== RUN   TestNumericValueType_String/invalid_negative_value
+--- PASS: TestNumericValueType_String (0.00s)
+    --- PASS: TestNumericValueType_String/Integer (0.00s)
+    --- PASS: TestNumericValueType_String/FloatingPoint (0.00s)
+    --- PASS: TestNumericValueType_String/invalid_zero_value (0.00s)
+    --- PASS: TestNumericValueType_String/invalid_value_greater_than_floating_point (0.00s)
+    --- PASS: TestNumericValueType_String/invalid_negative_value (0.00s)
+=== RUN   TestNumericValueType_IsInteger
+=== RUN   TestNumericValueType_IsInteger/Integer
+=== RUN   TestNumericValueType_IsInteger/FloatingPoint
+=== RUN   TestNumericValueType_IsInteger/invalid_zero_value
+--- PASS: TestNumericValueType_IsInteger (0.00s)
+    --- PASS: TestNumericValueType_IsInteger/Integer (0.00s)
+    --- PASS: TestNumericValueType_IsInteger/FloatingPoint (0.00s)
+    --- PASS: TestNumericValueType_IsInteger/invalid_zero_value (0.00s)
+=== RUN   TestNumericValueType_IsFloatingPoint
+=== RUN   TestNumericValueType_IsFloatingPoint/Integer
+=== RUN   TestNumericValueType_IsFloatingPoint/FloatingPoint
+=== RUN   TestNumericValueType_IsFloatingPoint/invalid_zero_value
+--- PASS: TestNumericValueType_IsFloatingPoint (0.00s)
+    --- PASS: TestNumericValueType_IsFloatingPoint/Integer (0.00s)
+    --- PASS: TestNumericValueType_IsFloatingPoint/FloatingPoint (0.00s)
+    --- PASS: TestNumericValueType_IsFloatingPoint/invalid_zero_value (0.00s)
+=== RUN   TestNumericValueType_IsValid
+=== RUN   TestNumericValueType_IsValid/Integer
+=== RUN   TestNumericValueType_IsValid/FloatingPoint
+=== RUN   TestNumericValueType_IsValid/invalid_zero_value
+=== RUN   TestNumericValueType_IsValid/invalid_value_greater_than_floating_point
+--- PASS: TestNumericValueType_IsValid (0.00s)
+    --- PASS: TestNumericValueType_IsValid/Integer (0.00s)
+    --- PASS: TestNumericValueType_IsValid/FloatingPoint (0.00s)
+    --- PASS: TestNumericValueType_IsValid/invalid_zero_value (0.00s)
+    --- PASS: TestNumericValueType_IsValid/invalid_value_greater_than_floating_point (0.00s)
+=== RUN   TestNumericValueType_SetInteger
+--- PASS: TestNumericValueType_SetInteger (0.00s)
+=== RUN   TestNumericValueType_SetFloatingPoint
+--- PASS: TestNumericValueType_SetFloatingPoint (0.00s)
+=== RUN   TestNumericValueType_Values
+--- PASS: TestNumericValueType_Values (0.00s)
+=== RUN   TestNumericValueTypeNames
+--- PASS: TestNumericValueTypeNames (0.00s)
 PASS
-ok  	github.com/MikeAustin71/floatmechops/floatmech	0.096s
+ok  	github.com/MikeAustin71/floatmechops/floatmech	0.170s
