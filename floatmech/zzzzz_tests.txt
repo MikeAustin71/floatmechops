@@ -1,1 +1,76 @@
-Stores test results
+=== RUN   TestNumericSignType_String
+=== RUN   TestNumericSignType_String/NegativeValue
+=== RUN   TestNumericSignType_String/ZeroValue
+=== RUN   TestNumericSignType_String/PositiveValue
+=== RUN   TestNumericSignType_String/invalid_value_less_than_negative
+=== RUN   TestNumericSignType_String/invalid_value_greater_than_positive
+--- PASS: TestNumericSignType_String (0.00s)
+    --- PASS: TestNumericSignType_String/NegativeValue (0.00s)
+    --- PASS: TestNumericSignType_String/ZeroValue (0.00s)
+    --- PASS: TestNumericSignType_String/PositiveValue (0.00s)
+    --- PASS: TestNumericSignType_String/invalid_value_less_than_negative (0.00s)
+    --- PASS: TestNumericSignType_String/invalid_value_greater_than_positive (0.00s)
+=== RUN   TestNumericSignType_IsNegative
+=== RUN   TestNumericSignType_IsNegative/NegativeValue
+=== RUN   TestNumericSignType_IsNegative/ZeroValue
+=== RUN   TestNumericSignType_IsNegative/PositiveValue
+--- PASS: TestNumericSignType_IsNegative (0.00s)
+    --- PASS: TestNumericSignType_IsNegative/NegativeValue (0.00s)
+    --- PASS: TestNumericSignType_IsNegative/ZeroValue (0.00s)
+    --- PASS: TestNumericSignType_IsNegative/PositiveValue (0.00s)
+=== RUN   TestNumericSignType_IsPositive
+=== RUN   TestNumericSignType_IsPositive/NegativeValue
+=== RUN   TestNumericSignType_IsPositive/ZeroValue
+=== RUN   TestNumericSignType_IsPositive/PositiveValue
+--- PASS: TestNumericSignType_IsPositive (0.00s)
+    --- PASS: TestNumericSignType_IsPositive/NegativeValue (0.00s)
+    --- PASS: TestNumericSignType_IsPositive/ZeroValue (0.00s)
+    --- PASS: TestNumericSignType_IsPositive/PositiveValue (0.00s)
+=== RUN   TestNumericSignType_IsZero
+=== RUN   TestNumericSignType_IsZero/NegativeValue
+=== RUN   TestNumericSignType_IsZero/ZeroValue
+=== RUN   TestNumericSignType_IsZero/PositiveValue
+--- PASS: TestNumericSignType_IsZero (0.00s)
+    --- PASS: TestNumericSignType_IsZero/NegativeValue (0.00s)
+    --- PASS: TestNumericSignType_IsZero/ZeroValue (0.00s)
+    --- PASS: TestNumericSignType_IsZero/PositiveValue (0.00s)
+=== RUN   TestNumericSignType_IsNegativeOrZero
+=== RUN   TestNumericSignType_IsNegativeOrZero/NegativeValue
+=== RUN   TestNumericSignType_IsNegativeOrZero/ZeroValue
+=== RUN   TestNumericSignType_IsNegativeOrZero/PositiveValue
+--- PASS: TestNumericSignType_IsNegativeOrZero (0.00s)
+    --- PASS: TestNumericSignType_IsNegativeOrZero/NegativeValue (0.00s)
+    --- PASS: TestNumericSignType_IsNegativeOrZero/ZeroValue (0.00s)
+    --- PASS: TestNumericSignType_IsNegativeOrZero/PositiveValue (0.00s)
+=== RUN   TestNumericSignType_IsPositiveOrZero
+=== RUN   TestNumericSignType_IsPositiveOrZero/NegativeValue
+=== RUN   TestNumericSignType_IsPositiveOrZero/ZeroValue
+=== RUN   TestNumericSignType_IsPositiveOrZero/PositiveValue
+--- PASS: TestNumericSignType_IsPositiveOrZero (0.00s)
+    --- PASS: TestNumericSignType_IsPositiveOrZero/NegativeValue (0.00s)
+    --- PASS: TestNumericSignType_IsPositiveOrZero/ZeroValue (0.00s)
+    --- PASS: TestNumericSignType_IsPositiveOrZero/PositiveValue (0.00s)
+=== RUN   TestNumericSignType_IsValid
+=== RUN   TestNumericSignType_IsValid/NegativeValue
+=== RUN   TestNumericSignType_IsValid/ZeroValue
+=== RUN   TestNumericSignType_IsValid/PositiveValue
+=== RUN   TestNumericSignType_IsValid/invalid_value_less_than_negative
+=== RUN   TestNumericSignType_IsValid/invalid_value_greater_than_positive
+--- PASS: TestNumericSignType_IsValid (0.00s)
+    --- PASS: TestNumericSignType_IsValid/NegativeValue (0.00s)
+    --- PASS: TestNumericSignType_IsValid/ZeroValue (0.00s)
+    --- PASS: TestNumericSignType_IsValid/PositiveValue (0.00s)
+    --- PASS: TestNumericSignType_IsValid/invalid_value_less_than_negative (0.00s)
+    --- PASS: TestNumericSignType_IsValid/invalid_value_greater_than_positive (0.00s)
+=== RUN   TestNumericSignType_SetPositive
+--- PASS: TestNumericSignType_SetPositive (0.00s)
+=== RUN   TestNumericSignType_SetZero
+--- PASS: TestNumericSignType_SetZero (0.00s)
+=== RUN   TestNumericSignType_SetNegative
+--- PASS: TestNumericSignType_SetNegative (0.00s)
+=== RUN   TestNumericSignType_Values
+--- PASS: TestNumericSignType_Values (0.00s)
+=== RUN   TestNumericSignTypeNames
+--- PASS: TestNumericSignTypeNames (0.00s)
+PASS
+ok  	github.com/MikeAustin71/floatmechops/floatmech	0.096s
