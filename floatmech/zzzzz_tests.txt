@@ -73,41 +73,41 @@
 === RUN   TestNumericSignTypeNames
 --- PASS: TestNumericSignTypeNames (0.00s)
 === RUN   TestNumericValueType_String
-=== RUN   TestNumericValueType_String/Integer
-=== RUN   TestNumericValueType_String/FloatingPoint
+=== RUN   TestNumericValueType_String/IntegerValue
+=== RUN   TestNumericValueType_String/FloatingPointValue
 === RUN   TestNumericValueType_String/invalid_zero_value
 === RUN   TestNumericValueType_String/invalid_value_greater_than_floating_point
 === RUN   TestNumericValueType_String/invalid_negative_value
 --- PASS: TestNumericValueType_String (0.00s)
-    --- PASS: TestNumericValueType_String/Integer (0.00s)
-    --- PASS: TestNumericValueType_String/FloatingPoint (0.00s)
+    --- PASS: TestNumericValueType_String/IntegerValue (0.00s)
+    --- PASS: TestNumericValueType_String/FloatingPointValue (0.00s)
     --- PASS: TestNumericValueType_String/invalid_zero_value (0.00s)
     --- PASS: TestNumericValueType_String/invalid_value_greater_than_floating_point (0.00s)
     --- PASS: TestNumericValueType_String/invalid_negative_value (0.00s)
 === RUN   TestNumericValueType_IsInteger
-=== RUN   TestNumericValueType_IsInteger/Integer
-=== RUN   TestNumericValueType_IsInteger/FloatingPoint
+=== RUN   TestNumericValueType_IsInteger/IntegerValue
+=== RUN   TestNumericValueType_IsInteger/FloatingPointValue
 === RUN   TestNumericValueType_IsInteger/invalid_zero_value
 --- PASS: TestNumericValueType_IsInteger (0.00s)
-    --- PASS: TestNumericValueType_IsInteger/Integer (0.00s)
-    --- PASS: TestNumericValueType_IsInteger/FloatingPoint (0.00s)
+    --- PASS: TestNumericValueType_IsInteger/IntegerValue (0.00s)
+    --- PASS: TestNumericValueType_IsInteger/FloatingPointValue (0.00s)
     --- PASS: TestNumericValueType_IsInteger/invalid_zero_value (0.00s)
 === RUN   TestNumericValueType_IsFloatingPoint
-=== RUN   TestNumericValueType_IsFloatingPoint/Integer
-=== RUN   TestNumericValueType_IsFloatingPoint/FloatingPoint
+=== RUN   TestNumericValueType_IsFloatingPoint/IntegerValue
+=== RUN   TestNumericValueType_IsFloatingPoint/FloatingPointValue
 === RUN   TestNumericValueType_IsFloatingPoint/invalid_zero_value
 --- PASS: TestNumericValueType_IsFloatingPoint (0.00s)
-    --- PASS: TestNumericValueType_IsFloatingPoint/Integer (0.00s)
-    --- PASS: TestNumericValueType_IsFloatingPoint/FloatingPoint (0.00s)
+    --- PASS: TestNumericValueType_IsFloatingPoint/IntegerValue (0.00s)
+    --- PASS: TestNumericValueType_IsFloatingPoint/FloatingPointValue (0.00s)
     --- PASS: TestNumericValueType_IsFloatingPoint/invalid_zero_value (0.00s)
 === RUN   TestNumericValueType_IsValid
-=== RUN   TestNumericValueType_IsValid/Integer
-=== RUN   TestNumericValueType_IsValid/FloatingPoint
+=== RUN   TestNumericValueType_IsValid/IntegerValue
+=== RUN   TestNumericValueType_IsValid/FloatingPointValue
 === RUN   TestNumericValueType_IsValid/invalid_zero_value
 === RUN   TestNumericValueType_IsValid/invalid_value_greater_than_floating_point
 --- PASS: TestNumericValueType_IsValid (0.00s)
-    --- PASS: TestNumericValueType_IsValid/Integer (0.00s)
-    --- PASS: TestNumericValueType_IsValid/FloatingPoint (0.00s)
+    --- PASS: TestNumericValueType_IsValid/IntegerValue (0.00s)
+    --- PASS: TestNumericValueType_IsValid/FloatingPointValue (0.00s)
     --- PASS: TestNumericValueType_IsValid/invalid_zero_value (0.00s)
     --- PASS: TestNumericValueType_IsValid/invalid_value_greater_than_floating_point (0.00s)
 === RUN   TestNumericValueType_SetInteger
@@ -118,5 +118,75 @@
 --- PASS: TestNumericValueType_Values (0.00s)
 === RUN   TestNumericValueTypeNames
 --- PASS: TestNumericValueTypeNames (0.00s)
+=== RUN   TestRoundingType_String
+=== RUN   TestRoundingType_String/ToNearestEvenVal
+=== RUN   TestRoundingType_String/ToNearestAwayVal
+=== RUN   TestRoundingType_String/ToZeroVal
+=== RUN   TestRoundingType_String/AwayFromZeroVal
+=== RUN   TestRoundingType_String/ToNegativeInfVal
+=== RUN   TestRoundingType_String/ToPositiveInfVal
+=== RUN   TestRoundingType_String/invalid_value_above_max
+=== RUN   TestRoundingType_String/invalid_negative_value
+--- PASS: TestRoundingType_String (0.00s)
+    --- PASS: TestRoundingType_String/ToNearestEvenVal (0.00s)
+    --- PASS: TestRoundingType_String/ToNearestAwayVal (0.00s)
+    --- PASS: TestRoundingType_String/ToZeroVal (0.00s)
+    --- PASS: TestRoundingType_String/AwayFromZeroVal (0.00s)
+    --- PASS: TestRoundingType_String/ToNegativeInfVal (0.00s)
+    --- PASS: TestRoundingType_String/ToPositiveInfVal (0.00s)
+    --- PASS: TestRoundingType_String/invalid_value_above_max (0.00s)
+    --- PASS: TestRoundingType_String/invalid_negative_value (0.00s)
+=== RUN   TestRoundingType_IsValid
+=== RUN   TestRoundingType_IsValid/ToNearestEvenVal
+=== RUN   TestRoundingType_IsValid/ToNearestAwayVal
+=== RUN   TestRoundingType_IsValid/ToZeroVal
+=== RUN   TestRoundingType_IsValid/AwayFromZeroVal
+=== RUN   TestRoundingType_IsValid/ToNegativeInfVal
+=== RUN   TestRoundingType_IsValid/ToPositiveInfVal
+=== RUN   TestRoundingType_IsValid/invalid_value_above_max
+=== RUN   TestRoundingType_IsValid/invalid_negative_value
+--- PASS: TestRoundingType_IsValid (0.00s)
+    --- PASS: TestRoundingType_IsValid/ToNearestEvenVal (0.00s)
+    --- PASS: TestRoundingType_IsValid/ToNearestAwayVal (0.00s)
+    --- PASS: TestRoundingType_IsValid/ToZeroVal (0.00s)
+    --- PASS: TestRoundingType_IsValid/AwayFromZeroVal (0.00s)
+    --- PASS: TestRoundingType_IsValid/ToNegativeInfVal (0.00s)
+    --- PASS: TestRoundingType_IsValid/ToPositiveInfVal (0.00s)
+    --- PASS: TestRoundingType_IsValid/invalid_value_above_max (0.00s)
+    --- PASS: TestRoundingType_IsValid/invalid_negative_value (0.00s)
+=== RUN   TestRoundingType_GetBigMathRoundingMode
+=== RUN   TestRoundingType_GetBigMathRoundingMode/ToNearestEvenVal
+=== RUN   TestRoundingType_GetBigMathRoundingMode/ToNearestAwayVal
+=== RUN   TestRoundingType_GetBigMathRoundingMode/ToZeroVal
+=== RUN   TestRoundingType_GetBigMathRoundingMode/AwayFromZeroVal
+=== RUN   TestRoundingType_GetBigMathRoundingMode/ToNegativeInfVal
+=== RUN   TestRoundingType_GetBigMathRoundingMode/ToPositiveInfVal
+=== RUN   TestRoundingType_GetBigMathRoundingMode/invalid_value_above_max
+=== RUN   TestRoundingType_GetBigMathRoundingMode/invalid_negative_value
+--- PASS: TestRoundingType_GetBigMathRoundingMode (0.00s)
+    --- PASS: TestRoundingType_GetBigMathRoundingMode/ToNearestEvenVal (0.00s)
+    --- PASS: TestRoundingType_GetBigMathRoundingMode/ToNearestAwayVal (0.00s)
+    --- PASS: TestRoundingType_GetBigMathRoundingMode/ToZeroVal (0.00s)
+    --- PASS: TestRoundingType_GetBigMathRoundingMode/AwayFromZeroVal (0.00s)
+    --- PASS: TestRoundingType_GetBigMathRoundingMode/ToNegativeInfVal (0.00s)
+    --- PASS: TestRoundingType_GetBigMathRoundingMode/ToPositiveInfVal (0.00s)
+    --- PASS: TestRoundingType_GetBigMathRoundingMode/invalid_value_above_max (0.00s)
+    --- PASS: TestRoundingType_GetBigMathRoundingMode/invalid_negative_value (0.00s)
+=== RUN   TestRoundingType_SetToNearestEven
+--- PASS: TestRoundingType_SetToNearestEven (0.00s)
+=== RUN   TestRoundingType_SetToNearestAway
+--- PASS: TestRoundingType_SetToNearestAway (0.00s)
+=== RUN   TestRoundingType_SetToZero
+--- PASS: TestRoundingType_SetToZero (0.00s)
+=== RUN   TestRoundingType_SetAwayFromZero
+--- PASS: TestRoundingType_SetAwayFromZero (0.00s)
+=== RUN   TestRoundingType_SetToNegativeInf
+--- PASS: TestRoundingType_SetToNegativeInf (0.00s)
+=== RUN   TestRoundingType_SetToPositiveInf
+--- PASS: TestRoundingType_SetToPositiveInf (0.00s)
+=== RUN   TestRoundingType_Values
+--- PASS: TestRoundingType_Values (0.00s)
+=== RUN   TestRoundingType_AllValidValuesRoundTrip
+--- PASS: TestRoundingType_AllValidValuesRoundTrip (0.00s)
 PASS
-ok  	github.com/MikeAustin71/floatmechops/floatmech	0.170s
+ok  	github.com/MikeAustin71/floatmechops/floatmech	0.048s
