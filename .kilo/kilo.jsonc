@@ -1,0 +1,62 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+
+  // 1. Restore the reference alias so Kilo is aware of your external knowledge base
+  "references": {
+    "go_knowledge": {
+      "path": "F:/Go_Knowledge",
+      "description": "Central Go 1.27 documentation and release specifications",
+      "hidden": false
+    }
+  },
+
+  // 2. Core strict rules appended to the system prompt
+  "instructions": [
+    ".kilo/rules/go-naming-conventions.md",
+    ".kilo/rules/go-error-handling.md",
+    "AGENTS.md" // <-- Replaces the go-1-27-standards.md file
+  ],
+
+  // 3. Enable semantic indexer for the current project workspace
+  // Ignore IDE warning/error. $schema is out of date and waiting to
+  //   be updated.
+  "indexing": {
+    "enabled": true
+  },
+
+  "agent": {
+    "build": {
+      "temperature": 0.2,
+      "top_p": 0.90,
+      "repeat_penalty": 1.15,
+      "repeat_last_n": 64
+    },
+    "ask": {
+      "temperature": 0.1,
+      "top_p": 0.50,
+      "repeat_penalty": 1.15,
+      "repeat_last_n": 64
+    }
+  },
+
+  "permission": {
+    "read": {
+      "*": "allow",
+      "F:\\Go_Knowledge\\**": "allow",
+      "*.env": "ask",
+      "*.env.*": "ask",
+      "*.env.example": "allow",
+      "*.idea": "deny",
+      "*.idea.*": "deny"
+      // Note: Invalid `cd` and `grep` rules were removed from here
+    },
+    "edit": "allow",
+    "bash": {
+      "*": "ask",
+      "cd *": "allow",
+      "grep *": "allow", // This properly allows the agent to grep your F: drive
+      "git status *": "allow",
+      "git diff *": "allow"
+    }
+  }
+}
