@@ -142,6 +142,40 @@ const (
 	ToPositiveInfVal                     // == IEEE 754-2008 roundTowardPositive
 )
 
+// String
+//
+// Returns the string representation of the RoundingType value.
+//
+// Input Parameters
+// ----------------
+//
+// # None
+//
+// Return Parameters
+// -----------------
+//
+// string
+//
+//	Returns the string representation of the RoundingType value.
+func (rt *RoundingType) String() string {
+	switch *rt {
+	case 0:
+		return "ToNearestEven"
+	case 1:
+		return "ToNearestAway"
+	case 2:
+		return "ToZero"
+	case 3:
+		return "AwayFromZero"
+	case 4:
+		return "ToNegativeInf"
+	case 5:
+		return "ToPositiveInf"
+	default:
+		return "NOT SET - INVALID"
+	}
+}
+
 // SetToNearestEven
 //
 // Sets the RoundingType value to ToNearestEvenVal (IEEE 754-2008
