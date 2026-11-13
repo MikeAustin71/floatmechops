@@ -83,3 +83,88 @@ Sources
 2. [github.com](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQEYFYvLMW9Da5ciAJjILYjFRpy4ILxa5zIX1W-8Ury1ifYS6FUi0s6awtzZcSWFC3Z9MuTv82CjnSTRRQd65gcCe1bF6z3m-51S0THUgk4gkT0A7NzGN8Z_ObKHcwOVSqVtaKWijTwXbqGRwO1vXuM%3D)
 3. [github.com](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQGtKfY-DitQp7DvJH6JQV63q6QfLWbDtk8sQ7w-gZBZkAJIYR1XemPMdwVoKdVKv-U994y8Vc3QfklfCO9YJJQ45Bsi3iF1aubBvoBr7VKyLE7t3LJz7NowYDKl6tjYZ7Sn2cdRuJPFwlhFJeSz324W)
 4. [go.dev](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQFKmu3hePvahVSUFERHJ4hWMQkFiWEZm9JCj0vXhN8fqEBHZweEjrtQAp4JoZBqudKlh6KWcoQqZHTPOQh-2IDhIQVBHZykea_ZvzGk)
+
+
+
+# Constants in Go  
+
+
+
+## ***math*** Package Constants
+
+### [const.go - Go Constants](https://cs.opensource.google/go/go/+/refs/tags/go1.27.4:src/math/const.go;l=11)
+
+
+
+## ***src/math/const.go***
+
+```
+// Copyright 2009 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+// Package math provides basic constants and mathematical functions.
+//
+// This package does not guarantee bit-identical results across architectures.
+package math
+
+// Mathematical constants.
+const (
+	E   = 2.71828182845904523536028747135266249775724709369995957496696763 // https://oeis.org/A001113
+	Pi  = 3.14159265358979323846264338327950288419716939937510582097494459 // https://oeis.org/A000796
+	Phi = 1.61803398874989484820458683436563811772030917980576286213544862 // https://oeis.org/A001622
+
+	Sqrt2   = 1.41421356237309504880168872420969807856967187537694807317667974 // https://oeis.org/A002193
+	SqrtE   = 1.64872127070012814684865078781416357165377610071014801157507931 // https://oeis.org/A019774
+	SqrtPi  = 1.77245385090551602729816748334114518279754945612238712821380779 // https://oeis.org/A002161
+	SqrtPhi = 1.27201964951406896425242246173749149171560804184009624861664038 // https://oeis.org/A139339
+
+	Ln2    = 0.693147180559945309417232121458176568075500134360255254120680009 // https://oeis.org/A002162
+	Log2E  = 1 / Ln2
+	Ln10   = 2.30258509299404568401799145468436420760110148862877297603332790 // https://oeis.org/A002392
+	Log10E = 1 / Ln10
+)
+
+```
+
+
+
+To use constants from Go's standard library `math` package, import `"math"` at the top of your program and access them directly by name (such as `math.Pi`, `math.E`, or `math.Phi`). [[1](https://go.dev/blog/constants), [2](http://dev.meetgor.com/techstructive-blog/golang-math/)]
+
+Example Code:
+
+```go
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+func main() {
+	// Using mathematical constants
+	fmt.Println("Pi:", math.Pi)
+	fmt.Println("Euler's number (E):", math.E)
+	fmt.Println("Golden ratio (Phi):", math.Phi)
+	fmt.Println("Square root of 2:", math.Sqrt2)
+	fmt.Println("Natural log of 2:", math.Ln2)
+
+	// Example: Calculating the area of a circle with radius 5
+	radius := 5.0
+	area := math.Pi * math.Pow(radius, 2)
+	fmt.Printf("Area of a circle with radius %.1f is %.4f\n", radius, area)
+}
+```
+
+## Common Math Package Constants
+
+- **`math.Pi`**: \(\pi \) (3.141592653589793)
+- **`math.E`**: Euler's number \(e\) (2.718281828459045)
+- **`math.Phi`**: Golden ratio \(\phi \) (1.618033988749895)
+- **`math.Sqrt2`**: \(\sqrt{2}\) (1.4142135623730951)
+- **`math.Ln2`**: \(\ln(2)\) (0.6931471805599453)
+- **`math.Ln10`**: \(\ln(10)\) (2.302585092994046) [[1](http://dev.meetgor.com/techstructive-blog/golang-math/)]
+
+*(Note: Constants in the `math` package are typed as `float64` values with high precision, so you can use them directly in floating-point expressions or pass them into other `math` functions.)* [[1] Go by Example](https://gobyexample.com/constants), [[2]  Golang: Math Package](http://dev.meetgor.com/techstructive-blog/golang-math/)
+
+I
