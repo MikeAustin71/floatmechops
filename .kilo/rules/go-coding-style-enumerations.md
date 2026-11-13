@@ -73,6 +73,21 @@ var RoundingTypeNames = [...]string{
 	"Truncation",
 }
 
+// IsValid
+//
+// Returns a boolean value. 
+// If the RoundingType value is valid, returns 'true'.
+// If the RoundingType value is invalid, returns 'false'. 
+func (r RoundingType) IsValid() bool {
+    
+ 	if int(r) < 1 || int(r) >= len(RoundingTypeNames) {
+		return false
+	}
+   
+    return true
+}
+
+
 // String implements the fmt.Stringer interface for RoundingType.
 func (r RoundingType) String() string {
 	if int(r) < 1 || int(r) >= len(RoundingTypeNames) {
