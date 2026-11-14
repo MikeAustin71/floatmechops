@@ -1,15 +1,15 @@
-```text
+# Go Coding Style Rule: Enumerations (Enums)
+
 ## Agent Directive
+
 > **MANDATORY**: Writing and/or modifying Go source code must be conducted in strict accordance with the rules defined in this document. Never bypass these rules.
 
 ---
-```
 
 
-
-# Go Coding Style Rule: Enumerations (Enums)
 
 ## Objective
+
 When generating or refactoring Go code, AI Agents must adhere to the following conventions for declaring, initializing, and managing enumerated types (enums).
 
 ---
@@ -104,4 +104,5 @@ func (r RoundingType) String() string {
 - [ ] Exported constants use PascalCase; unexported constants use lowerCamelCase.
 - [ ] A corresponding string array is defined.
 - [ ] Index `0` of the string array is explicitly set to `"INVALID"`.
+- [ ] An IsValid() method is included returning `true` or `false`.
 - [ ] A safe `String()` method bounds-checks the value and falls back to index `0`.
