@@ -125,3 +125,62 @@ func main() {
 1. **Compile-Time Concatenation:** Using string `+` keeps the constant clean on multiple lines without inserting `\n` or spaces that might cause `SetString` to fail.
 2. **Word Alignment:** Go's `big.Float` internally organizes bits into 64-bit integer slices (`[]big.Word`). Rounding `prec` up to a multiple of 64 ensures that `big.Float` uses memory cleanly without truncation at the tail end.
 3. **Round-Trip Verification:** The `main()` method demonstrates round-trip fidelity using `log2Val.Text('f', numDigits)`. If `prec` were even a few bits too low, the last few digits would deviate.
+
+Sources
+
+1. [go.dev](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQFJfashUInqIBif0RyjSfcTY8CzTBiZrRZXBdnASeAMysTVu2Ac6fVCl6nW6pUfs0ruw7fHyEiHsVTJJ3iBbBrcrPsjLYRXGUqB2j9cfg%3D%3D)
+2. [stackoverflow.com](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQH8km7I_4j1wGq_jkXZo3ALA-MqmiF3z5v1PBqgpqGwbdXnIn6bsBn4PCmaVRme1zI62lshiNL1ljGoKv4zU7QpGV5eH-vXcRpXpW92H9WRHZYsuXgScW9XzaPqKl_4UTV5xhHxRqf7AIBlewl9lwp3ApW67_FyKsRIYye3-lUrC_pNZKmopl57DO7LgBDDS1gnub5HrvLHxFsrPmqJS5Um8CsmE5LJyDhXvcqKwcJALvVp_w%3D%3D)
+3. [stackoverflow.com](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQEBWw4ve9AVQ9qiIT5kS7P3LNK5s-JWoA9K5AIe0qOPBO7v4uG_KNUi1DEtdAppRTo5Ye_BxZfq8QFS2T_95FtSbmAKHHXcXB8oYHBLPotWJK00NAoDsrdUO5slRBenNL5Bebk0ttiYwAjF6VJ-K_UTGVlCLbJ67wUK-NWQlxz_FT_o2EvK68HkuossfRBhcbJR3uc8jLNgaw4Ba-N6)
+
+
+
+# The Definition of Big Float Precision
+
+## Question:
+
+When you calculated the 'decDigits' you included both the integer digits and the fractional digits. I therefore understand that the 'precision' of a Big.Float numeric value includes both the integer digits and the fractional digits. Is that correct?
+
+
+
+**Yes, that is 100% correct.** 
+
+In floating-point arithmetic (including Go's `big.Float`), **precision measures the total number of significant digits**, regardless of where the decimal point is located.
+
+Here is why:
+
+---
+
+### 1. How `big.Float` Represents Numbers
+Internally, a `big.Float` represents a number in binary scientific notation:
+
+$$\text{value} = \pm \text{mantissa} \times 2^{\text{exponent}}$$
+
+* **The Mantissa (Significand):** Stores all the actual digits (bits) of the number. The setting `SetPrec(prec)` directly dictates how many bits the mantissa is allowed to hold.
+* **The Exponent:** Simply shifts the binary point to the left or right to position the magnitude.
+
+Because the exponent handles the scale of the number, the mantissa must store **all significant digits** from the first non-zero digit to the last.
+
+---
+
+### 2. An Illustrative Comparison
+
+Consider these three numbers:
+* $3.321928$ (1 integer digit, 6 fractional digits $\rightarrow$ **7 significant digits**)
+* $3321.928$ (4 integer digits, 3 fractional digits $\rightarrow$ **7 significant digits**)
+* $0.0003321928$ (0 integer digits, 10 fractional digits, but 3 leading zeros $\rightarrow$ **7 significant digits**)
+
+All three numbers require the **exact same bit precision** in `big.Float`! 
+* They all have the same 7 significant digits stored in the mantissa.
+* Only their **exponents** differ to move the decimal point around.
+
+---
+
+### 3. Contrast: Floating-Point vs. Fixed-Point (SQL / Decimal)
+If you have worked with SQL or financial libraries, this is often a point of confusion:
+
+| System                                  | Concept                                | What It Means                                                |
+| :-------------------------------------- | :------------------------------------- | :----------------------------------------------------------- |
+| **SQL / Fixed-Point (`DECIMAL(P, S)`)** | **Scale ($S$)**<br>**Precision ($P$)** | Scale = *fractional* digits only.<br>Precision = *total* digits (integer + fraction). |
+| **Floating-Point (`big.Float`)**        | **Precision (`prec`)**                 | The total bit capacity of the mantissa. It covers **all significant digits** (integer + fractional). |
+
+Because `Log2Of10` is $3.3219\dots$, the leading `3` is the first significant figure and cannot be omitted. Counting both the `3` and all the fractional digits ensures the mantissa has enough bits to store the entire number without truncation.
