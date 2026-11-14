@@ -1,5 +1,7 @@
-[TOC]
-
+- [log2 10 Big Float Precision Example](#log2-10-big-float-precision-example)
+		- [Why It Must Be a `string` Constant](#why-it-must-be-a-string-constant)
+		- [Example Implementation](#example-implementation)
+		- [Key Points of This Approach:](#key-points-of-this-approach)
 
 
 # log2 10 Big Float Precision Example

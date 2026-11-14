@@ -1,3 +1,25 @@
+- [Go `math/big`: RoundingMode Specification Guide](#go-mathbig-roundingmode-specification-guide)
+  - [1. `ToNearestEven`](#1-tonearesteven)
+    - [Description](#description)
+    - [Examples (Rounding to Nearest Integer)](#examples-rounding-to-nearest-integer)
+  - [2. `ToNearestAway`](#2-tonearestaway)
+    - [Description](#description-1)
+    - [Examples (Rounding to Nearest Integer)](#examples-rounding-to-nearest-integer-1)
+  - [3. `ToZero`](#3-tozero)
+    - [Description](#description-2)
+    - [Examples (Rounding to Nearest Integer)](#examples-rounding-to-nearest-integer-2)
+  - [4. `AwayFromZero`](#4-awayfromzero)
+    - [Description](#description-3)
+    - [Examples (Rounding to Nearest Integer)](#examples-rounding-to-nearest-integer-3)
+  - [5. `ToNegativeInf`](#5-tonegativeinf)
+    - [Description](#description-4)
+    - [Examples (Rounding to Nearest Integer)](#examples-rounding-to-nearest-integer-4)
+  - [6. `ToPositiveInf`](#6-topositiveinf)
+    - [Description](#description-5)
+    - [Examples (Rounding to Nearest Integer)](#examples-rounding-to-nearest-integer-5)
+  - [Comparative Summary](#comparative-summary)
+
+
 # Go `math/big`: RoundingMode Specification Guide
 
 In Go's `math/big` package, `big.Float` calculations operate with arbitrary precision. When a result cannot be represented exactly within the requested bit precision (significand bits), it must be rounded. The `RoundingMode` type determines how rounding decisions and tie-breaking are executed.
