@@ -3,6 +3,7 @@ package floatmech
 import (
 	"math"
 	"math/big"
+	"sync"
 )
 
 const defaultMaxExactBits uint = 8192
@@ -23,6 +24,7 @@ const (
 
 // Decimal is an immutable, encapsulated wrapper around *big.Float (Option B).
 type Decimal struct {
+	mu                     sync.Mutex
 	val                    *big.Float
 	targetFractionalDigits uint
 	prec                   uint
@@ -32,6 +34,15 @@ type Decimal struct {
 // NewFromFloat64 constructs an immutable Decimal sized to preserve at least
 // targetFractionalDigits decimal places for v's magnitude.
 func (d *Decimal) NewFromFloat64(v float64, targetFractionalDigits uint, mode big.RoundingMode) *Decimal {
+
+	if d.val == nil {
+		return &Decimal{}
+	}
+
+	d.mu.Lock()
+
+	defer d.mu.Unlock()
+
 	conv := defaultConverter()
 
 	var exp2 int
@@ -40,6 +51,8 @@ func (d *Decimal) NewFromFloat64(v float64, targetFractionalDigits uint, mode bi
 	}
 
 	prec := conv.toPrec(targetFractionalDigits, exp2)
+
+	// Maximum fractional precision for type: float64
 	if prec < 53 {
 		prec = 53
 	}
@@ -60,6 +73,11 @@ func (d *Decimal) TargetFractionalDigits() uint {
 	if d == nil {
 		return 0
 	}
+
+	d.mu.Lock()
+
+	defer d.mu.Unlock()
+
 	return d.targetFractionalDigits
 }
 
@@ -67,12 +85,15 @@ func (d *Decimal) TargetFractionalDigits() uint {
 // by the underlying big.Float's binary precision at its current magnitude.
 func (d *Decimal) ActualFractionalDigits() uint {
 
-	/*	if d == nil || d.val == nil || d.val.Sign() == 0 || d.val.IsInf() {
-			return d.targetFractionalDigits
-		}
-	*/
+	if d.val == nil {
+		return 0
+	}
 
-	if d.val == nil || d.val.Sign() == 0 || d.val.IsInf() {
+	d.mu.Lock()
+
+	defer d.mu.Unlock()
+
+	if d.val.Sign() == 0 || d.val.IsInf() {
 		return d.targetFractionalDigits
 	}
 
@@ -81,41 +102,90 @@ func (d *Decimal) ActualFractionalDigits() uint {
 
 // Prec returns the underlying big.Float total mantissa precision in bits.
 func (d *Decimal) Prec() uint {
+
 	if d == nil {
 		return 0
 	}
+
+	d.mu.Lock()
+
+	defer d.mu.Unlock()
+
 	return d.prec
 }
 
 // Pow returns d^exp using Option 2 (Fixed/Heuristic Guard Bits).
 func (d *Decimal) Pow(exp uint) *Decimal {
+
+	if d == nil {
+		return &Decimal{}
+	}
+
+	d.mu.Lock()
+
+	defer d.mu.Unlock()
+
 	return d.powWithStrategy(exp, strategyHeuristic)
 }
 
 // PowExact returns d^exp using Option 3 (Ziv's Adaptive Strategy).
 func (d *Decimal) PowExact(exp uint) *Decimal {
+
+	if d == nil {
+		return &Decimal{}
+	}
+
+	d.mu.Lock()
+
+	defer d.mu.Unlock()
+
 	return d.powWithStrategy(exp, strategyZiv)
 }
 
 // PowHybrid returns d^exp using Option 4 (Exact big.Int for small
 // MinPrec()*exp, falling back to Option 2 for larger exponents).
 func (d *Decimal) PowHybrid(exp uint) *Decimal {
+
+	if d == nil {
+		return &Decimal{}
+	}
+
+	d.mu.Lock()
+
+	defer d.mu.Unlock()
+
 	return d.powWithStrategy(exp, strategyHybrid)
 }
 
 // String formats the Decimal in fixed-point notation to targetFractionalDigits.
 func (d *Decimal) String() string {
-	if d == nil || d.val == nil {
+
+	if d == nil {
+		return ""
+	}
+
+	d.mu.Lock()
+
+	defer d.mu.Unlock()
+
+	if d.val == nil {
 		return "0"
 	}
+
 	if d.val.IsInf() {
 		return d.val.String()
 	}
+
 	return d.val.Text('f', int(d.targetFractionalDigits))
 }
 
 func (d *Decimal) powWithStrategy(exp uint, strategy powStrategy) *Decimal {
-	if d == nil || d.val == nil {
+
+	if d == nil {
+		return &Decimal{}
+	}
+
+	if d.val == nil {
 		return new(Decimal).NewFromFloat64(0, defaultFractionalDigits, big.ToNearestEven).powWithStrategy(exp, strategy)
 	}
 
