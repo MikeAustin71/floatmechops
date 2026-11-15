@@ -31,7 +31,7 @@ type Decimal struct {
 
 // NewFromFloat64 constructs an immutable Decimal sized to preserve at least
 // targetFractionalDigits decimal places for v's magnitude.
-func NewFromFloat64(v float64, targetFractionalDigits uint, mode big.RoundingMode) *Decimal {
+func (d *Decimal) NewFromFloat64(v float64, targetFractionalDigits uint, mode big.RoundingMode) *Decimal {
 	conv := defaultConverter()
 
 	var exp2 int
@@ -113,7 +113,7 @@ func (d *Decimal) String() string {
 
 func (d *Decimal) powWithStrategy(exp uint, strategy powStrategy) *Decimal {
 	if d == nil || d.val == nil {
-		return NewFromFloat64(0, defaultFractionalDigits, big.ToNearestEven).powWithStrategy(exp, strategy)
+		return new(Decimal).NewFromFloat64(0, defaultFractionalDigits, big.ToNearestEven).powWithStrategy(exp, strategy)
 	}
 
 	conv := defaultConverter()
