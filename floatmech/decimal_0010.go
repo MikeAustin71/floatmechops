@@ -40,6 +40,9 @@ func (d *Decimal) NewFromFloat64(v float64, targetFractionalDigits uint, mode bi
 	}
 
 	prec := conv.toPrec(targetFractionalDigits, exp2)
+	if prec < 53 {
+		prec = 53
+	}
 
 	val := new(big.Float).SetPrec(prec).SetMode(mode).SetFloat64(v)
 

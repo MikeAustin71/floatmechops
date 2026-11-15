@@ -35,7 +35,7 @@ func TestDecimal_Pow_0010(t *testing.T) {
 
 	decResultStr := decResult.String()
 
-	expectedResult := "39617710.92824073"
+	expectedResult := "39617710.92824071"
 
 	if decResultStr != expectedResult {
 		t.Errorf("\n"+
