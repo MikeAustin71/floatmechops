@@ -43,14 +43,17 @@ Public methods on custom types are typically designed as public entry points to 
 ### Example Public Method on Custom Type:
 
 ```go
-// This method located in source code file LowestCommonDenom_0010.go
-
 
 import (
     // Required for error handling
 	ePref "github.com/MikeAustin71/errpref/v2"
 )
 
+// LCDCalculation
+//
+// Located in source code file LowestCommonDenom_0010.go
+// Contains method(s) designed to calculate lowest
+// common denominator.
 type LCDCalculation struc {
 	mu *sync.Mutex    
 }
@@ -80,12 +83,8 @@ type LCDCalculation struc {
 //  The calculated Lowest Common Denominator based on input
 //  parameters 'a' and 'b'.
 func (LCDcalc *LCDCalculation) CalculateLCD(a, b int) (int, error) {
- 
-    LCDcalc.mu.Lock()
-    
-    defer LCDcalc.mu.Unlock()
-    
-	// NewErrorGenericConfig()
+ 	
+    // NewErrorGenericConfig()
     //
     // func (egc *ErrorGenericFactory) NewErrorGenericConfig(
     //    sourceFile string,
@@ -97,11 +96,26 @@ func (LCDcalc *LCDCalculation) CalculateLCD(a, b int) (int, error) {
 		"CalculateLCD_0010.go",
 		"",
 		"CalculateLCD()")
+
+    if LCDcalc == nil {
+      	// Handle Nil Pointer
+        err:= errGenericCfg.GetErrorInputParameterNilPointer(
+                "value1", "", "", "",
+                "Invalid method input parameter",
+                "Error: Input parameter 'value1' is a nil pointer")
+  
+        return -1, err
+    }
+    
+    LCDcalc.mu.Lock()
+    
+    defer LCDcalc.mu.Unlock()
     
     if a == 0 {
         
-        
-		//func (egc *ErrorGenericFactory) GetErrorInputParameterOutOfRange(
+        // GetErrorInputParameterOutOfRange()
+        //
+		// func (egc *ErrorGenericFactory) GetErrorInputParameterOutOfRange(
 		//  parameter string,
 		//  path string,
 		//  fileName string,
