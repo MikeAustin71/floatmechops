@@ -36,8 +36,9 @@ func (z zivBounder) propagateMulErr(errA, errB float64, acc big.Accuracy) float6
 	if acc == big.Exact {
 		return prop
 	}
-	// Multiply by (1 + u) for the new rounding step.
-	return prop + 1.0 + prop*z.unitRoundoff
+	// Multiply by (1 + 1.1*u) for the new rounding step.
+	// The 1.1 factor is a safety margin to account for accumulated drift in binary exponentiation.
+	return prop + 1.1 + prop*z.unitRoundoff
 }
 
 // tryRound checks if the true mathematical value in [res - delta, res + delta]
@@ -63,9 +64,9 @@ func (z zivBounder) tryRound(res *big.Float, errUnits float64) (*big.Float, bool
 		return nil, false
 	}
 
-	// Apply a 1% conservative multiplier to errUnits to cover both float64
-	// rounding and converting relative error |Y_true - res| / |Y_true| to |res|.
-	safeErrUnits := errUnits * 1.01
+	// Apply a 10% conservative multiplier to errUnits (increased from 1% per error report)
+	// to cover both float64 rounding and converting relative error |Y_true - res| / |Y_true| to |res|.
+	safeErrUnits := errUnits * 1.1
 
 	// Build eps >= safeErrUnits * 2^-workPrec rounded upward (ToPositiveInf).
 	eps := new(big.Float).SetPrec(64).SetMode(big.ToPositiveInf).SetFloat64(safeErrUnits)

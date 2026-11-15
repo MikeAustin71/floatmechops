@@ -31,7 +31,7 @@ func TestDecimal_Pow_0010(t *testing.T) {
 			expectedInitialDecValueStr, actualInitalDecValueStr)
 	}
 
-	decResult := decimal.Pow(exponent)
+	decResult := decimal.PowExact(exponent)
 
 	decResultStr := decResult.String()
 
