@@ -2,7 +2,7 @@ package floatmech
 
 // NumericValueType
 //
-// Represents the fundamental kind of a numeric value as either IntegerValue or
+// Represents the fundamental kind of numeric value as either IntegerValue or
 // FloatingPointValue.
 type NumericValueType int
 

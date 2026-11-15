@@ -2,7 +2,7 @@
 
 # Gemini4 Hydrogen Question No: 1 ***sync.Mutex*** - 2026-11-12 22:55
 
-Using the 'go' programming language (a.k.a. Golang), please create sample code showing the best procedures for using a sync.Mutex to prevent race conditions. This example code should create a simple 'struct' containing a method with a receiver pointer. This method needs to lock the mutex before performing an operation and release the lock afterwards.
+Using the 'go' programming language (a.k.a. Golang), please create sample code showing the best procedures for using a sync.Mutex to prevent race conditions. This example code should create a simple 'struct' containing a method with a receiver pointer. This method needs to lock the mutex before performing an operation and release the lock afterward.
 
 
 
