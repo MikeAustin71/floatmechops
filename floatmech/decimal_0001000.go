@@ -117,6 +117,29 @@ func (d *Decimal) CopyIn(copySource *Decimal) error {
 			"Error: Input parameter 'copySource' is a nil pointer")
 	}
 
+	if copySource.val == nil {
+
+		// GetErrorInputParameterNilPointer()
+		//
+		// func (egc *ErrorGenericFactory) GetErrorInputParameterNilPointer(
+		//    parameter string,
+		//    path string,
+		//    fileName string,
+		//    url string,
+		//    errorContext string,
+		//    errorMessage string) error
+		//
+		// Formats error message and error context for when nil pointers
+		// are passed as Function input parameters.
+		return errGenericCfg.GetErrorInputParameterNilPointer(
+			"copySource.val == nil",
+			"",
+			"",
+			"",
+			"copySource member variable 'val' is a nil pointer",
+			"Error: Input parameter 'copySource' member variable 'val' is a nil pointer")
+	}
+
 	d.val = copySource.val
 	d.targetFractionalDigits = copySource.targetFractionalDigits
 	d.prec = copySource.prec
@@ -205,8 +228,31 @@ func (d *Decimal) CopyOut(copyDestination *Decimal) error {
 			"",
 			"",
 			"",
-			"copyDestination is a nil pointer",
+			"		copyDestination is a nil pointer",
 			"Error: Input parameter 'copyDestination' is a nil pointer")
+	}
+
+	if d.val == nil {
+
+		// GetErrorNativeToFunction()
+		//
+		// func (egc *ErrorGenericFactory) GetErrorNativeToFunction(
+		//    parameter string,
+		//    path string,
+		//    fileName string,
+		//    url string,
+		//    errorContext string,
+		//    errorMessage string) error
+		//
+		// Formats error message and error context for errors
+		// originating in the current function's internal logic.
+		return errGenericCfg.GetErrorNativeToFunction(
+			"d.val == nil",
+			"",
+			"",
+			"",
+			"Host member variable 'val' is a nil pointer",
+			"This instance of type Decimal is invalid. Decimal member variable 'val' is a nil pointer.")
 	}
 
 	copyDestination.val = d.val
@@ -276,6 +322,29 @@ func (d *Decimal) Clone() (*Decimal, error) {
 	d.mu.Lock()
 
 	defer d.mu.Unlock()
+
+	if d.val == nil {
+
+		// GetErrorNativeToFunction()
+		//
+		// func (egc *ErrorGenericFactory) GetErrorNativeToFunction(
+		//    parameter string,
+		//    path string,
+		//    fileName string,
+		//    url string,
+		//    errorContext string,
+		//    errorMessage string) error
+		//
+		// Formats error message and error context for errors
+		// originating in the current function's internal logic.
+		return &Decimal{}, errGenericCfg.GetErrorNativeToFunction(
+			"d.val == nil",
+			"",
+			"",
+			"",
+			"Host member variable 'val' is a nil pointer",
+			"This instance of type Decimal is invalid. Decimal member variable 'val' is a nil pointer.")
+	}
 
 	clonedDecimal := new(Decimal)
 
