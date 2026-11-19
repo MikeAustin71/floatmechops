@@ -52,7 +52,7 @@ NaturalLogAGM_0030.go # Supporting Types and Methods
 *   **File Numbering Component**: Typically begins at **`_0020.go`** and increases in increments of ten (10).
 *   **Structure**: Usually contain private helper methods called by higher-level types.
 
-### Crowded Numbering & Extended Components
+### Crowded Numbering & Extended Numbering Components
 
 If a numbering sequence becomes crowded and new files must be inserted between existing files, use an extended numbering component format (`_000_010.go`):
 
@@ -97,7 +97,7 @@ zzzt_numberstrkernel_0020_test.go
 
 ### Crowded Numbering & Extended Numbering Components
 
-If a numbering sequence becomes crowded and new files must be inserted between existing files, use an extended numbering component format (`_000_010.go`):
+If a numbering sequence becomes crowded and new files must be inserted between existing files, use an extended numbering component format (`_000_test_0010.go`):
 
 **Example**
 
@@ -105,10 +105,13 @@ If a numbering sequence becomes crowded and new files must be inserted between e
 zzzt_numberstrkernel_0010_test.go
 zzzt_numberstrkernel_0020_test.go
 zzzt_numberstrkernel_0021_test.go
-zzzt_numberstrkernel_0021_010_test.go # Extended File Number Component for insertions
+zzzt_numberstrkernel_0021_test_0010.go # Extended File Number Component for insertions
+zzzt_numberstrkernel_0021_test_0020.go # Extended File Number Component for insertions
 zzzt_numberstrkernel_0022_test.go
 zzzt_numberstrkernel_0030_test.go
 ```
+
+Note that Test file Extended Numbering Components differ from Source Code file Extended Numbering Components.
 
 
 
@@ -129,12 +132,15 @@ intary_0040.go
 NaturalLogAGM_0010.go 
 NaturalLogAGM_0020.go 
 NaturalLogAGM_0030.go
-NaturalLogAGM_0030_010.go # Extended File Number Component for insertions
+NaturalLogAGM_0030_010.go # Source File Extended File Number Component for insertions
 NaturalLogAGM_0031.go 
 NaturalLogAGM_0040.go 
 NaturalLogAGM_0050.go 
 zzzt_NaturalLogAGM_0010_test.go
 zzzt_numberstrkernel_0010_test.go
+zzzt_numberstrkernel_0021_test_0010.go # Test File Extended File Number Component for insertions
+zzzt_numberstrkernel_0021_test_0020.go # Test File Extended File Number Component for insertions
 zzzt_numberstrkernel_0020_test.go
+
 ```
 
