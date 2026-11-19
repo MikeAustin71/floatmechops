@@ -370,6 +370,36 @@ func (d *Decimal) Prec() uint {
 	return d.prec
 }
 
+// IsValid
+//
+// Tests the internal value stored in structure element 'val'.
+// If 'val' is a nil pointer, the method returns 'false'.
+// If 'val' is not nil, the method returns 'true'.
+//
+// Input Parameters
+// ----------------
+//
+//	None
+//
+// Return Parameters
+// -----------------
+//
+//	bool
+//	  Returns 'false' if the internal value 'val' is a nil pointer.
+//	  Returns 'true' if the internal value 'val' is not nil.
+func (d *Decimal) IsValid() bool {
+
+	if d == nil {
+		return false
+	}
+
+	d.mu.Lock()
+
+	defer d.mu.Unlock()
+
+	return d.val != nil
+}
+
 // Pow returns d^exp using Option 2 (Fixed/Heuristic Guard Bits).
 func (d *Decimal) Pow(exp uint) *Decimal {
 
