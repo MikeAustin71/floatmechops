@@ -29,6 +29,8 @@ func TestDecimal_Pow_0010(t *testing.T) {
 			"Expected Initial Decimal Value: %s\n"+
 			"  Actual Initial Decimal Value: %s\n",
 			expectedInitialDecValueStr, actualInitalDecValueStr)
+
+		return
 	}
 
 	decResult := decimal.PowExact(exponent)

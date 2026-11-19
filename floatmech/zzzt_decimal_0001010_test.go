@@ -64,6 +64,7 @@ func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 		t.Errorf("\n"+
 			"Expected CopyIn to succeed for a valid copySource\n"+
 			"  Actual CopyIn returned: %s", err.Error())
+		return
 	}
 
 	if receiver.val != copySource.val {
@@ -72,6 +73,7 @@ func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 			"  Actual receiver.val: %s\n"+
 			"  Actual copySource.val: %s",
 			receiver.val.String(), copySource.val.String())
+		return
 	}
 
 	if receiver.targetFractionalDigits != copySource.targetFractionalDigits {
@@ -79,6 +81,7 @@ func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 			"Expected receiver.targetFractionalDigits = %d\n"+
 			"  Actual receiver.targetFractionalDigits = %d",
 			copySource.targetFractionalDigits, receiver.targetFractionalDigits)
+		return
 	}
 
 	if receiver.prec != copySource.prec {
@@ -86,6 +89,7 @@ func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 			"Expected receiver.prec = %d\n"+
 			"  Actual receiver.prec = %d",
 			copySource.prec, receiver.prec)
+		return
 	}
 
 	if receiver.mode != copySource.mode {
@@ -93,6 +97,7 @@ func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 			"Expected receiver.mode = %s\n"+
 			"  Actual receiver.mode = %s",
 			copySource.mode, receiver.mode)
+		return
 	}
 
 	return
