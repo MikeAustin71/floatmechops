@@ -1,123 +1,3 @@
-=== RUN   TestNumericSignType_String
-=== RUN   TestNumericSignType_String/NegativeValue
-=== RUN   TestNumericSignType_String/ZeroValue
-=== RUN   TestNumericSignType_String/PositiveValue
-=== RUN   TestNumericSignType_String/invalid_value_less_than_negative
-=== RUN   TestNumericSignType_String/invalid_value_greater_than_positive
---- PASS: TestNumericSignType_String (0.00s)
-    --- PASS: TestNumericSignType_String/NegativeValue (0.00s)
-    --- PASS: TestNumericSignType_String/ZeroValue (0.00s)
-    --- PASS: TestNumericSignType_String/PositiveValue (0.00s)
-    --- PASS: TestNumericSignType_String/invalid_value_less_than_negative (0.00s)
-    --- PASS: TestNumericSignType_String/invalid_value_greater_than_positive (0.00s)
-=== RUN   TestNumericSignType_IsNegative
-=== RUN   TestNumericSignType_IsNegative/NegativeValue
-=== RUN   TestNumericSignType_IsNegative/ZeroValue
-=== RUN   TestNumericSignType_IsNegative/PositiveValue
---- PASS: TestNumericSignType_IsNegative (0.00s)
-    --- PASS: TestNumericSignType_IsNegative/NegativeValue (0.00s)
-    --- PASS: TestNumericSignType_IsNegative/ZeroValue (0.00s)
-    --- PASS: TestNumericSignType_IsNegative/PositiveValue (0.00s)
-=== RUN   TestNumericSignType_IsPositive
-=== RUN   TestNumericSignType_IsPositive/NegativeValue
-=== RUN   TestNumericSignType_IsPositive/ZeroValue
-=== RUN   TestNumericSignType_IsPositive/PositiveValue
---- PASS: TestNumericSignType_IsPositive (0.00s)
-    --- PASS: TestNumericSignType_IsPositive/NegativeValue (0.00s)
-    --- PASS: TestNumericSignType_IsPositive/ZeroValue (0.00s)
-    --- PASS: TestNumericSignType_IsPositive/PositiveValue (0.00s)
-=== RUN   TestNumericSignType_IsZero
-=== RUN   TestNumericSignType_IsZero/NegativeValue
-=== RUN   TestNumericSignType_IsZero/ZeroValue
-=== RUN   TestNumericSignType_IsZero/PositiveValue
---- PASS: TestNumericSignType_IsZero (0.00s)
-    --- PASS: TestNumericSignType_IsZero/NegativeValue (0.00s)
-    --- PASS: TestNumericSignType_IsZero/ZeroValue (0.00s)
-    --- PASS: TestNumericSignType_IsZero/PositiveValue (0.00s)
-=== RUN   TestNumericSignType_IsNegativeOrZero
-=== RUN   TestNumericSignType_IsNegativeOrZero/NegativeValue
-=== RUN   TestNumericSignType_IsNegativeOrZero/ZeroValue
-=== RUN   TestNumericSignType_IsNegativeOrZero/PositiveValue
---- PASS: TestNumericSignType_IsNegativeOrZero (0.00s)
-    --- PASS: TestNumericSignType_IsNegativeOrZero/NegativeValue (0.00s)
-    --- PASS: TestNumericSignType_IsNegativeOrZero/ZeroValue (0.00s)
-    --- PASS: TestNumericSignType_IsNegativeOrZero/PositiveValue (0.00s)
-=== RUN   TestNumericSignType_IsPositiveOrZero
-=== RUN   TestNumericSignType_IsPositiveOrZero/NegativeValue
-=== RUN   TestNumericSignType_IsPositiveOrZero/ZeroValue
-=== RUN   TestNumericSignType_IsPositiveOrZero/PositiveValue
---- PASS: TestNumericSignType_IsPositiveOrZero (0.00s)
-    --- PASS: TestNumericSignType_IsPositiveOrZero/NegativeValue (0.00s)
-    --- PASS: TestNumericSignType_IsPositiveOrZero/ZeroValue (0.00s)
-    --- PASS: TestNumericSignType_IsPositiveOrZero/PositiveValue (0.00s)
-=== RUN   TestNumericSignType_IsValid
-=== RUN   TestNumericSignType_IsValid/NegativeValue
-=== RUN   TestNumericSignType_IsValid/ZeroValue
-=== RUN   TestNumericSignType_IsValid/PositiveValue
-=== RUN   TestNumericSignType_IsValid/invalid_value_less_than_negative
-=== RUN   TestNumericSignType_IsValid/invalid_value_greater_than_positive
---- PASS: TestNumericSignType_IsValid (0.00s)
-    --- PASS: TestNumericSignType_IsValid/NegativeValue (0.00s)
-    --- PASS: TestNumericSignType_IsValid/ZeroValue (0.00s)
-    --- PASS: TestNumericSignType_IsValid/PositiveValue (0.00s)
-    --- PASS: TestNumericSignType_IsValid/invalid_value_less_than_negative (0.00s)
-    --- PASS: TestNumericSignType_IsValid/invalid_value_greater_than_positive (0.00s)
-=== RUN   TestNumericSignType_SetPositive
---- PASS: TestNumericSignType_SetPositive (0.00s)
-=== RUN   TestNumericSignType_SetZero
---- PASS: TestNumericSignType_SetZero (0.00s)
-=== RUN   TestNumericSignType_SetNegative
---- PASS: TestNumericSignType_SetNegative (0.00s)
-=== RUN   TestNumericSignType_Values
---- PASS: TestNumericSignType_Values (0.00s)
-=== RUN   TestNumericSignTypeNames
---- PASS: TestNumericSignTypeNames (0.00s)
-=== RUN   TestNumericValueType_String
-=== RUN   TestNumericValueType_String/IntegerValue
-=== RUN   TestNumericValueType_String/FloatingPointValue
-=== RUN   TestNumericValueType_String/invalid_zero_value
-=== RUN   TestNumericValueType_String/invalid_value_greater_than_floating_point
-=== RUN   TestNumericValueType_String/invalid_negative_value
---- PASS: TestNumericValueType_String (0.00s)
-    --- PASS: TestNumericValueType_String/IntegerValue (0.00s)
-    --- PASS: TestNumericValueType_String/FloatingPointValue (0.00s)
-    --- PASS: TestNumericValueType_String/invalid_zero_value (0.00s)
-    --- PASS: TestNumericValueType_String/invalid_value_greater_than_floating_point (0.00s)
-    --- PASS: TestNumericValueType_String/invalid_negative_value (0.00s)
-=== RUN   TestNumericValueType_IsInteger
-=== RUN   TestNumericValueType_IsInteger/IntegerValue
-=== RUN   TestNumericValueType_IsInteger/FloatingPointValue
-=== RUN   TestNumericValueType_IsInteger/invalid_zero_value
---- PASS: TestNumericValueType_IsInteger (0.00s)
-    --- PASS: TestNumericValueType_IsInteger/IntegerValue (0.00s)
-    --- PASS: TestNumericValueType_IsInteger/FloatingPointValue (0.00s)
-    --- PASS: TestNumericValueType_IsInteger/invalid_zero_value (0.00s)
-=== RUN   TestNumericValueType_IsFloatingPoint
-=== RUN   TestNumericValueType_IsFloatingPoint/IntegerValue
-=== RUN   TestNumericValueType_IsFloatingPoint/FloatingPointValue
-=== RUN   TestNumericValueType_IsFloatingPoint/invalid_zero_value
---- PASS: TestNumericValueType_IsFloatingPoint (0.00s)
-    --- PASS: TestNumericValueType_IsFloatingPoint/IntegerValue (0.00s)
-    --- PASS: TestNumericValueType_IsFloatingPoint/FloatingPointValue (0.00s)
-    --- PASS: TestNumericValueType_IsFloatingPoint/invalid_zero_value (0.00s)
-=== RUN   TestNumericValueType_IsValid
-=== RUN   TestNumericValueType_IsValid/IntegerValue
-=== RUN   TestNumericValueType_IsValid/FloatingPointValue
-=== RUN   TestNumericValueType_IsValid/invalid_zero_value
-=== RUN   TestNumericValueType_IsValid/invalid_value_greater_than_floating_point
---- PASS: TestNumericValueType_IsValid (0.00s)
-    --- PASS: TestNumericValueType_IsValid/IntegerValue (0.00s)
-    --- PASS: TestNumericValueType_IsValid/FloatingPointValue (0.00s)
-    --- PASS: TestNumericValueType_IsValid/invalid_zero_value (0.00s)
-    --- PASS: TestNumericValueType_IsValid/invalid_value_greater_than_floating_point (0.00s)
-=== RUN   TestNumericValueType_SetInteger
---- PASS: TestNumericValueType_SetInteger (0.00s)
-=== RUN   TestNumericValueType_SetFloatingPoint
---- PASS: TestNumericValueType_SetFloatingPoint (0.00s)
-=== RUN   TestNumericValueType_Values
---- PASS: TestNumericValueType_Values (0.00s)
-=== RUN   TestNumericValueTypeNames
---- PASS: TestNumericValueTypeNames (0.00s)
 === RUN   TestRoundingType_String
 === RUN   TestRoundingType_String/ToNearestEvenVal
 === RUN   TestRoundingType_String/ToNearestAwayVal
@@ -188,5 +68,697 @@
 --- PASS: TestRoundingType_Values (0.00s)
 === RUN   TestRoundingType_AllValidValuesRoundTrip
 --- PASS: TestRoundingType_AllValidValuesRoundTrip (0.00s)
-PASS
-ok  	github.com/MikeAustin71/floatmechops/floatmech	0.048s
+=== RUN   TestDecimal_Pow_0010
+    zzzt_decimal_0001000_test.go:28: 
+        Expected Initial Decimal Value: 6.98570000
+          Actual Initial Decimal Value: 0
+runtime: goroutine stack exceeds 1000000000-byte limit
+runtime: sp=0x22fa9fe81358 stack=[0x22fa9fe80000, 0x22fabfe80000]
+fatal error: stack overflow
+
+runtime stack:
+runtime.throw({0x7ff641807d54?, 0x51180?})
+	C:/Program Files/Go/src/runtime/panic.go:1245 +0x4d fp=0x50f43ff7e0 sp=0x50f43ff7b0 pc=0x7ff641713a2d
+runtime.newstack()
+	C:/Program Files/Go/src/runtime/stack.go:1207 +0x5ec fp=0x50f43ff910 sp=0x50f43ff7e0 pc=0x7ff6416f49cc
+runtime.morestack()
+	C:/Program Files/Go/src/runtime/asm_amd64.s:650 +0x7a fp=0x50f43ff918 sp=0x50f43ff910 pc=0x7ff64171889a
+
+goroutine 43 gp=0x22fa7fc094a0 m=8 mp=0x22fa7ffdf008 [running]:
+runtime.mallocgcSmallScanNoHeaderSC5(0x28, 0x7ff641994940, 0x1?)
+	C:/Program Files/Go/src/runtime/malloc_generated.go:625 +0x3f2 fp=0x22fa9fe81368 sp=0x22fa9fe81360 pc=0x7ff6416ad192
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).NewFromFloat64(0x28?, 0x7ff641994940?, 0x22fa88ea2510?, 0xc8?)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:364 +0x306 fp=0x22fa9fe813e8 sp=0x22fa9fe81368 pc=0x7ff6417edc46
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x234 fp=0x22fa9fe81438 sp=0x22fa9fe813e8 pc=0x7ff6417ee1f4
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81488 sp=0x22fa9fe81438 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe814d8 sp=0x22fa9fe81488 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81528 sp=0x22fa9fe814d8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81578 sp=0x22fa9fe81528 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe815c8 sp=0x22fa9fe81578 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81618 sp=0x22fa9fe815c8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81668 sp=0x22fa9fe81618 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe816b8 sp=0x22fa9fe81668 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81708 sp=0x22fa9fe816b8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81758 sp=0x22fa9fe81708 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe817a8 sp=0x22fa9fe81758 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe817f8 sp=0x22fa9fe817a8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81848 sp=0x22fa9fe817f8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81898 sp=0x22fa9fe81848 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe818e8 sp=0x22fa9fe81898 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81938 sp=0x22fa9fe818e8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81988 sp=0x22fa9fe81938 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe819d8 sp=0x22fa9fe81988 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81a28 sp=0x22fa9fe819d8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81a78 sp=0x22fa9fe81a28 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81ac8 sp=0x22fa9fe81a78 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81b18 sp=0x22fa9fe81ac8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81b68 sp=0x22fa9fe81b18 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81bb8 sp=0x22fa9fe81b68 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81c08 sp=0x22fa9fe81bb8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81c58 sp=0x22fa9fe81c08 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81ca8 sp=0x22fa9fe81c58 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81cf8 sp=0x22fa9fe81ca8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81d48 sp=0x22fa9fe81cf8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81d98 sp=0x22fa9fe81d48 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81de8 sp=0x22fa9fe81d98 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81e38 sp=0x22fa9fe81de8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81e88 sp=0x22fa9fe81e38 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81ed8 sp=0x22fa9fe81e88 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81f28 sp=0x22fa9fe81ed8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81f78 sp=0x22fa9fe81f28 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe81fc8 sp=0x22fa9fe81f78 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe82018 sp=0x22fa9fe81fc8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe82068 sp=0x22fa9fe82018 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe820b8 sp=0x22fa9fe82068 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe82108 sp=0x22fa9fe820b8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe82158 sp=0x22fa9fe82108 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe821a8 sp=0x22fa9fe82158 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe821f8 sp=0x22fa9fe821a8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe82248 sp=0x22fa9fe821f8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe82298 sp=0x22fa9fe82248 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fa9fe822e8 sp=0x22fa9fe82298 pc=0x7ff6417ee205
+...6710725 frames elided...
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f0c8 sp=0x22fabfe7f078 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f118 sp=0x22fabfe7f0c8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f168 sp=0x22fabfe7f118 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f1b8 sp=0x22fabfe7f168 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f208 sp=0x22fabfe7f1b8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f258 sp=0x22fabfe7f208 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f2a8 sp=0x22fabfe7f258 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f2f8 sp=0x22fabfe7f2a8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f348 sp=0x22fabfe7f2f8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f398 sp=0x22fabfe7f348 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f3e8 sp=0x22fabfe7f398 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f438 sp=0x22fabfe7f3e8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f488 sp=0x22fabfe7f438 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f4d8 sp=0x22fabfe7f488 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f528 sp=0x22fabfe7f4d8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f578 sp=0x22fabfe7f528 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f5c8 sp=0x22fabfe7f578 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f618 sp=0x22fabfe7f5c8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f668 sp=0x22fabfe7f618 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f6b8 sp=0x22fabfe7f668 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f708 sp=0x22fabfe7f6b8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f758 sp=0x22fabfe7f708 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f7a8 sp=0x22fabfe7f758 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f7f8 sp=0x22fabfe7f7a8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f848 sp=0x22fabfe7f7f8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f898 sp=0x22fabfe7f848 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f8e8 sp=0x22fabfe7f898 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f938 sp=0x22fabfe7f8e8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f988 sp=0x22fabfe7f938 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7f9d8 sp=0x22fabfe7f988 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fa28 sp=0x22fabfe7f9d8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fa78 sp=0x22fabfe7fa28 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fac8 sp=0x22fabfe7fa78 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fb18 sp=0x22fabfe7fac8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fb68 sp=0x22fabfe7fb18 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fbb8 sp=0x22fabfe7fb68 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fc08 sp=0x22fabfe7fbb8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fc58 sp=0x22fabfe7fc08 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fca8 sp=0x22fabfe7fc58 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fcf8 sp=0x22fabfe7fca8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fd48 sp=0x22fabfe7fcf8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fd98 sp=0x22fabfe7fd48 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fde8 sp=0x22fabfe7fd98 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x28?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fe38 sp=0x22fabfe7fde8 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).powWithStrategy(0x7ff641782c1e?, 0x9, 0x1)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:598 +0x245 fp=0x22fabfe7fe88 sp=0x22fabfe7fe38 pc=0x7ff6417ee205
+github.com/MikeAustin71/floatmechops/floatmech.(*Decimal).PowExact(0x22fa7fc7ae00?, 0x7ff64181516c?)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/decimal_0001000.go:551 +0x90 fp=0x22fabfe7fee8 sp=0x22fabfe7fe88 pc=0x7ff6417edd30
+github.com/MikeAustin71/floatmechops/floatmech.TestDecimal_Pow_0010(0x22fa7fc7ae00)
+	D:/GoProjects/MikeAustin71/floatmechops/floatmech/zzzt_decimal_0001000_test.go:34 +0xf4 fp=0x22fabfe7ff70 sp=0x22fabfe7fee8 pc=0x7ff6417f0dd4
+testing.tRunner(0x22fa7fc7ae00, 0x7ff6419a2160)
+	C:/Program Files/Go/src/testing/testing.go:2195 +0xc3 fp=0x22fabfe7ffc0 sp=0x22fabfe7ff70 pc=0x7ff6417835e3
+testing.(*T).Run.gowrap1()
+	C:/Program Files/Go/src/testing/testing.go:2260 +0x1b fp=0x22fabfe7ffe0 sp=0x22fabfe7ffc0 pc=0x7ff641788e5b
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fabfe7ffe8 sp=0x22fabfe7ffe0 pc=0x7ff64171a2e1
+created by testing.(*T).Run in goroutine 1
+	C:/Program Files/Go/src/testing/testing.go:2260 +0x4b4
+
+goroutine 1 gp=0x22fa7fc08000 m=nil [chan receive]:
+runtime.gopark(0x7ff64171a03f?, 0x1?, 0x9a?, 0x7b?, 0x7ff641980188?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7fc0f918 sp=0x22fa7fc0f8f8 pc=0x7ff641713b4a
+runtime.chanrecv(0x22fa7fc19480, 0x22fa7fc0f9ff, 0x1)
+	C:/Program Files/Go/src/runtime/chan.go:667 +0x4ae fp=0x22fa7fc0f990 sp=0x22fa7fc0f918 pc=0x7ff6416a3c4e
+runtime.chanrecv1(0x18?, 0x7ff64198e1a0?)
+	C:/Program Files/Go/src/runtime/chan.go:509 +0x12 fp=0x22fa7fc0f9b8 sp=0x22fa7fc0f990 pc=0x7ff6416a3792
+testing.(*T).Run(0x22fa7fb5a200, {0x7ff641809f5f?, 0x22fa7fc0faa8?}, 0x7ff6419a2160)
+	C:/Program Files/Go/src/testing/testing.go:2268 +0x4d2 fp=0x22fa7fc0fa80 sp=0x22fa7fc0f9b8 pc=0x7ff641783b32
+testing.runTests.func1(0x22fa7fb5a200)
+	C:/Program Files/Go/src/testing/testing.go:2744 +0x37 fp=0x22fa7fc0fac0 sp=0x22fa7fc0fa80 pc=0x7ff6417890d7
+testing.tRunner(0x22fa7fb5a200, 0x22fa7fc0fbc8)
+	C:/Program Files/Go/src/testing/testing.go:2195 +0xc3 fp=0x22fa7fc0fb10 sp=0x22fa7fc0fac0 pc=0x7ff6417835e3
+testing.runTests({0x7ff641810033, 0x24}, {0x7ff641812a73, 0x2e}, 0x22fa7fb62138, {0x7ff6419c4b70, 0x29, 0x29}, {0xc2b7cfb95864bb2c, 0x8bb2c97001, ...})
+	C:/Program Files/Go/src/testing/testing.go:2742 +0x505 fp=0x22fa7fc0fbf8 sp=0x22fa7fc0fb10 pc=0x7ff641785b05
+testing.(*M).Run(0x22fa7fc2a140)
+	C:/Program Files/Go/src/testing/testing.go:2602 +0x6af fp=0x22fa7fc0fe38 sp=0x22fa7fc0fbf8 pc=0x7ff6417846cf
+main.main()
+	_testmain.go:126 +0x9b fp=0x22fa7fc0feb8 sp=0x22fa7fc0fe38 pc=0x7ff6417f42bb
+runtime.main()
+	C:/Program Files/Go/src/runtime/proc.go:302 +0x3fb fp=0x22fa7fc0ffe0 sp=0x22fa7fc0feb8 pc=0x7ff6416dd6db
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7fc0ffe8 sp=0x22fa7fc0ffe0 pc=0x7ff64171a2e1
+
+goroutine 2 gp=0x22fa7fc08780 m=nil [force gc (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7fc0bfa8 sp=0x22fa7fc0bf88 pc=0x7ff641713b4a
+runtime.goparkunlock(...)
+	C:/Program Files/Go/src/runtime/proc.go:480
+runtime.forcegchelper()
+	C:/Program Files/Go/src/runtime/proc.go:387 +0xb8 fp=0x22fa7fc0bfe0 sp=0x22fa7fc0bfa8 pc=0x7ff6416dd978
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7fc0bfe8 sp=0x22fa7fc0bfe0 pc=0x7ff64171a2e1
+created by runtime.init.7 in goroutine 1
+	C:/Program Files/Go/src/runtime/proc.go:375 +0x1a
+
+goroutine 3 gp=0x22fa7fc08b40 m=nil [GC sweep wait]:
+runtime.gopark(0x7ff6419a27d0?, 0x7ff6419c8f60?, 0x8?, 0x9?, 0x1?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7fc0df88 sp=0x22fa7fc0df68 pc=0x7ff641713b4a
+runtime.goparkunlock(...)
+	C:/Program Files/Go/src/runtime/proc.go:480
+runtime.bgsweep(0x22fa7fc18000)
+	C:/Program Files/Go/src/runtime/mgcsweep.go:324 +0x151 fp=0x22fa7fc0dfc8 sp=0x22fa7fc0df88 pc=0x7ff6416c5291
+runtime.gcenable.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:214 +0x17 fp=0x22fa7fc0dfe0 sp=0x22fa7fc0dfc8 pc=0x7ff64170a497
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7fc0dfe8 sp=0x22fa7fc0dfe0 pc=0x7ff64171a2e1
+created by runtime.gcenable in goroutine 1
+	C:/Program Files/Go/src/runtime/mgc.go:214 +0x66
+
+goroutine 4 gp=0x22fa7fc08d20 m=nil [sleep]:
+runtime.gopark(0x22fa7fc26000?, 0x1be68fe980e8?, 0x0?, 0x0?, 0x0?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7fc1ff38 sp=0x22fa7fc1ff18 pc=0x7ff641713b4a
+runtime.goparkunlock(...)
+	C:/Program Files/Go/src/runtime/proc.go:480
+runtime.(*scavengerState).sleep(0x7ff6419c9480, 0x4131170000000000)
+	C:/Program Files/Go/src/runtime/mgcscavenge.go:504 +0xfb fp=0x22fa7fc1ffa8 sp=0x22fa7fc1ff38 pc=0x7ff6416c2f5b
+runtime.bgscavenge(0x22fa7fc18000)
+	C:/Program Files/Go/src/runtime/mgcscavenge.go:662 +0x74 fp=0x22fa7fc1ffc8 sp=0x22fa7fc1ffa8 pc=0x7ff6416c3314
+runtime.gcenable.gowrap2()
+	C:/Program Files/Go/src/runtime/mgc.go:215 +0x17 fp=0x22fa7fc1ffe0 sp=0x22fa7fc1ffc8 pc=0x7ff64170a457
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7fc1ffe8 sp=0x22fa7fc1ffe0 pc=0x7ff64171a2e1
+created by runtime.gcenable in goroutine 1
+	C:/Program Files/Go/src/runtime/mgc.go:215 +0xa5
+
+goroutine 5 gp=0x22fa7fc090e0 m=nil [GOMAXPROCS updater (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7fc21f88 sp=0x22fa7fc21f68 pc=0x7ff641713b4a
+runtime.goparkunlock(...)
+	C:/Program Files/Go/src/runtime/proc.go:480
+runtime.updateMaxProcsGoroutine()
+	C:/Program Files/Go/src/runtime/proc.go:7146 +0xe7 fp=0x22fa7fc21fe0 sp=0x22fa7fc21f88 pc=0x7ff6416eab67
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7fc21fe8 sp=0x22fa7fc21fe0 pc=0x7ff64171a2e1
+created by runtime.defaultGOMAXPROCSUpdateEnable in goroutine 1
+	C:/Program Files/Go/src/runtime/proc.go:7134 +0x37
+
+goroutine 6 gp=0x22fa7fc092c0 m=nil [finalizer wait]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7fc1be20 sp=0x22fa7fc1be00 pc=0x7ff641713b4a
+runtime.runFinalizers()
+	C:/Program Files/Go/src/runtime/mfinal.go:210 +0x107 fp=0x22fa7fc1bfe0 sp=0x22fa7fc1be20 pc=0x7ff6416b6307
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7fc1bfe8 sp=0x22fa7fc1bfe0 pc=0x7ff64171a2e1
+created by runtime.createfing in goroutine 1
+	C:/Program Files/Go/src/runtime/mfinal.go:172 +0x3d
+
+goroutine 44 gp=0x22fa7fc09680 m=nil [GC worker (idle)]:
+runtime.gopark(0x22fa7fc6bf60?, 0x7ff6417883e5?, 0x0?, 0x0?, 0x22fa7fc6bec8?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7fc6bf40 sp=0x22fa7fc6bf20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7fc6bfc8 sp=0x22fa7fc6bf40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7fc6bfe0 sp=0x22fa7fc6bfc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7fc6bfe8 sp=0x22fa7fc6bfe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 45 gp=0x22fa7fc09860 m=nil [GC worker (idle)]:
+runtime.gopark(0x7ff641980188?, 0x7ff641817240?, 0x88?, 0x1?, 0x22fa7fb7cec0?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7fc1df40 sp=0x22fa7fc1df20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7fc1dfc8 sp=0x22fa7fc1df40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7fc1dfe0 sp=0x22fa7fc1dfc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7fc1dfe8 sp=0x22fa7fc1dfe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 46 gp=0x22fa7fc09a40 m=nil [GC worker (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7fc6df40 sp=0x22fa7fc6df20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7fc6dfc8 sp=0x22fa7fc6df40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7fc6dfe0 sp=0x22fa7fc6dfc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7fc6dfe8 sp=0x22fa7fc6dfe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 47 gp=0x22fa7fc09c20 m=nil [GC worker (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7fc67f40 sp=0x22fa7fc67f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7fc67fc8 sp=0x22fa7fc67f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7fc67fe0 sp=0x22fa7fc67fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7fc67fe8 sp=0x22fa7fc67fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 48 gp=0x22fa7ff9e000 m=nil [GC worker (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7fc69f40 sp=0x22fa7fc69f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7fc69fc8 sp=0x22fa7fc69f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7fc69fe0 sp=0x22fa7fc69fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7fc69fe8 sp=0x22fa7fc69fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 49 gp=0x22fa7ff9e1e0 m=nil [GC worker (idle)]:
+runtime.gopark(0x7ff6417ee205?, 0x28?, 0x9?, 0x0?, 0x22fa7ff21b01?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffa5f40 sp=0x22fa7ffa5f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffa5fc8 sp=0x22fa7ffa5f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffa5fe0 sp=0x22fa7ffa5fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffa5fe8 sp=0x22fa7ffa5fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 50 gp=0x22fa7ff9e3c0 m=nil [GC worker (idle)]:
+runtime.gopark(0x157e5d87200?, 0x28?, 0x8?, 0x1?, 0x22fa7ff1f440?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffa7f40 sp=0x22fa7ffa7f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffa7fc8 sp=0x22fa7ffa7f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffa7fe0 sp=0x22fa7ffa7fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffa7fe8 sp=0x22fa7ffa7fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 51 gp=0x22fa7ff9e5a0 m=nil [GC worker (idle)]:
+runtime.gopark(0x9?, 0x22fa7ff26b01?, 0x80?, 0x6f?, 0x28?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffa1f40 sp=0x22fa7ffa1f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffa1fc8 sp=0x22fa7ffa1f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffa1fe0 sp=0x22fa7ffa1fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffa1fe8 sp=0x22fa7ffa1fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 52 gp=0x22fa7ff9e780 m=nil [GC worker (idle)]:
+runtime.gopark(0x157a0990108?, 0x22fa7ff24450?, 0x0?, 0x0?, 0x22fa7ffa3fa8?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffa3f40 sp=0x22fa7ffa3f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffa3fc8 sp=0x22fa7ffa3f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffa3fe0 sp=0x22fa7ffa3fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffa3fe8 sp=0x22fa7ffa3fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 53 gp=0x22fa7ff9e960 m=nil [GC worker (idle)]:
+runtime.gopark(0x157a0990108?, 0x22fa7ff17ce0?, 0x0?, 0x0?, 0x22fa7ffadfa8?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffadf40 sp=0x22fa7ffadf20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffadfc8 sp=0x22fa7ffadf40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffadfe0 sp=0x22fa7ffadfc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffadfe8 sp=0x22fa7ffadfe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 54 gp=0x22fa7ff9eb40 m=nil [GC worker (idle)]:
+runtime.gopark(0x7ff6417ee205?, 0x28?, 0x9?, 0x0?, 0x22fa7ff15501?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffaff40 sp=0x22fa7ffaff20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffaffc8 sp=0x22fa7ffaff40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffaffe0 sp=0x22fa7ffaffc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffaffe8 sp=0x22fa7ffaffe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 55 gp=0x22fa7ff9ed20 m=nil [GC worker (idle)]:
+runtime.gopark(0x0?, 0x22fa7ffa9f98?, 0x5?, 0xe2?, 0x28?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffa9f40 sp=0x22fa7ffa9f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffa9fc8 sp=0x22fa7ffa9f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffa9fe0 sp=0x22fa7ffa9fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffa9fe8 sp=0x22fa7ffa9fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 56 gp=0x22fa7ff9ef00 m=nil [GC worker (idle)]:
+runtime.gopark(0x9?, 0x22fa7ff1a501?, 0x40?, 0x73?, 0x28?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffabf40 sp=0x22fa7ffabf20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffabfc8 sp=0x22fa7ffabf40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffabfe0 sp=0x22fa7ffabfc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffabfe8 sp=0x22fa7ffabfe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 57 gp=0x22fa7ff9f0e0 m=nil [GC worker (idle)]:
+runtime.gopark(0x9?, 0x22fa7ff0de01?, 0xa0?, 0x77?, 0x28?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffb5f40 sp=0x22fa7ffb5f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffb5fc8 sp=0x22fa7ffb5f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffb5fe0 sp=0x22fa7ffb5fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffb5fe8 sp=0x22fa7ffb5fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 58 gp=0x22fa7ff9f2c0 m=nil [GC worker (idle)]:
+runtime.gopark(0x157a0990108?, 0x22fa7ff0b680?, 0x0?, 0x0?, 0x22fa7ffb7fa8?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffb7f40 sp=0x22fa7ffb7f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffb7fc8 sp=0x22fa7ffb7f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffb7fe0 sp=0x22fa7ffb7fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffb7fe8 sp=0x22fa7ffb7fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 59 gp=0x22fa7ff9f4a0 m=nil [GC worker (idle)]:
+runtime.gopark(0x157e5d875c0?, 0x1bc?, 0x8?, 0x1?, 0x22fa7ff12de0?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffb1f40 sp=0x22fa7ffb1f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffb1fc8 sp=0x22fa7ffb1f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffb1fe0 sp=0x22fa7ffb1fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffb1fe8 sp=0x22fa7ffb1fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 60 gp=0x22fa7ff9f680 m=nil [GC worker (idle)]:
+runtime.gopark(0x0?, 0x22fa7ffb3f98?, 0x5?, 0xe2?, 0x28?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffb3f40 sp=0x22fa7ffb3f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffb3fc8 sp=0x22fa7ffb3f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffb3fe0 sp=0x22fa7ffb3fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffb3fe8 sp=0x22fa7ffb3fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 61 gp=0x22fa7ff9f860 m=nil [GC worker (idle)]:
+runtime.gopark(0x9?, 0x22fa7ff01701?, 0x60?, 0x7b?, 0x28?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffbff40 sp=0x22fa7ffbff20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffbffc8 sp=0x22fa7ffbff40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffbffe0 sp=0x22fa7ffbffc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffbffe8 sp=0x22fa7ffbffe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 62 gp=0x22fa7ff9fa40 m=nil [GC worker (idle)]:
+runtime.gopark(0x157a0990108?, 0x22fa7feff020?, 0x0?, 0x0?, 0x22fa7ffc1fa8?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffc1f40 sp=0x22fa7ffc1f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffc1fc8 sp=0x22fa7ffc1f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffc1fe0 sp=0x22fa7ffc1fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffc1fe8 sp=0x22fa7ffc1fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 63 gp=0x22fa7ff9fc20 m=nil [GC worker (idle)]:
+runtime.gopark(0x157e5d87980?, 0x28?, 0x8?, 0x1?, 0x22fa7ff06780?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffbbf40 sp=0x22fa7ffbbf20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffbbfc8 sp=0x22fa7ffbbf40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffbbfe0 sp=0x22fa7ffbbfc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffbbfe8 sp=0x22fa7ffbbfe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 64 gp=0x22fa7ffc2000 m=nil [GC worker (idle)]:
+runtime.gopark(0x0?, 0x22fa7ffbdf98?, 0x5?, 0xe2?, 0x28?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffbdf40 sp=0x22fa7ffbdf20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffbdfc8 sp=0x22fa7ffbdf40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffbdfe0 sp=0x22fa7ffbdfc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffbdfe8 sp=0x22fa7ffbdfe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 65 gp=0x22fa7ffc21e0 m=nil [GC worker (idle)]:
+runtime.gopark(0x1be6869af348?, 0x22fa7fef5101?, 0x20?, 0x7f?, 0x28?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffc9f40 sp=0x22fa7ffc9f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffc9fc8 sp=0x22fa7ffc9f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffc9fe0 sp=0x22fa7ffc9fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffc9fe8 sp=0x22fa7ffc9fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 66 gp=0x22fa7ffc23c0 m=nil [GC worker (idle)]:
+runtime.gopark(0x1be6869af348?, 0x22fa7fef29c0?, 0x0?, 0x0?, 0x22fa7ffcbfa8?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffcbf40 sp=0x22fa7ffcbf20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffcbfc8 sp=0x22fa7ffcbf40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffcbfe0 sp=0x22fa7ffcbfc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffcbfe8 sp=0x22fa7ffcbfe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 67 gp=0x22fa7ffc25a0 m=nil [GC worker (idle)]:
+runtime.gopark(0x1be6869af348?, 0x1?, 0xb4?, 0xf5?, 0x22fa7fefa120?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffc5f40 sp=0x22fa7ffc5f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffc5fc8 sp=0x22fa7ffc5f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffc5fe0 sp=0x22fa7ffc5fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffc5fe8 sp=0x22fa7ffc5fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 68 gp=0x22fa7ffc2780 m=nil [GC worker (idle)]:
+runtime.gopark(0x1be6869af348?, 0x1?, 0x0?, 0x0?, 0x28?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffc7f40 sp=0x22fa7ffc7f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffc7fc8 sp=0x22fa7ffc7f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffc7fe0 sp=0x22fa7ffc7fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffc7fe8 sp=0x22fa7ffc7fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 69 gp=0x22fa7ffc2960 m=nil [GC worker (idle)]:
+runtime.gopark(0x7ff6419a2458?, 0x22fa7ffb9800?, 0x1c?, 0xa?, 0x0?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffd1f40 sp=0x22fa7ffd1f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffd1fc8 sp=0x22fa7ffd1f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffd1fe0 sp=0x22fa7ffd1fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffd1fe8 sp=0x22fa7ffd1fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 70 gp=0x22fa7ffc2b40 m=nil [GC worker (idle)]:
+runtime.gopark(0x1be6869af348?, 0x22fa7fee8a01?, 0xe0?, 0x82?, 0x28?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffd3f40 sp=0x22fa7ffd3f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffd3fc8 sp=0x22fa7ffd3f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffd3fe0 sp=0x22fa7ffd3fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffd3fe8 sp=0x22fa7ffd3fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 71 gp=0x22fa7ffc2d20 m=nil [GC worker (idle)]:
+runtime.gopark(0x1be6869af348?, 0x3?, 0x0?, 0x0?, 0x22fa7fef0201?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffcdf40 sp=0x22fa7ffcdf20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffcdfc8 sp=0x22fa7ffcdf40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffcdfe0 sp=0x22fa7ffcdfc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffcdfe8 sp=0x22fa7ffcdfe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 72 gp=0x22fa7ffc2f00 m=nil [GC worker (idle)]:
+runtime.gopark(0x1be6869af348?, 0x1?, 0x0?, 0x0?, 0x22fa7feed9b0?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffcff40 sp=0x22fa7ffcff20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffcffc8 sp=0x22fa7ffcff40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffcffe0 sp=0x22fa7ffcffc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffcffe8 sp=0x22fa7ffcffe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 73 gp=0x22fa7ffc30e0 m=nil [GC worker (idle)]:
+runtime.gopark(0x1be6869af348?, 0x22fa7ffdbf98?, 0x5?, 0xe2?, 0x28?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffdbf40 sp=0x22fa7ffdbf20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffdbfc8 sp=0x22fa7ffdbf40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffdbfe0 sp=0x22fa7ffdbfc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffdbfe8 sp=0x22fa7ffdbfe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 74 gp=0x22fa7ffc32c0 m=nil [GC worker (idle)]:
+runtime.gopark(0x1be6869af348?, 0x3?, 0x0?, 0x0?, 0x28?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffddf40 sp=0x22fa7ffddf20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffddfc8 sp=0x22fa7ffddf40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffddfe0 sp=0x22fa7ffddfc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffddfe8 sp=0x22fa7ffddfe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+
+goroutine 75 gp=0x22fa7ffc34a0 m=nil [GC worker (idle)]:
+runtime.gopark(0x7ff641a121e0?, 0x3?, 0x0?, 0x0?, 0x22fa7fee3a01?)
+	C:/Program Files/Go/src/runtime/proc.go:474 +0xca fp=0x22fa7ffd7f40 sp=0x22fa7ffd7f20 pc=0x7ff641713b4a
+runtime.gcBgMarkWorker(0x22fa7fc29180)
+	C:/Program Files/Go/src/runtime/mgc.go:1807 +0xeb fp=0x22fa7ffd7fc8 sp=0x22fa7ffd7f40 pc=0x7ff6416b96eb
+runtime.gcBgMarkStartWorkers.gowrap1()
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0x17 fp=0x22fa7ffd7fe0 sp=0x22fa7ffd7fc8 pc=0x7ff64170a997
+runtime.goexit({})
+	C:/Program Files/Go/src/runtime/asm_amd64.s:1264 +0x1 fp=0x22fa7ffd7fe8 sp=0x22fa7ffd7fe0 pc=0x7ff64171a2e1
+created by runtime.gcBgMarkStartWorkers in goroutine 43
+	C:/Program Files/Go/src/runtime/mgc.go:1711 +0xfc
+exit status 2
+FAIL	github.com/MikeAustin71/floatmechops/floatmech	1.077s
