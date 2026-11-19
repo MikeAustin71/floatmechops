@@ -1,7 +1,7 @@
 {
   "$schema": "https://app.kilo.ai/config.json",
 
-  // 1. Restore the reference alias so Kilo is aware of your external knowledge base
+  // 1. External knowledge base reference
   "references": {
     "go_knowledge": {
       "path": "F:/Go_Knowledge",
@@ -10,53 +10,135 @@
     }
   },
 
-  // 2. Core strict rules appended to the system prompt
+  // 2. Project rules (AGENTS.md is omitted as Kilo auto-discovers it at root)
   "instructions": [
-    ".kilo/rules/go-naming-conventions.md",
-    ".kilo/rules/go-error-handling.md",
-    "AGENTS.md" // <-- Replaces the go-1-27-standards.md file
+    ".kilo/rules/*.md"
   ],
 
-  // 3. Enable semantic indexer for the current project workspace
-  // Ignore IDE warning/error. $schema is out of date and waiting to
-  //   be updated.
-  "indexing": {
-    "enabled": true
+  // Default main model
+  "model": "ollama/qwen38-dev:64kb",
+
+  // Reuse loaded model for small tasks to prevent VRAM swapping
+  "small_model": "ollama/qwen38-dev:64kb",
+
+  "provider": {
+    "ollama": {
+      "name": "Ollama Local",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://localhost:11434/v1",
+        "timeout": false
+      },
+      "models": {
+        "gemma4:31b": {
+          "id": "gemma4:31b",
+          "name": "Gemma 4 31B",
+          "tool_call": true,
+          "reasoning": true,
+          "limit": {
+            "context": 32768,
+            "output": 16384
+          },
+          "variants": {
+            "none":   { "reasoningEffort": "none" },
+            "low":    { "reasoningEffort": "low" },
+            "medium": { "reasoningEffort": "medium" },
+            "high":   { "reasoningEffort": "high" }
+          }
+        },
+        "qwen38-dev:64kb": {
+          "id": "qwen38-dev:64kb",
+          "name": "Qwen 3.8 27B Dev (64K)",
+          "tool_call": true,
+          "reasoning": true,
+          "limit": {
+            "context": 65536,
+            "output": 16384
+          },
+          "variants": {
+            "none":   { "reasoningEffort": "none" },
+            "low":    { "reasoningEffort": "low" },
+            "medium": { "reasoningEffort": "medium" },
+            "high":   { "reasoningEffort": "high" },
+            "xhigh":  { "reasoningEffort": "xhigh" }
+          }
+        },
+        "qwen38-dev:32kb": {
+          "id": "qwen38-dev:32kb",
+          "name": "Qwen 3.8 27B Dev (32K)",
+          "tool_call": true,
+          "reasoning": true,
+          "limit": {
+            "context": 32768,
+            "output": 16384
+          },
+          "variants": {
+            "none":   { "reasoningEffort": "none" },
+            "low":    { "reasoningEffort": "low" },
+            "medium": { "reasoningEffort": "medium" },
+            "high":   { "reasoningEffort": "high" },
+            "xhigh":  { "reasoningEffort": "xhigh" }
+          }
+        }
+      }
+    }
   },
 
   "agent": {
-    "build": {
-      "temperature": 0.2,
-      "top_p": 0.90,
-      "repeat_penalty": 1.15,
-      "repeat_last_n": 64
+    "code": {
+      "model": "ollama/qwen38-dev:64kb",
+      "variant": "medium",
+      "temperature": 0.5,
+      "top_p": 0.95,
+      "steps": 30
     },
-    "ask": {
-      "temperature": 0.1,
-      "top_p": 0.50,
-      "repeat_penalty": 1.15,
-      "repeat_last_n": 64
+    "plan": {
+      "variant": "medium",
+      "temperature": 0.4,
+      "top_p": 0.95,
+      "steps": 20
+    },
+    "compaction": {
+      // Fast summarization without reasoning overhead
+      "variant": "none",
+      "temperature": 0.2,
+      "top_p": 0.9,
+      "steps": 3
     }
   },
 
   "permission": {
+    // Crucial for allowing tool access to the external knowledge base
+    "external_directory": {
+      "F:/Go_Knowledge/**": "allow",
+      "*": "ask"
+    },
     "read": {
       "*": "allow",
-      "F:\\Go_Knowledge\\**": "allow",
+      "F:/Go_Knowledge/**": "allow",
       "*.env": "ask",
       "*.env.*": "ask",
       "*.env.example": "allow",
-      "*.idea": "deny",
-      "*.idea.*": "deny"
-      // Note: Invalid `cd` and `grep` rules were removed from here
+      "**/.idea/**": "deny",
+      ".idea/**": "deny"
     },
     "edit": "allow",
     "bash": {
       "*": "ask",
       "cd *": "allow",
-      "grep *": "allow", // This properly allows the agent to grep your F: drive
+      "grep *": "allow",
       "git status *": "allow",
       "git diff *": "allow"
-    }
+    },
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "todowrite": "allow",
+    "todoread": "allow",
+    "lsp": "allow",
+    "skill": "allow",
+    "webfetch": "ask",
+    "websearch": "ask",
+    "task": "ask"
   }
 }
