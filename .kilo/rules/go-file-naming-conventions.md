@@ -95,7 +95,7 @@ zzzt_numberstrkernel_0010_test.go
 zzzt_numberstrkernel_0020_test.go
 ```
 
-### Crowded Numbering & Extended Components
+### Crowded Numbering & Extended Numbering Components
 
 If a numbering sequence becomes crowded and new files must be inserted between existing files, use an extended numbering component format (`_000_010.go`):
 
