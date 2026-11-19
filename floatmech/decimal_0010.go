@@ -217,6 +217,76 @@ func (d *Decimal) CopyOut(copyDestination *Decimal) error {
 	return nil
 }
 
+// Clone
+//
+// Returns a newly created *Decimal object which is an
+// exact clone of the host Decimal object.
+//
+// Input Parameters
+// ----------------
+//
+//	None
+//
+// Return Parameters
+// -----------------
+//
+//	*Decimal
+//	  Pointer to a newly created Decimal object containing duplicate
+//	  member variable values to those in the host Decimal object.
+//
+//	error
+func (d *Decimal) Clone() (*Decimal, error) {
+
+	// NewErrorGenericConfig()
+	//
+	// func (egc *ErrorGenericFactory) NewErrorGenericConfig(
+	//    sourceFile string,
+	//    parentType string,
+	//    thisFunction string) *ErrorGenericFactory
+	//
+	// Add identification information for this function
+	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
+		"decimal_0010.go",
+		"Decimal",
+		"Clone()")
+
+	if d == nil {
+
+		// GetErrorInputParameterNilPointer()
+		//
+		// func (egc *ErrorGenericFactory) GetErrorInputParameterNilPointer(
+		//    parameter string,
+		//    path string,
+		//    fileName string,
+		//    url string,
+		//    errorContext string,
+		//    errorMessage string) error
+		//
+		// Formats error message and error context for when nil pointers
+		// are passed as Function input parameters.
+		return &Decimal{}, errGenericCfg.GetErrorInputParameterNilPointer(
+			"d == nil",
+			"",
+			"",
+			"",
+			"Invalid Pointer Receiver",
+			"Error: Pointer Receiver 'd' is a nil pointer")
+	}
+
+	d.mu.Lock()
+
+	defer d.mu.Unlock()
+
+	clonedDecimal := new(Decimal)
+
+	clonedDecimal.val = d.val
+	clonedDecimal.targetFractionalDigits = d.targetFractionalDigits
+	clonedDecimal.prec = d.prec
+	clonedDecimal.mode = d.mode
+
+	return clonedDecimal, nil
+}
+
 // NewFromFloat64 constructs an immutable Decimal sized to preserve at least
 // targetFractionalDigits decimal places for v's magnitude.
 func (d *Decimal) NewFromFloat64(v float64, targetFractionalDigits uint, mode big.RoundingMode) *Decimal {
