@@ -125,6 +125,98 @@ func (d *Decimal) CopyIn(copySource *Decimal) error {
 	return nil
 }
 
+// CopyOut
+//
+// Receives an outgoing 'Decimal' object (copyDestination)
+// and copies the host Decimal structure member variable values into
+// the structure member variables of this copyDestination 'Decimal'
+// object.
+//
+// Input Parameters
+// ----------------
+//
+//	copyDestination *Decimal
+//	  Member variable values from the host (source) Decimal
+//	  object will be copied into corresponding member variables
+//	  of the copyDestination Decimal object.
+//
+// Return Parameters
+// -----------------
+//
+//	error
+func (d *Decimal) CopyOut(copyDestination *Decimal) error {
+
+	// NewErrorGenericConfig()
+	//
+	// func (egc *ErrorGenericFactory) NewErrorGenericConfig(
+	//    sourceFile string,
+	//    parentType string,
+	//    thisFunction string) *ErrorGenericFactory
+	//
+	// Add identification information for this function
+	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
+		"decimal_0010.go",
+		"Decimal",
+		"CopyOut()")
+
+	if d == nil {
+
+		// GetErrorInputParameterNilPointer()
+		//
+		// func (egc *ErrorGenericFactory) GetErrorInputParameterNilPointer(
+		//    parameter string,
+		//    path string,
+		//    fileName string,
+		//    url string,
+		//    errorContext string,
+		//    errorMessage string) error
+		//
+		// Formats error message and error context for when nil pointers
+		// are passed as Function input parameters.
+		return errGenericCfg.GetErrorInputParameterNilPointer(
+			"d == nil",
+			"",
+			"",
+			"",
+			"Invalid Pointer Receiver",
+			"Error: Pointer Receiver 'd' is a nil pointer")
+	}
+
+	d.mu.Lock()
+
+	defer d.mu.Unlock()
+
+	if copyDestination == nil {
+
+		// GetErrorInputParameterNilPointer()
+		//
+		// func (egc *ErrorGenericFactory) GetErrorInputParameterNilPointer(
+		//    parameter string,
+		//    path string,
+		//    fileName string,
+		//    url string,
+		//    errorContext string,
+		//    errorMessage string) error
+		//
+		// Formats error message and error context for when nil pointers
+		// are passed as Function input parameters.
+		return errGenericCfg.GetErrorInputParameterNilPointer(
+			"copyDestination == nil",
+			"",
+			"",
+			"",
+			"copyDestination is a nil pointer",
+			"Error: Input parameter 'copyDestination' is a nil pointer")
+	}
+
+	copyDestination.val = d.val
+	copyDestination.targetFractionalDigits = d.targetFractionalDigits
+	copyDestination.prec = d.prec
+	copyDestination.mode = d.mode
+
+	return nil
+}
+
 // NewFromFloat64 constructs an immutable Decimal sized to preserve at least
 // targetFractionalDigits decimal places for v's magnitude.
 func (d *Decimal) NewFromFloat64(v float64, targetFractionalDigits uint, mode big.RoundingMode) *Decimal {
