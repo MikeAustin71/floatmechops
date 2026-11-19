@@ -400,6 +400,60 @@ func (d *Decimal) IsValid() bool {
 	return d.val != nil
 }
 
+// IsError
+//
+// Tests the internal value stored in structure element 'val'.
+// If 'val' is a nil pointer, the method returns an error formatted
+// via GetErrorNativeToFunction. If 'val' is not nil, the method
+// returns nil.
+//
+// Input Parameters
+// ----------------
+//
+//	None
+//
+// Return Parameters
+// -----------------
+//
+//	error
+//	  Returns an error if the internal value 'val' is a nil pointer.
+//	  Returns nil if the internal value 'val' is not nil.
+func (d *Decimal) IsError() error {
+
+	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
+		"decimal_0001000.go",
+		"Decimal",
+		"IsError()")
+
+	if d == nil {
+
+		return errGenericCfg.GetErrorNativeToFunction(
+			"d == nil",
+			"",
+			"",
+			"",
+			"Invalid Pointer Receiver",
+			"This instance of type Decimal is invalid. Decimal member variable 'val' is a nil pointer.")
+	}
+
+	d.mu.Lock()
+
+	defer d.mu.Unlock()
+
+	if d.val == nil {
+
+		return errGenericCfg.GetErrorNativeToFunction(
+			"val == nil",
+			"",
+			"",
+			"",
+			"Invalid member variable",
+			"This instance of type Decimal is invalid. Decimal member variable 'val' is a nil pointer.")
+	}
+
+	return nil
+}
+
 // Pow returns d^exp using Option 2 (Fixed/Heuristic Guard Bits).
 func (d *Decimal) Pow(exp uint) *Decimal {
 
