@@ -360,14 +360,6 @@ func (d *Decimal) Clone() (*Decimal, error) {
 // targetFractionalDigits decimal places for v's magnitude.
 func (d *Decimal) NewFromFloat64(v float64, targetFractionalDigits uint, mode big.RoundingMode) *Decimal {
 
-	if d.val == nil {
-		return &Decimal{}
-	}
-
-	d.mu.Lock()
-
-	defer d.mu.Unlock()
-
 	conv := defaultConverter()
 
 	var exp2 int
