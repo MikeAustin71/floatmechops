@@ -30,9 +30,25 @@
         "timeout": false
       },
       "models": {
-        "gemma4:31b": {
-          "id": "gemma4:31b",
-          "name": "Gemma 4 31B",
+        "gemma4-dev:64kb": {
+          "id": "gemma4-dev:64kb",
+          "name": "Gemma 64kb 4-31",
+          "tool_call": true,
+          "reasoning": true,
+          "limit": {
+            "context": 65536,
+            "output": 16384
+          },
+          "variants": {
+            "none":   { "reasoningEffort": "none" },
+            "low":    { "reasoningEffort": "low" },
+            "medium": { "reasoningEffort": "medium" },
+            "high":   { "reasoningEffort": "high" }
+          }
+        },
+        "gemma4-dev:32kb": {
+          "id": "gemma4-dev:32kb",
+          "name": "Gemma 32kb 4-31",
           "tool_call": true,
           "reasoning": true,
           "limit": {
