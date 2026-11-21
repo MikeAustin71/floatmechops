@@ -1,5 +1,10 @@
 <!-- AGENTS.md at project root -->
-# Go v1.27 Development Standards
+
+# Project Workspace Rules
+
+
+
+## Go v1.27 Development Standards
 
 - **Context Grounding**: All generated Go code must strictly adhere to Golang Version 1.27 features, idioms, and standard library conventions.
 - **Knowledge Retrieval (Active Search)**: If you are unsure about Go 1.27 specific syntax, or before writing/refactoring complex logic, you must actively query the local knowledge base using your file search or shell tools:
@@ -7,3 +12,12 @@
 - For core language mechanics, read the `F:/Go_Knowledge/language-spec.md/language-spec.md` file.
 - **Strict Compliance**: Reject and avoid any deprecated Go functions or patterns outlined as obsolete in the local documentation.
 - **Tooling First**: Do not guess version-specific behaviors. Rely on reading the specified knowledge paths to guarantee factual accuracy before outputting code.
+
+## Python Environment
+- This repository is primarily written in Go, with a dedicated Python workspace in `py_tools/`.
+- Python 3.14.10 is configured in a virtual environment at `py_tools\.venv\`.
+- **Always** execute Python and pip using the virtual environment's executable directly from the project root (do not call global `python`, `python3`, or `pip`):
+  - Run Python: `.\py_tools\.venv\Scripts\python.exe <script.py>`
+  - Run pip: `.\py_tools\.venv\Scripts\python.exe -m pip <command>`
+- Place all Python scripts and dependencies (`requirements.txt`) inside `py_tools/`.
+- Do not read, search, or modify files inside `py_tools\.venv\`.
