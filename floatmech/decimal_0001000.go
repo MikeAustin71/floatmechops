@@ -356,8 +356,13 @@ func (d *Decimal) Clone() (*Decimal, error) {
 	return clonedDecimal, nil
 }
 
-// NewFromFloat64 constructs an immutable Decimal sized to preserve at least
+// NewFromFloat64
+//
+// Constructs an immutable Decimal sized to preserve at least
 // targetFractionalDigits decimal places for v's magnitude.
+//
+// A type 'float64' can expect a maximum of 15-16 fractional
+// digits of precision.
 func (d *Decimal) NewFromFloat64(v float64, targetFractionalDigits uint, mode big.RoundingMode) *Decimal {
 
 	conv := defaultConverter()
