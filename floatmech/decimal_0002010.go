@@ -93,13 +93,44 @@ func (nscm *numStrConstructorMechanics) constructFromNumStr(
 			"Error: Input parameter 'vNumStr' is an empty string")
 	}
 
-	pos := strings.Index(vNumStr, ".")
+	var found = false
+
+	for _, char := range vNumStr {
+
+		if char == '.' {
+			found = true
+			continue
+		}
+
+		if char < '0' || char > '9' {
+
+			// GetErrorNativeToFunction()
+			//
+			// func (egc *ErrorGenericFactory) GetErrorNativeToFunction(
+			//    parameter string,
+			//    path string,
+			//    fileName string,
+			//    url string,
+			//    errorContext string,
+			//    errorMessage string) error
+			//
+			// Formats error message and error context for errors
+			// originating in the current function's internal logic.
+			return &Decimal{}, errGenericCfg.GetErrorNativeToFunction(
+				fmt.Sprintf("Input parameter 'vNumStr'= %v", vNumStr),
+				"",
+				"",
+				"",
+				"Input parameter 'vNumStr' eligible characters are numbers and a decimal point.",
+				"Error: Input parameter 'vNumStr' contains non-numeric characters.")
+		}
+	}
 
 	var paddedNumStr string
 
 	// Append the configured padding to the input numeric
 	// string prior to parsing.
-	if pos == -1 {
+	if !found {
 		// If paddedNumStr does not contain a decimal point, add one.
 		paddedNumStr = vNumStr + "." + strings.Repeat("0", int(floatNumStrPadding))
 
