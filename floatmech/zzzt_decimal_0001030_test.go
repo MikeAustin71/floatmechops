@@ -7,12 +7,12 @@ import (
 
 func TestDecimal_PowExact_00010(t *testing.T) {
 
-	var v float64
+	var vNumStr string
 	var targetFractionalDigits uint
 	var mode big.RoundingMode
 	var exponent uint
 
-	v = 7.8715
+	vNumStr = "7.8715"
 
 	expectedInitialDecValueStr := "7.8715000000"
 
@@ -22,7 +22,13 @@ func TestDecimal_PowExact_00010(t *testing.T) {
 
 	decType := Decimal{}
 
-	decimal := decType.NewFromFloat64(v, targetFractionalDigits, mode)
+	decimal, err := decType.NewFromFloatNumStr(vNumStr, targetFractionalDigits, mode)
+
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+
+		return
+	}
 
 	actualInitialDecValueStr := decimal.String()
 
@@ -54,12 +60,12 @@ func TestDecimal_PowExact_00010(t *testing.T) {
 
 func TestDecimal_PowExact_00020(t *testing.T) {
 
-	var v float64
+	var vNumStr string
 	var targetFractionalDigits uint
 	var mode big.RoundingMode
 	var exponent uint
 
-	v = 10.81233
+	vNumStr = "10.81233"
 
 	expectedInitialDecValueStr := "10.81233000000000"
 
@@ -69,7 +75,13 @@ func TestDecimal_PowExact_00020(t *testing.T) {
 
 	decType := Decimal{}
 
-	decimal := decType.NewFromFloat64(v, targetFractionalDigits, mode)
+	decimal, err := decType.NewFromFloatNumStr(vNumStr, targetFractionalDigits, mode)
+
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+
+		return
+	}
 
 	actualInitialDecValueStr := decimal.String()
 
@@ -101,12 +113,12 @@ func TestDecimal_PowExact_00020(t *testing.T) {
 
 func TestDecimal_PowExact_00030(t *testing.T) {
 
-	var v float64
+	var vNumStr string
 	var targetFractionalDigits uint
 	var mode big.RoundingMode
 	var exponent uint
 
-	v = 15.81233
+	vNumStr = "15.81233"
 
 	expectedInitialDecValueStr := "15.81233000000000"
 
@@ -116,7 +128,13 @@ func TestDecimal_PowExact_00030(t *testing.T) {
 
 	decType := Decimal{}
 
-	decimal := decType.NewFromFloat64(v, targetFractionalDigits, mode)
+	decimal, err := decType.NewFromFloatNumStr(vNumStr, targetFractionalDigits, mode)
+
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+
+		return
+	}
 
 	actualInitialDecValueStr := decimal.String()
 
@@ -148,12 +166,12 @@ func TestDecimal_PowExact_00030(t *testing.T) {
 
 func TestDecimal_PowExact_00040(t *testing.T) {
 
-	var v float64
+	var vNumStr string
 	var targetFractionalDigits uint
 	var mode big.RoundingMode
 	var exponent uint
 
-	v = 1.0691372836118
+	vNumStr = "1.0691372836118"
 
 	expectedInitialDecValueStr := "1.06913728361180"
 
@@ -163,7 +181,13 @@ func TestDecimal_PowExact_00040(t *testing.T) {
 
 	decType := Decimal{}
 
-	decimal := decType.NewFromFloat64(v, targetFractionalDigits, mode)
+	decimal, err := decType.NewFromFloatNumStr(vNumStr, targetFractionalDigits, mode)
+
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+
+		return
+	}
 
 	actualInitialDecValueStr := decimal.String()
 

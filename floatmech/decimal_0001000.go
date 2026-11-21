@@ -1,7 +1,6 @@
 package floatmech
 
 import (
-	"math"
 	"math/big"
 	"sync"
 
@@ -356,37 +355,109 @@ func (d *Decimal) Clone() (*Decimal, error) {
 	return clonedDecimal, nil
 }
 
-// NewFromFloat64
+// NewFromFloatNumStr
 //
 // Constructs an immutable Decimal sized to preserve at least
-// targetFractionalDigits decimal places for v's magnitude.
+// targetFractionalDigits decimal places for the value's magnitude.
 //
-// A type 'float64' can expect a maximum of 15-16 fractional
-// digits of precision.
-func (d *Decimal) NewFromFloat64(v float64, targetFractionalDigits uint, mode big.RoundingMode) *Decimal {
+// The input numeric string value is padded with a fixed number
+// of trailing '0' characters prior to parsing, raising the
+// parsed value's magnitude so that the derived working
+// precision retains the requested number of fractional digits.
+//
+// Input Parameters
+// ----------------
+//
+//	vNumStr string
+//	  Numeric string value used to construct the Decimal. If
+//	  'vNumStr' is an empty string, an error is returned.
+//
+//	targetFractionalDigits uint
+//	  Number of base-10 fractional digits to be preserved by the
+//	  constructed Decimal.
+//
+//	mode big.RoundingMode
+//	  Rounding mode applied when the parsed value is rounded to
+//	  the working precision.
+//
+// Return Parameters
+// -----------------
+//
+//	*Decimal
+//	  Pointer to the newly constructed Decimal object.
+//
+//	error
+func (d *Decimal) NewFromFloatNumStr(vNumStr string, targetFractionalDigits uint, mode big.RoundingMode) (*Decimal, error) {
 
-	conv := defaultConverter()
+	// NewErrorGenericConfig()
+	//
+	// func (egc *ErrorGenericFactory) NewErrorGenericConfig(
+	//    sourceFile string,
+	//    parentType string,
+	//    thisFunction string) *ErrorGenericFactory
+	//
+	// Add identification information for this function
+	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
+		"decimal_0001000.go",
+		"Decimal",
+		"NewFromFloatNumStr()")
 
-	var exp2 int
-	if v != 0 && !math.IsInf(v, 0) && !math.IsNaN(v) {
-		_, exp2 = math.Frexp(v)
+	if d == nil {
+
+		// GetErrorInputParameterNilPointer()
+		//
+		// func (egc *ErrorGenericFactory) GetErrorInputParameterNilPointer(
+		//    parameter string,
+		//    path string,
+		//    fileName string,
+		//    url string,
+		//    errorContext string,
+		//    errorMessage string) error
+		//
+		// Formats error message and error context for when nil pointers
+		// are passed as Function input parameters.
+		return &Decimal{}, errGenericCfg.GetErrorInputParameterNilPointer(
+			"d == nil",
+			"",
+			"",
+			"",
+			"Invalid Pointer Receiver",
+			"Error: Pointer Receiver 'd' is a nil pointer")
 	}
 
-	prec := conv.toPrec(targetFractionalDigits, exp2)
+	d.mu.Lock()
 
-	// Maximum fractional precision for type: float64
-	if prec < 53 {
-		prec = 53
+	defer d.mu.Unlock()
+
+	constructedDecimal, err := new(numStrConstructorMechanics).constructFromNumStr(
+		vNumStr,
+		targetFractionalDigits,
+		mode)
+
+	if err != nil {
+
+		// GetErrorFromFunctionCall()
+		//
+		// func (egc *ErrorGenericFactory) GetErrorFromFunctionCall(
+		//    calledFunctionType string,
+		//    calledFunction string,
+		//    errorContext string,
+		//    errorMessage string,
+		//    returnedCalledFunctionError error) error
+		//
+		// Adds error context to errors returned by other
+		// Functions.
+		err2 := errGenericCfg.GetErrorFromFunctionCall(
+			"numStrConstructorMechanics",
+			"constructFromNumStr()",
+			"",
+			"",
+			err)
+
+		return &Decimal{}, err2
 	}
 
-	val := new(big.Float).SetPrec(prec).SetMode(mode).SetFloat64(v)
-
-	return &Decimal{
-		val:                    val,
-		targetFractionalDigits: targetFractionalDigits,
-		prec:                   prec,
-		mode:                   mode,
-	}
+	return constructedDecimal, nil
 }
 
 // TargetFractionalDigits returns the requested base-10 digits after the decimal point.
@@ -592,7 +663,13 @@ func (d *Decimal) powWithStrategy(exp uint, strategy powStrategy) *Decimal {
 	}
 
 	if d.val == nil {
-		return new(Decimal).NewFromFloat64(0, defaultFractionalDigits, big.ToNearestEven).powWithStrategy(exp, strategy)
+		zeroBase, err := new(Decimal).NewFromFloatNumStr("0", defaultFractionalDigits, big.ToNearestEven)
+
+		if err != nil {
+			return &Decimal{}
+		}
+
+		return zeroBase.powWithStrategy(exp, strategy)
 	}
 
 	conv := defaultConverter()

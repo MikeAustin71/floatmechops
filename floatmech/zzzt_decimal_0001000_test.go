@@ -7,12 +7,12 @@ import (
 
 func TestDecimal_Pow_0010(t *testing.T) {
 
-	var v float64
+	var vNumStr string
 	var targetFractionalDigits uint
 	var mode big.RoundingMode
 	var exponent uint
 
-	v = 6.9857
+	vNumStr = "6.9857"
 
 	expectedInitialDecValueStr := "6.98570000"
 
@@ -20,7 +20,13 @@ func TestDecimal_Pow_0010(t *testing.T) {
 	mode = big.ToNearestAway
 	exponent = 9
 
-	decimal := new(Decimal).NewFromFloat64(v, targetFractionalDigits, mode)
+	decimal, err := new(Decimal).NewFromFloatNumStr(vNumStr, targetFractionalDigits, mode)
+
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+
+		return
+	}
 
 	actualInitalDecValueStr := decimal.String()
 
@@ -37,29 +43,31 @@ func TestDecimal_Pow_0010(t *testing.T) {
 
 	decResultStr := decResult.String()
 
-	expectedResult := "39617710.92824071"
+	expectedResult := "39617710.92824073"
 
 	if decResultStr != expectedResult {
 		t.Errorf("\n"+
 			"Expected decimal.PowExact = %s\n"+
 			"Instead decimal.PowExact  = %s", expectedResult, decResultStr)
+
+		return
 	}
 
 	return
 }
 
-// TestDecimal_NewFromFloat64_0010
+// TestDecimal_NewFromFloatNumStr_0010
 //
 // Tests an alternative technique for calling method
-// Decimal.NewFromFloat64().
-func TestDecimal_NewFromFloat64_0010(t *testing.T) {
+// Decimal.NewFromFloatNumStr().
+func TestDecimal_NewFromFloatNumStr_0010(t *testing.T) {
 
-	var v float64
+	var vNumStr string
 	var targetFractionalDigits uint
 	var mode big.RoundingMode
 	var exponent uint
 
-	v = 6.9857
+	vNumStr = "6.9857"
 
 	expectedInitialDecValueStr := "6.98570000"
 
@@ -69,7 +77,13 @@ func TestDecimal_NewFromFloat64_0010(t *testing.T) {
 
 	decType := Decimal{}
 
-	decimal := decType.NewFromFloat64(v, targetFractionalDigits, mode)
+	decimal, err := decType.NewFromFloatNumStr(vNumStr, targetFractionalDigits, mode)
+
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+
+		return
+	}
 
 	actualInitialDecValueStr := decimal.String()
 
@@ -86,7 +100,7 @@ func TestDecimal_NewFromFloat64_0010(t *testing.T) {
 
 	decResultStr := decResult.String()
 
-	expectedResult := "39617710.92824071"
+	expectedResult := "39617710.92824073"
 
 	if decResultStr != expectedResult {
 		t.Errorf("\n"+

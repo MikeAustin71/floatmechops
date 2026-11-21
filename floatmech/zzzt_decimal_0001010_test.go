@@ -11,16 +11,24 @@ import (
 // receiving Decimal object (pointer receiver 'd') is a nil pointer.
 func TestDecimal_CopyIn_NilReceiver(t *testing.T) {
 
-	copySource := new(Decimal).NewFromFloat64(6.9857, 8, big.ToNearestAway)
+	copySource, err := new(Decimal).NewFromFloatNumStr("6.9857", 8, big.ToNearestAway)
+
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+
+		return
+	}
 
 	receiver := (*Decimal)(nil)
 
-	err := receiver.CopyIn(copySource)
+	err = receiver.CopyIn(copySource)
 
 	if err == nil {
 		t.Errorf("\n" +
 			"Expected CopyIn to return an error for a nil pointer receiver\n" +
 			"  Actual CopyIn returned a nil error")
+
+		return
 	}
 
 	return
@@ -32,16 +40,24 @@ func TestDecimal_CopyIn_NilReceiver(t *testing.T) {
 // copySource *Decimal input parameter is a nil pointer.
 func TestDecimal_CopyIn_NilCopySource(t *testing.T) {
 
-	receiver := new(Decimal).NewFromFloat64(0, 8, big.ToNearestAway)
+	receiver, err := new(Decimal).NewFromFloatNumStr("0", 8, big.ToNearestAway)
+
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+
+		return
+	}
 
 	copySource := (*Decimal)(nil)
 
-	err := receiver.CopyIn(copySource)
+	err = receiver.CopyIn(copySource)
 
 	if err == nil {
 		t.Errorf("\n" +
 			"Expected CopyIn to return an error for a nil copySource\n" +
 			"  Actual CopyIn returned a nil error")
+
+		return
 	}
 
 	return
@@ -54,16 +70,29 @@ func TestDecimal_CopyIn_NilCopySource(t *testing.T) {
 // the host, or receiving Decimal object.
 func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 
-	copySource := new(Decimal).NewFromFloat64(6.9857, 8, big.ToNearestAway)
+	copySource, err := new(Decimal).NewFromFloatNumStr("6.9857", 8, big.ToNearestAway)
 
-	receiver := new(Decimal).NewFromFloat64(1.0, 2, big.ToNearestEven)
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
 
-	err := receiver.CopyIn(copySource)
+		return
+	}
+
+	receiver, err := new(Decimal).NewFromFloatNumStr("1.0", 2, big.ToNearestEven)
+
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+
+		return
+	}
+
+	err = receiver.CopyIn(copySource)
 
 	if err != nil {
 		t.Errorf("\n"+
 			"Expected CopyIn to succeed for a valid copySource\n"+
 			"  Actual CopyIn returned: %s", err.Error())
+
 		return
 	}
 
@@ -73,6 +102,7 @@ func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 			"  Actual receiver.val: %s\n"+
 			"  Actual copySource.val: %s",
 			receiver.val.String(), copySource.val.String())
+
 		return
 	}
 
@@ -81,6 +111,7 @@ func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 			"Expected receiver.targetFractionalDigits = %d\n"+
 			"  Actual receiver.targetFractionalDigits = %d",
 			copySource.targetFractionalDigits, receiver.targetFractionalDigits)
+
 		return
 	}
 
@@ -89,6 +120,7 @@ func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 			"Expected receiver.prec = %d\n"+
 			"  Actual receiver.prec = %d",
 			copySource.prec, receiver.prec)
+
 		return
 	}
 
@@ -97,6 +129,7 @@ func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 			"Expected receiver.mode = %s\n"+
 			"  Actual receiver.mode = %s",
 			copySource.mode, receiver.mode)
+
 		return
 	}
 
@@ -109,16 +142,24 @@ func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 // source Decimal object (pointer receiver 'd') is a nil pointer.
 func TestDecimal_CopyOut_NilReceiver(t *testing.T) {
 
-	copyDestination := new(Decimal).NewFromFloat64(1.0, 2, big.ToNearestEven)
+	copyDestination, err := new(Decimal).NewFromFloatNumStr("1.0", 2, big.ToNearestEven)
+
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+
+		return
+	}
 
 	receiver := (*Decimal)(nil)
 
-	err := receiver.CopyOut(copyDestination)
+	err = receiver.CopyOut(copyDestination)
 
 	if err == nil {
 		t.Errorf("\n" +
 			"Expected CopyOut to return an error for a nil pointer receiver\n" +
 			"  Actual CopyOut returned a nil error")
+
+		return
 	}
 
 	return
@@ -130,16 +171,24 @@ func TestDecimal_CopyOut_NilReceiver(t *testing.T) {
 // copyDestination *Decimal input parameter is a nil pointer.
 func TestDecimal_CopyOut_NilCopyDestination(t *testing.T) {
 
-	receiver := new(Decimal).NewFromFloat64(6.9857, 8, big.ToNearestAway)
+	receiver, err := new(Decimal).NewFromFloatNumStr("6.9857", 8, big.ToNearestAway)
+
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+
+		return
+	}
 
 	copyDestination := (*Decimal)(nil)
 
-	err := receiver.CopyOut(copyDestination)
+	err = receiver.CopyOut(copyDestination)
 
 	if err == nil {
 		t.Errorf("\n" +
 			"Expected CopyOut to return an error for a nil copyDestination\n" +
 			"  Actual CopyOut returned a nil error")
+
+		return
 	}
 
 	return
@@ -152,16 +201,30 @@ func TestDecimal_CopyOut_NilCopyDestination(t *testing.T) {
 // outgoing copyDestination Decimal object.
 func TestDecimal_CopyOut_ValidCopy(t *testing.T) {
 
-	receiver := new(Decimal).NewFromFloat64(6.9857, 8, big.ToNearestAway)
+	receiver, err := new(Decimal).NewFromFloatNumStr("6.9857", 8, big.ToNearestAway)
 
-	copyDestination := new(Decimal).NewFromFloat64(1.0, 2, big.ToNearestEven)
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
 
-	err := receiver.CopyOut(copyDestination)
+		return
+	}
+
+	copyDestination, err := new(Decimal).NewFromFloatNumStr("1.0", 2, big.ToNearestEven)
+
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+
+		return
+	}
+
+	err = receiver.CopyOut(copyDestination)
 
 	if err != nil {
 		t.Errorf("\n"+
 			"Expected CopyOut to succeed for a valid copyDestination\n"+
 			"  Actual CopyOut returned: %s", err.Error())
+
+		return
 	}
 
 	if copyDestination.val != receiver.val {
@@ -170,6 +233,8 @@ func TestDecimal_CopyOut_ValidCopy(t *testing.T) {
 			"  Actual copyDestination.val: %s\n"+
 			"  Actual receiver.val: %s",
 			copyDestination.val.String(), receiver.val.String())
+
+		return
 	}
 
 	if copyDestination.targetFractionalDigits != receiver.targetFractionalDigits {
@@ -177,6 +242,8 @@ func TestDecimal_CopyOut_ValidCopy(t *testing.T) {
 			"Expected copyDestination.targetFractionalDigits = %d\n"+
 			"  Actual copyDestination.targetFractionalDigits = %d",
 			receiver.targetFractionalDigits, copyDestination.targetFractionalDigits)
+
+		return
 	}
 
 	if copyDestination.prec != receiver.prec {
@@ -184,6 +251,8 @@ func TestDecimal_CopyOut_ValidCopy(t *testing.T) {
 			"Expected copyDestination.prec = %d\n"+
 			"  Actual copyDestination.prec = %d",
 			receiver.prec, copyDestination.prec)
+
+		return
 	}
 
 	if copyDestination.mode != receiver.mode {
@@ -191,6 +260,8 @@ func TestDecimal_CopyOut_ValidCopy(t *testing.T) {
 			"Expected copyDestination.mode = %s\n"+
 			"  Actual copyDestination.mode = %s",
 			receiver.mode, copyDestination.mode)
+
+		return
 	}
 
 	return
