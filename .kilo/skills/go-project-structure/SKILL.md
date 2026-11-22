@@ -26,16 +26,16 @@ The Golang Project Directory Structure consists of seven (7) component directori
   |_ assets            (Constant - MUST be lowercase)
   |_ Docs              (Constant)
   |_ [source code dir] (Variable - User Supplied - MUST be lowercase)
+  |- py_tools          (Constant) 
   |_ TechNotes         (Constant)
 ```
 ## 2. Variable Directory Names (User Supplied)
 
 You must obtain these three names from the user before scaffolding:
 
-1. 
-2. **Project Parent Directory**: The existing parent path where the new project will reside.
+1. **Project Parent Directory**: The existing parent path where the new project will reside.
 3. **Project Base Directory**: The root folder for the specific new Golang project.
-4. **Source Code Directory**: The directory that will house the actual .go source and test files.*CRITICAL RULE*: The Source Code Directory name **MUST BE ALL LOWERCASE**.
+4. **Source Code Directory**: The directory that will house the actual ***go*** source and test files. *CRITICAL RULE*: The Source Code Directory name **MUST BE ALL LOWERCASE**.
 
 ------
 
@@ -43,12 +43,12 @@ You must obtain these three names from the user before scaffolding:
 
 ## 3. Constant Directory Names (Auto-Generated)
 
-These four directories must be created inside the **Project Base Directory** exactly as spelled below:
+These five directories must be created inside the **Project Base Directory** exactly as spelled below:
 
-1. 
-2. **AppTest**: Stores the main.go file. (Capital 'A' and 'T').
-3. **assets**: Stores images and diagrams. (*CRITICAL RULE*: **MUST BE ALL LOWERCASE**).
-4. **Docs**: Stores project documentation. (Capital 'D').
+1. **AppTest**: Stores the main.go file. (Capital 'A' and 'T').
+2. **assets**: Stores images and diagrams. (*CRITICAL RULE*: **MUST BE ALL LOWERCASE**).
+3. **Docs**: Stores project documentation. (Capital 'D').
+4. **py_tools**: Configured for ***python*** operations. Contains ***python*** source and programming files. 
 5. **TechNotes**: Stores technical notes and documents. (Capital 'T' and 'N').
 
 *Note on Test Files: Test files do not get their own directory. They must always be stored in the same directory as the source code files they are testing.*
@@ -79,6 +79,8 @@ F:\GoProjects\Arenero73\X01-SandBox\golang_code\LCD\
   |_ Docs\
   |
   |_ lcd\
+  |
+  |- py_tools\
   |
   |_ TechNotes\
 ```
