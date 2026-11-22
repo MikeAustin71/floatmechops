@@ -18,6 +18,25 @@ Stage 2 addresses the **single remaining failing test** exposed by the Stage 1 m
 The base is now the exact decimal literal (confirmed by Stage 1), so the error is
 **entirely in the Ziv engine path** (`powZiv` / `zivBounder`).
 
+
+
+## 1-a User Addendum - 2026-11-22 15:51-Hours
+
+I increased the value of **`const floatNumStrPadding uint = 100`** to 100 from its prior value of **`30`**. I then ran the test that failed, **`TestDecimal_PowExact_00020`**. The still failed with the same results, even after increasing **`floatNumStrPadding`** to a value of **`100`**.  My results showed no impact resulting form the higher **`floatNumStrPadding`** value:
+
+```
+=== RUN   TestDecimal_PowExact_00020
+    zzzt_decimal_0001030_test.go:104: 
+        Expected decimal.PowExact = 186790307.75412594147937
+        Instead decimal.PowExact  = 186790307.75412594147769
+--- FAIL: TestDecimal_PowExact_00020 (0.00s)
+
+```
+
+I subsequently reset the value of **`floatNumStrPadding`** to its original value of ***30***.
+
+
+
 ---
 
 ## 2. Ground Truth (verified, immutable reference)
