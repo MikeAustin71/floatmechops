@@ -22,7 +22,7 @@
 
 - **Tooling First**: Do not guess version-specific behaviors. Rely on reading the specified knowledge paths to guarantee factual accuracy before outputting code.
 
-- The **Go** Version Number in the Project Directory **`go.mod`** have may have a minor release number from that of the **Go** documentation (Example: ***`go.mod` = Go Version 1.27.3*** - **Go Documentation Version 1.27.0**). This discrepancy is NOT significant. You are directed to use the **Go Documentation** located in the **`F:/Go_Knowledge`** directories.
+- The **Go** Version Number in the Project Directory **`go.mod`** have may have a minor release number different from that of the **Go** documentation (Example: ***`go.mod` = Go Version 1.27.3*** - **Go Documentation Version 1.27.0**). This discrepancy is NOT significant. You are directed to use the **Go Documentation** located in the **`F:/Go_Knowledge`** directories.
 
   
 
