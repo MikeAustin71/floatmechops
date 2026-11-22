@@ -22,7 +22,7 @@ The base is now the exact decimal literal (confirmed by Stage 1), so the error i
 
 ## 1-a User Addendum - 2026-11-22 15:51-Hours
 
-I increased the value of **`const floatNumStrPadding uint = 100`** to 100 from its prior value of **`30`**. I then ran the test that failed, **`TestDecimal_PowExact_00020`**. The still failed with the same results, even after increasing **`floatNumStrPadding`** to a value of **`100`**.  My results showed no impact resulting form the higher **`floatNumStrPadding`** value:
+I increased the value of **`const floatNumStrPadding uint`** to **`100`** from its prior value of **`30`**. I then ran the test that previously failed, **`TestDecimal_PowExact_00020`**. The test still failed with the same results, even after increasing **`floatNumStrPadding`** to a value of **`100`**.  My results showed no impact resulting form the higher **`floatNumStrPadding`** value:
 
 ```
 === RUN   TestDecimal_PowExact_00020
