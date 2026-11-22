@@ -20,7 +20,7 @@ The base is now the exact decimal literal (confirmed by Stage 1), so the error i
 
 
 
-## 1-a User Addendum - 2026-11-22 15:51-Hours
+### 1-a User Addendum - 2026-11-22 03:51-Hours
 
 I increased the value of **`const floatNumStrPadding uint`** to **`100`** from its prior value of **`30`**. I then ran the test that previously failed, **`TestDecimal_PowExact_00020`**. The test still failed with the same results, even after increasing **`floatNumStrPadding`** to a value of **`100`**.  My results showed no impact resulting form the higher **`floatNumStrPadding`** value:
 
@@ -34,6 +34,33 @@ I increased the value of **`const floatNumStrPadding uint`** to **`100`** from i
 ```
 
 I subsequently reset the value of **`floatNumStrPadding`** to its original value of ***30***.
+
+### 1-b User Addendum - 2026-11-22 05:29-Hours
+
+I have created a new test function, ***`TestPrec002()`***  in **`D:\GoProjects\MikeAustin71\floatmechops\AppTest\Test002\float_pow.go`**
+
+This test employs ***big.Float*** and duplicates the input parameters used in the failing test ***`TestDecimal_PowExact_00020`*** . ***`TestPrec002()`*** calculates the correct result:
+
+```
+--------------------------------------------------
+Running TestPrec002()
+File: /floatmechops/AppTest/Test002/float_pow.go
+--------------------------------------------------
+
+Base: 10.81233
+Exponent: 8
+Required FractionalDigits: 14
+Total Integer and Fractional Digits
+in the Result: 23
+Expected Result: 186790307.75412594147937
+Actual Result:   186790307.75412594147937
+--------------------------------------------------
+
+```
+
+Check out helper function ***ComputeBigFloatPrecisionBits()***. Precision is calculated on the total of integer digits + fractional digits.
+
+
 
 
 

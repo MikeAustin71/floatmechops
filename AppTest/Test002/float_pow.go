@@ -22,15 +22,10 @@ func main() {
 // This Passes
 func TestPrec002() {
 
-	spacerStr := " "
+	lineBreakStr := strings.Repeat("-", 50)
 
-	lineBreakStr := spacerStr
-
-	lineBreakStr += strings.Repeat("-", 50)
-
-	fmt.Printf("\n%v\n%vRunning TestPrec001()\n%v\n\n",
+	fmt.Printf("\n%v\nRunning TestPrec002()\nFile: /floatmechops/AppTest/Test002/float_pow.go\n%v\n\n",
 		lineBreakStr,
-		spacerStr,
 		lineBreakStr)
 
 	//                    Decimal            1         2         3
