@@ -411,13 +411,47 @@ func calculateFloatPrecisionExponentMultiplication(
 		totalFinalDigits += deltaRequiredActualFracDigits
 	}
 
-	baseBits := float64(totalFinalDigits) * 3.32192809488736
+	bigFloatPrecision = calculateBigFloatPrecision(totalFinalDigits)
+
+	return bigFloatPrecision, nil
+}
+
+// calculateBigFloatPrecision
+//
+// Computes the number of big.Float precision bit required to accurately
+// represent the numerical value described by the total number of integer
+// and fractional digits contained in that numerical value.
+//
+// Input Parameters
+// ----------------
+//
+//	totalIntAndFracDigits uint
+//	  The total number of integer and fractional digits in the numerical
+//	  value for which the number big.Float precision bits is being calculated.
+//
+// Return Parameters
+// -----------------
+//
+//	bigFloatPrecisionBits uint
+//	  The number of big.Float precision bits required to accurately represent
+//	  a numerical value containing the total integer and fractional digits
+//	  specified in input parameter totalIntAndFracDigits.
+//
+//	  Be advised: If input parameter 'bigFloatPrecisionBits' is equal to zero,
+//	  'bigFloatPrecisionBits' will be set equal to zero.
+func calculateBigFloatPrecision(totalIntAndFracDigits uint) (bigFloatPrecisionBits uint) {
+
+	if totalIntAndFracDigits == 0 {
+		return 0
+	}
+
+	baseBits := float64(totalIntAndFracDigits) * 3.32192809488736
 
 	// Add safety margin for exponentiation
 	safety := 64.0
 
 	// Round up to nearest whole bit
-	bigFloatPrecision = uint(math.Ceil(baseBits + safety))
+	bigFloatPrecisionBits = uint(math.Ceil(baseBits + safety))
 
-	return bigFloatPrecision, nil
+	return bigFloatPrecisionBits
 }
