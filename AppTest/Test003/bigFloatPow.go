@@ -117,7 +117,7 @@ func testPrecision01(floatNumStr string, exponent uint, requiredFractionalDigits
 
 	if valueIsZero {
 
-		numOfZeros := strings.Repeat("-", int(requiredFractionalDigits))
+		numOfZeros := strings.Repeat("0", int(requiredFractionalDigits))
 
 		calcValue = "1." + numOfZeros
 
@@ -454,4 +454,160 @@ func calculateBigFloatPrecision(totalIntAndFracDigits uint) (bigFloatPrecisionBi
 	bigFloatPrecisionBits = uint(math.Ceil(baseBits + safety))
 
 	return bigFloatPrecisionBits
+}
+
+// multiplyForExponentiation
+//
+// Receives a *big.Float floating point value (baseFloatValue) and
+// raises that value to the power specified by input parameter,
+// 'raiseToPowerExponent'.
+//
+// The calculated value of 'baseFloatValue' raised to the power
+// of 'raiseToPowerExponent' (baseFloatValue^raiseToPowerExponent)
+// is returned as *big.Float result value.
+//
+// This exponentiation operation will be performed using multiple
+// multiplication operations.
+//
+// Input Parameters
+// ----------------
+//
+//		baseFloatValue *big.Float
+//		  The base input value which will be raised to the power
+//		  specified by input parameter 'raiseToPowerExponent'.
+//
+//	 baseFractionalDigits uint
+//	   The number of fractional digits to the right of the
+//	   decimal place in input parameter 'baseFloatValue'.
+//	   This will determine the degree accuracy for the
+//	   'baseFloatValue' value in all future calculations.
+//
+//
+//		raiseToPowerExponent uint
+//		  The exponent value. 'baseFloatValue' will be raised to
+//		  the power specified by this exponent value.
+//
+// Return Parameters
+// -----------------
+//
+// raiseToPowerResult *big.Float
+//
+//	The calculated result of the exponentiation operation.
+//	Input parameter 'baseFloatValue' will be raised to the power
+//	of 'raiseToPowerExponent' and returned here in
+//	'raiseToPowerResult'.
+//
+// err error
+func multiplyForExponentiation(
+	baseFloatValue *big.Float,
+	baseFractionalDigits uint,
+	requiredFractionalDigits uint,
+	raiseToPowerExponent uint) (raiseToPowerResult *big.Float, err error) {
+
+	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
+		"floatmechops/AppTest/Test003/bigFloatPow.go", // sourceFile
+		"",                            // parentType (leave "" if none)
+		"multiplyForExponentiation()") // thisFunction
+
+	raiseToPowerResult = big.NewFloat(0).SetPrec(0)
+
+	if baseFloatValue == nil {
+
+		return raiseToPowerResult,
+			errGenericCfg.GetErrorInputParameterNilPointer(
+				"baseFloatValue == nil",
+				"",
+				"",
+				"",
+				"Input parameter 'baseFloatValue' is invalid",
+				"ERROR: Input parameter 'baseFloatValue' is a nil pointer")
+	}
+
+	if raiseToPowerExponent == 0 {
+		raiseToPowerResult.SetString("1")
+		return raiseToPowerResult, nil
+	}
+
+	if raiseToPowerExponent == 1 {
+		baseFloatValueStr := baseFloatValue.Text('f', int(requiredFractionalDigits))
+		raiseToPowerResult.SetString(baseFloatValueStr)
+		return raiseToPowerResult, nil
+	}
+
+	baseFloatNumStr := baseFloatValue.Text('f', int(baseFractionalDigits))
+
+	integerDigits, fractionalDigits, valueIsZero, valueIsOne, err := analyzeFloatNumStr(baseFloatNumStr)
+
+	if err != nil {
+
+		return raiseToPowerResult, errGenericCfg.GetErrorFromFunctionCall(
+			"",
+			"analyzeFloatNumStr()",
+			"",
+			"",
+			err)
+	}
+
+	if valueIsZero {
+		raiseToPowerResult.SetString("0")
+		return raiseToPowerResult, nil
+
+	}
+
+	if valueIsOne {
+		raiseToPowerResult.SetString("1")
+		return raiseToPowerResult, nil
+	}
+
+	requiredFloatPrecisionBits, err := calculateFloatPrecisionExponentMultiplication(
+		integerDigits,
+		fractionalDigits,
+		requiredFractionalDigits,
+		raiseToPowerExponent)
+
+	if err != nil {
+
+		return raiseToPowerResult, errGenericCfg.GetErrorFromFunctionCall(
+			"",
+			"calculateFloatPrecisionExponentMultiplication()",
+			"",
+			"",
+			err)
+	}
+
+	baseMultiplier, ok := new(big.Float).SetPrec(baseFractionalDigits).SetMode(big.ToNearestAway).SetString(baseFloatNumStr)
+
+	if ok == false {
+
+		return raiseToPowerResult, errGenericCfg.GetErrorFromFunctionCall(
+			"",
+			fmt.Sprintf("baseMultiplier,ok=new(big.Float).SetString(%s)", baseFloatNumStr),
+			"(big.Float).SetString(baseFloatNumStr) failed on 'baseMultiplier'",
+			"Error: 'ok' returned 'false'",
+			err)
+
+	}
+
+	resultMultiplier, ok := new(big.Float).SetPrec(requiredFloatPrecisionBits).SetMode(big.ToNearestAway).SetString(baseFloatNumStr)
+
+	if ok == false {
+
+		return raiseToPowerResult, errGenericCfg.GetErrorFromFunctionCall(
+			"",
+			fmt.Sprintf("resultMultiplier, ok=new(big.Float).SetString(%s)", baseFloatNumStr),
+			"(big.Float).SetString(floatNumStr) failed on 'resultMultiplier'",
+			"Error: 'ok' returned 'false'",
+			err)
+
+	}
+
+	adjustedExponent := raiseToPowerExponent - 1
+
+	for range adjustedExponent {
+
+		resultMultiplier = resultMultiplier.Mul(resultMultiplier, baseMultiplier)
+
+	}
+
+	return resultMultiplier, nil
 }
