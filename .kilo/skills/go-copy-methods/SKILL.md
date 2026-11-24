@@ -46,6 +46,15 @@ func (d *Decimal) TargetFractionalDigits() uint {
 
 ## CopyIn()
 
+> **NOTE TO AGENT - MANDATORY**: 
+> For the CopyIn() method: <u>Never</u> copy pointers to pointers. Always create a new object with equal values and set the receiving pointer to that new object.
+>
+> ```go
+> d.val = new(big.Float).SetMode(copySource.val.Mode()).Set(copySource.val)
+> ```
+>
+> 
+
 ```go
 
 // CopyIn
@@ -126,9 +135,13 @@ func (d *Decimal) CopyIn(copySource *Decimal) error {
 			"Error: Input parameter 'copySource' is a nil pointer")
 	}
 
-	d.val = copySource.val
+
+	d.val = new(big.Float).SetMode(copySource.val.Mode()).Set(copySource.val)
+    
 	d.targetFractionalDigits = copySource.targetFractionalDigits
+    
 	d.prec = copySource.prec
+    
 	d.mode = copySource.mode
 
 	return nil
@@ -137,7 +150,18 @@ func (d *Decimal) CopyIn(copySource *Decimal) error {
 
 
 
+
+
 ## CopyOut()
+
+> **NOTE TO AGENT - MANDATORY**: 
+> For the CopyOut() method: <u>Never</u> copy pointers to pointers. Always create a new object with equal values and set the receiving pointer to that new object. 
+>
+> ```go
+> copyDestination.val = new(big.Float).SetMode(d.val.Mode()).Set(d.val)
+> ```
+
+
 
 ```go
 
@@ -219,9 +243,13 @@ func (d *Decimal) CopyOut(copyDestination *Decimal) error {
 			"Error: Input parameter 'copyDestination' is a nil pointer")
 	}
 
-	copyDestination.val = d.val
+
+    copyDestination.val = new(big.Float).SetMode(d.val.Mode()).Set(d.val) 
+    
 	copyDestination.targetFractionalDigits = d.targetFractionalDigits
+    
 	copyDestination.prec = d.prec
+    
 	copyDestination.mode = d.mode
 
 	return nil
@@ -231,6 +259,15 @@ func (d *Decimal) CopyOut(copyDestination *Decimal) error {
 
 
 ## Clone()
+
+> **NOTE TO AGENT - MANDATORY**: 
+> For the Clone() method: <u>Never</u> copy pointers to pointers. Always create a new object with equal values and set the receiving pointer to that new object. 
+>
+> ```go
+> clonedDecimal.val = new(big.Float).SetMode(d.val.Mode()).Set(d.val)
+> ```
+>
+> 
 
 ```go
 // Clone
@@ -291,10 +328,13 @@ func (d *Decimal) Clone() (*Decimal, error) {
 	}
 
     clonedDecimal := new(Decimal)
-    
-	clonedDecimal.val = d.val
+        
+	clonedDecimal.val = new(big.Float).SetMode(d.val.Mode()).Set(d.val)
+
 	clonedDecimal.targetFractionalDigits = d.targetFractionalDigits
+    
 	clonedDecimal.prec = d.prec
+    
 	clonedDecimal.mode = d.mode
 
 	return clonedDecimal, nil
