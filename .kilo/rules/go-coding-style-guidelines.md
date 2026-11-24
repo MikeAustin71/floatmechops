@@ -45,7 +45,7 @@ Must follow this exact structure, including explicit "Input Parameters" and "Ret
 // Returns ln(x). The function requires x > 0.
 //
 // Input Parameters
-// ---------------
+// ----------------
 //
 // x float64
 //  'x' is the input value for which the Natural Log will be calculated.
