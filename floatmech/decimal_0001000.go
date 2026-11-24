@@ -139,9 +139,12 @@ func (d *Decimal) CopyIn(copySource *Decimal) error {
 			"Error: Input parameter 'copySource' member variable 'val' is a nil pointer")
 	}
 
-	d.val = copySource.val
+	d.val = new(big.Float).SetMode(copySource.val.Mode()).Set(copySource.val)
+
 	d.targetFractionalDigits = copySource.targetFractionalDigits
+
 	d.prec = copySource.prec
+
 	d.mode = copySource.mode
 
 	return nil
@@ -254,9 +257,12 @@ func (d *Decimal) CopyOut(copyDestination *Decimal) error {
 			"This instance of type Decimal is invalid. Decimal member variable 'val' is a nil pointer.")
 	}
 
-	copyDestination.val = d.val
+	copyDestination.val = new(big.Float).SetMode(d.val.Mode()).Set(d.val)
+
 	copyDestination.targetFractionalDigits = d.targetFractionalDigits
+
 	copyDestination.prec = d.prec
+
 	copyDestination.mode = d.mode
 
 	return nil
@@ -347,9 +353,12 @@ func (d *Decimal) Clone() (*Decimal, error) {
 
 	clonedDecimal := new(Decimal)
 
-	clonedDecimal.val = d.val
+	clonedDecimal.val = new(big.Float).SetMode(d.val.Mode()).Set(d.val)
+
 	clonedDecimal.targetFractionalDigits = d.targetFractionalDigits
+
 	clonedDecimal.prec = d.prec
+
 	clonedDecimal.mode = d.mode
 
 	return clonedDecimal, nil
