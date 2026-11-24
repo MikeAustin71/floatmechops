@@ -70,7 +70,9 @@ func TestDecimal_CopyIn_NilCopySource(t *testing.T) {
 // the host, or receiving Decimal object.
 func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 
-	copySource, err := new(Decimal).NewFromFloatNumStr("6.9857", 8, big.ToNearestAway)
+	targetFractionalDigits := uint(8)
+
+	copySource, err := new(Decimal).NewFromFloatNumStr("6.9857", targetFractionalDigits, big.ToNearestAway)
 
 	if err != nil {
 		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
@@ -96,12 +98,25 @@ func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 		return
 	}
 
-	if receiver.val != copySource.val {
+	if receiver.mode != copySource.mode {
 		t.Errorf("\n"+
-			"Expected receiver.val to equal copySource.val\n"+
-			"  Actual receiver.val: %s\n"+
-			"  Actual copySource.val: %s",
-			receiver.val.String(), copySource.val.String())
+			"Expected receiver.mode = %s\n"+
+			"  Actual receiver.mode = %s",
+			copySource.mode, receiver.mode)
+
+		return
+	}
+
+	copySourceValStr := copySource.val.Text('f', int(targetFractionalDigits))
+
+	receiverValStr := receiver.val.Text('f', int(targetFractionalDigits))
+
+	if receiverValStr != copySourceValStr {
+		t.Errorf("\n"+
+			"Expected receiverValStr to equal copySourceValStr\n"+
+			"  Actual receiverValStr: %s\n"+
+			"  Actual copySourceValStr: %s",
+			receiverValStr, copySourceValStr)
 
 		return
 	}
@@ -120,15 +135,6 @@ func TestDecimal_CopyIn_ValidCopy(t *testing.T) {
 			"Expected receiver.prec = %d\n"+
 			"  Actual receiver.prec = %d",
 			copySource.prec, receiver.prec)
-
-		return
-	}
-
-	if receiver.mode != copySource.mode {
-		t.Errorf("\n"+
-			"Expected receiver.mode = %s\n"+
-			"  Actual receiver.mode = %s",
-			copySource.mode, receiver.mode)
 
 		return
 	}
@@ -201,7 +207,9 @@ func TestDecimal_CopyOut_NilCopyDestination(t *testing.T) {
 // outgoing copyDestination Decimal object.
 func TestDecimal_CopyOut_ValidCopy(t *testing.T) {
 
-	receiver, err := new(Decimal).NewFromFloatNumStr("6.9857", 8, big.ToNearestAway)
+	targetFractionalDigits := uint(8)
+
+	receiver, err := new(Decimal).NewFromFloatNumStr("6.9857", targetFractionalDigits, big.ToNearestAway)
 
 	if err != nil {
 		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
@@ -227,12 +235,25 @@ func TestDecimal_CopyOut_ValidCopy(t *testing.T) {
 		return
 	}
 
-	if copyDestination.val != receiver.val {
+	if copyDestination.mode != receiver.mode {
 		t.Errorf("\n"+
-			"Expected copyDestination.val to equal receiver.val\n"+
-			"  Actual copyDestination.val: %s\n"+
-			"  Actual receiver.val: %s",
-			copyDestination.val.String(), receiver.val.String())
+			"Expected copyDestination.mode = %s\n"+
+			"  Actual copyDestination.mode = %s",
+			receiver.mode, copyDestination.mode)
+
+		return
+	}
+
+	copyDestinationValStr := copyDestination.val.Text('f', int(targetFractionalDigits))
+
+	receiverValStr := receiver.val.Text('f', int(targetFractionalDigits))
+
+	if copyDestinationValStr != receiverValStr {
+		t.Errorf("\n"+
+			"Expected copyDestinationValStr to equal receiverValStr\n"+
+			"  Actual copyDestinationValStr: %s\n"+
+			"  Actual receiverValStr: %s",
+			copyDestinationValStr, receiverValStr)
 
 		return
 	}
@@ -251,15 +272,6 @@ func TestDecimal_CopyOut_ValidCopy(t *testing.T) {
 			"Expected copyDestination.prec = %d\n"+
 			"  Actual copyDestination.prec = %d",
 			receiver.prec, copyDestination.prec)
-
-		return
-	}
-
-	if copyDestination.mode != receiver.mode {
-		t.Errorf("\n"+
-			"Expected copyDestination.mode = %s\n"+
-			"  Actual copyDestination.mode = %s",
-			receiver.mode, copyDestination.mode)
 
 		return
 	}
