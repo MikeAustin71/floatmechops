@@ -278,3 +278,147 @@ func TestDecimal_CopyOut_ValidCopy(t *testing.T) {
 
 	return
 }
+
+// TestDecimal_Clone_NilReceiver
+//
+// Verifies that Clone returns an error when the host Decimal object
+// (pointer receiver 'd') is a nil pointer.
+func TestDecimal_Clone_NilReceiver(t *testing.T) {
+
+	receiver := (*Decimal)(nil)
+
+	cloned, err := receiver.Clone()
+
+	if err == nil {
+		t.Errorf("\n" +
+			"Expected Clone to return an error for a nil pointer receiver\n" +
+			"  Actual Clone returned a nil error")
+
+		return
+	}
+
+	if cloned == nil {
+		t.Errorf("\n" +
+			"Expected Clone to return a non-nil Decimal object even on error\n" +
+			"  Actual Clone returned a nil Decimal object")
+
+		return
+	}
+
+	return
+}
+
+// TestDecimal_Clone_NilVal
+//
+// Verifies that Clone returns an error when the host Decimal object's
+// internal 'val' member variable is a nil pointer.
+func TestDecimal_Clone_NilVal(t *testing.T) {
+
+	receiver := &Decimal{val: nil}
+
+	cloned, err := receiver.Clone()
+
+	if err == nil {
+		t.Errorf("\n" +
+			"Expected Clone to return an error for a nil internal 'val'\n" +
+			"  Actual Clone returned a nil error")
+
+		return
+	}
+
+	if cloned == nil {
+		t.Errorf("\n" +
+			"Expected Clone to return a non-nil Decimal object even on error\n" +
+			"  Actual Clone returned a nil Decimal object")
+
+		return
+	}
+
+	return
+}
+
+// TestDecimal_Clone_ValidClone
+//
+// Verifies that Clone returns a newly created Decimal object which is
+// an exact clone of the host Decimal object.
+func TestDecimal_Clone_ValidClone(t *testing.T) {
+
+	targetFractionalDigits := uint(8)
+	valStr := "6.9857"
+
+	receiver, err := new(Decimal).NewFromFloatNumStr(valStr, targetFractionalDigits, big.ToNearestAway)
+
+	if err != nil {
+		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+
+		return
+	}
+
+	cloned, err := receiver.Clone()
+
+	if err != nil {
+		t.Errorf("\n"+
+			"Expected Clone to succeed for a valid Decimal object\n"+
+			"  Actual Clone returned: %s", err.Error())
+
+		return
+	}
+
+	if cloned == nil {
+		t.Errorf("\n" +
+			"Expected Clone to return a non-nil Decimal object\n" +
+			"  Actual Clone returned a nil Decimal object")
+
+		return
+	}
+
+	if cloned == receiver {
+		t.Errorf("\n" +
+			"Expected Clone to return a new object (different pointer)\n" +
+			"  Actual Clone returned the same pointer as the receiver")
+
+		return
+	}
+
+	if cloned.mode != receiver.mode {
+		t.Errorf("\n"+
+			"Expected cloned.mode = %s\n"+
+			"  Actual cloned.mode = %s",
+			receiver.mode, cloned.mode)
+
+		return
+	}
+
+	receiverValStr := receiver.val.Text('f', int(targetFractionalDigits))
+	clonedValStr := cloned.val.Text('f', int(targetFractionalDigits))
+
+	if clonedValStr != receiverValStr {
+		t.Errorf("\n"+
+			"Expected clonedValStr to equal receiverValStr\n"+
+			"  Actual clonedValStr: %s\n"+
+			"  Actual receiverValStr: %s",
+			clonedValStr, receiverValStr)
+
+		return
+	}
+
+	if cloned.targetFractionalDigits != receiver.targetFractionalDigits {
+		t.Errorf("\n"+
+			"Expected cloned.targetFractionalDigits = %d\n"+
+			"  Actual cloned.targetFractionalDigits = %d",
+			receiver.targetFractionalDigits, cloned.targetFractionalDigits)
+
+		return
+	}
+
+	if cloned.prec != receiver.prec {
+		t.Errorf("\n"+
+			"Expected cloned.prec = %d\n"+
+			"  Actual cloned.prec = %d",
+			receiver.prec, cloned.prec)
+
+		return
+	}
+
+	return
+}
