@@ -4,22 +4,57 @@ import (
 	"fmt"
 	"math"
 	"math/big"
-	"strconv"
 	"strings"
 
 	ePref "github.com/MikeAustin71/errpref/v2"
 )
 
-func main() {
+type numStrStatusDto struct {
+	NumIntegerDigits    uint
+	IntegerRunes        []rune
+	NumFractionalDigits uint
+	FractionalRunes     []rune
+	ValueIsNegative     bool
+	ValueIsZero         bool
+	ValueIsOne          bool
+}
 
-	fileName := "floatmechops/AppTest/Test003/bigFloatPow.go"
+func main() {
 
 	lineBreakStr := strings.Repeat("-", 50)
 
+	fileName := "floatmechops/AppTest/Test003/bigFloatPow.go"
+	funcName := "main()"
+	targetFuncName := "TestRunner02()"
+
+	fmt.Printf("\n%s\n"+
+		"File Name: %s\n"+
+		" Function: %s\n"+
+		"%s\n"+
+		"Starting Run\n"+
+		"Running Function: %s\n"+
+		"%s\n", lineBreakStr, fileName, funcName, lineBreakStr, targetFuncName, lineBreakStr)
+
+	TestRunner02(fileName)
+
+	fmt.Printf("%s\n"+
+		"File Name: %s\n"+
+		" Function: %s\n"+
+		"%s\n"+
+		"Function Completed!\n"+
+		"%s\n\n", lineBreakStr, fileName, funcName, lineBreakStr, lineBreakStr)
+}
+
+func TestRunner01(homeFileName string) {
+
+	lineBreakStr := strings.Repeat("-", 50)
+	funcName := "TestRunner01()"
+	targetFuncName := "testPrecision01()"
+
 	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
-		fileName, // sourceFile
-		"",       // parentType (leave "" if none)
-		"main()") // thisFunction
+		homeFileName, // sourceFile
+		"",           // parentType (leave "" if none)
+		funcName)     // thisFunction
 
 	floatNumStr := "10.81233"
 
@@ -32,22 +67,114 @@ func main() {
 	expectedResultStr := "186790307.75412594147937"
 
 	fmt.Printf("\n%v\n"+
-		"Function: main\n"+
+		"Function: %v\n"+
 		"File: %v\n"+
 		"%v\n"+
 		"floatNumStr: %v\n"+
 		"exponentValue: %v\n"+
 		"requiredFractionalDigits: %v\n"+
 		"%v\n"+
+		"Running Function: %v\n"+
 		"Starting Calculation Run\n"+
 		"%v\n",
 		lineBreakStr,
-		fileName,
+		funcName,
+		homeFileName,
 		lineBreakStr,
 		floatNumStr,
 		exponentValue,
 		requiredFractionalDigits,
 		lineBreakStr,
+		targetFuncName,
+		lineBreakStr)
+
+	calcValue, err := testPrecision01(floatNumStr, exponentValue, requiredFractionalDigits)
+
+	if err != nil {
+
+		err2 := errGenericCfg.GetErrorFromFunctionCall(
+			"",
+			"testPrecision02()",
+			"",
+			"",
+			err)
+
+		fmt.Printf("Function: %s\n"+
+			"Status: Error\n"+
+			"%v", funcName, err2)
+
+		return
+	}
+
+	statusStr := "SUCCESS!"
+
+	if calcValue != expectedResultStr {
+		statusStr = "FAILURE!"
+	}
+
+	fmt.Printf("%v\n"+
+		"Function Completed: %v\n"+
+		"File: %v\n"+
+		"%v\n"+
+		"Status: %v!\n"+
+		"%v\n"+
+		"  Expected Value: %v\n"+
+		"Calculated Value: %v\n"+
+		"%v\n",
+		lineBreakStr,
+		funcName,
+		homeFileName,
+		lineBreakStr,
+		statusStr,
+		lineBreakStr,
+		expectedResultStr,
+		calcValue,
+		lineBreakStr)
+
+	return
+}
+
+func TestRunner02(homeFileName string) {
+
+	lineBreakStr := strings.Repeat("-", 50)
+	funcName := "TestRunner02()"
+	targetFuncName := "testPrecision02()"
+
+	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
+		homeFileName, // sourceFile
+		"",           // parentType (leave "" if none)
+		funcName)     // thisFunction
+
+	floatNumStr := "10.81233"
+
+	exponentValue := uint(8)
+
+	requiredFractionalDigits := uint(14)
+
+	//                    Decimal            1         2         3
+	//                    Digits    12345678901234567890123456789012345
+	expectedResultStr := "186790307.75412594147937"
+
+	fmt.Printf("\n%v\n"+
+		"Function: %v\n"+
+		"File: %v\n"+
+		"%v\n"+
+		"floatNumStr: %v\n"+
+		"exponentValue: %v\n"+
+		"requiredFractionalDigits: %v\n"+
+		"%v\n"+
+		"Running Function: %v\n"+
+		"Starting Calculation Run\n"+
+		"%v\n",
+		lineBreakStr,
+		funcName,
+		homeFileName,
+		lineBreakStr,
+		floatNumStr,
+		exponentValue,
+		requiredFractionalDigits,
+		lineBreakStr,
+		targetFuncName,
 		lineBreakStr)
 
 	calcValue, err := testPrecision02(floatNumStr, exponentValue, requiredFractionalDigits)
@@ -61,9 +188,9 @@ func main() {
 			"",
 			err)
 
-		fmt.Printf("Function: main\n"+
+		fmt.Printf("Function: %s\n"+
 			"Status: Error\n"+
-			"%v", err2)
+			"%v", funcName, err2)
 
 		return
 	}
@@ -75,7 +202,7 @@ func main() {
 	}
 
 	fmt.Printf("%v\n"+
-		"Function Completed: main\n"+
+		"Function Completed: %v\n"+
 		"File: %v\n"+
 		"%v\n"+
 		"Status: %v!\n"+
@@ -84,7 +211,8 @@ func main() {
 		"Calculated Value: %v\n"+
 		"%v\n",
 		lineBreakStr,
-		fileName,
+		funcName,
+		homeFileName,
 		lineBreakStr,
 		statusStr,
 		lineBreakStr,
@@ -109,7 +237,7 @@ func testPrecision01(floatNumStr string, exponent uint, requiredFractionalDigits
 		"",                  // parentType (leave "" if none)
 		"testPrecision01()") // thisFunction
 
-	integerDigits, fractionalDigits, valueIsZero, valueIsOne, err := analyzeFloatNumStr(floatNumStr)
+	numStrStatus, err := analyzeFloatNumStr(floatNumStr)
 
 	if err != nil {
 
@@ -121,7 +249,7 @@ func testPrecision01(floatNumStr string, exponent uint, requiredFractionalDigits
 			err)
 	}
 
-	if valueIsZero {
+	if numStrStatus.ValueIsZero {
 
 		numOfZeros := strings.Repeat("0", int(requiredFractionalDigits))
 
@@ -139,13 +267,13 @@ func testPrecision01(floatNumStr string, exponent uint, requiredFractionalDigits
 
 	}
 
-	if valueIsOne {
+	if numStrStatus.ValueIsOne {
 
 		numOfZeros := ""
 		calcValue = floatNumStr
 
-		if requiredFractionalDigits > fractionalDigits {
-			numOfZeros = strings.Repeat("-", int(requiredFractionalDigits-fractionalDigits))
+		if requiredFractionalDigits > numStrStatus.NumFractionalDigits {
+			numOfZeros = strings.Repeat("-", int(requiredFractionalDigits-numStrStatus.NumFractionalDigits))
 		}
 
 		calcValue += numOfZeros
@@ -163,8 +291,8 @@ func testPrecision01(floatNumStr string, exponent uint, requiredFractionalDigits
 	}
 
 	requiredFloatPrecision, err := calculateBigFloatPrecisionExponentMultiplication(
-		integerDigits,
-		fractionalDigits,
+		numStrStatus.NumIntegerDigits,
+		numStrStatus.NumFractionalDigits,
 		requiredFractionalDigits,
 		exponent)
 
@@ -227,9 +355,9 @@ func testPrecision02(floatNumStr string, exponent uint, requiredFractionalDigits
 	functionName := "testPrecision02"
 	lineBreakStr := strings.Repeat("-", 50)
 
-	fmt.Printf("\n\n%v\n"+
+	fmt.Printf("\n%v\n"+
 		"Running Function: %s\n"+
-		"%v\n\n", lineBreakStr, functionName, lineBreakStr)
+		"%v\n", lineBreakStr, functionName, lineBreakStr)
 
 	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
 		"floatmechops/AppTest/Test003/bigFloatPow.go", // sourceFile
@@ -288,11 +416,7 @@ func testPrecision02(floatNumStr string, exponent uint, requiredFractionalDigits
 //
 //	err error
 func analyzeFloatNumStr(floatNumStr string) (
-	numIntegerDigits uint,
-	numFractionalDigits uint,
-	valueIsZero bool,
-	valueIsOne bool,
-	err error) {
+	numStrStatus numStrStatusDto, err error) {
 
 	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
 		"floatmechops/AppTest/Test003/bigFloatPow.go", // sourceFile
@@ -301,7 +425,7 @@ func analyzeFloatNumStr(floatNumStr string) (
 
 	if len(floatNumStr) == 0 {
 
-		return 0, 0, false, false,
+		return numStrStatus,
 			errGenericCfg.GetErrorInputParameterOutOfRange(
 				"floatNumStr",
 				"",
@@ -313,15 +437,34 @@ func analyzeFloatNumStr(floatNumStr string) (
 
 	foundDecimal := false
 
-	var integerStr, fractionalStr string
+	for i, char := range floatNumStr {
 
-	for _, char := range floatNumStr {
+		if char == '-' {
+
+			if i == 0 {
+
+				numStrStatus.ValueIsNegative = true
+
+				continue
+
+			} else {
+
+				return numStrStatus,
+					errGenericCfg.GetErrorNativeToFunction(
+						fmt.Sprintf("floatNumStr= %s", floatNumStr),
+						"",
+						"",
+						"",
+						"'floatNumStr' contains a minus sign (-), but NOT at the beginning of the number string.",
+						"ERROR: Input parameter 'floatNumStr' contains an invalid minus sigh (-).")
+			}
+		}
 
 		if char == '.' {
 
 			if foundDecimal == true {
 
-				return 0, 0, false, false,
+				return numStrStatus,
 					errGenericCfg.GetErrorNativeToFunction(
 						fmt.Sprintf("floatNumStr= %s", floatNumStr),
 						"",
@@ -333,6 +476,7 @@ func analyzeFloatNumStr(floatNumStr string) (
 			}
 
 			foundDecimal = true
+
 			continue
 		}
 
@@ -340,21 +484,26 @@ func analyzeFloatNumStr(floatNumStr string) (
 
 			if foundDecimal {
 
-				fractionalStr += string(char)
+				numStrStatus.FractionalRunes = append(numStrStatus.FractionalRunes, char)
 
-				numFractionalDigits++
+				numStrStatus.NumFractionalDigits++
 
 			} else {
 
-				numIntegerDigits++
+				// Strip off leading zeros
+				if char == '0' && len(numStrStatus.IntegerRunes) == 0 {
+					continue
+				}
 
-				integerStr += string(char)
+				numStrStatus.IntegerRunes = append(numStrStatus.IntegerRunes, char)
+
+				numStrStatus.NumIntegerDigits++
 			}
 
 			continue
 		}
 
-		return 0, 0, false, false,
+		return numStrStatusDto{},
 			errGenericCfg.GetErrorNativeToFunction(
 				fmt.Sprintf("floatNumStr= %s", floatNumStr),
 				"",
@@ -364,15 +513,28 @@ func analyzeFloatNumStr(floatNumStr string) (
 				"ERROR: Input parameter 'floatNumStr' contains invalid characters")
 	}
 
-	if integerStr == "0" && fractionalStr == "0" {
-		valueIsZero = true
+	if len(numStrStatus.IntegerRunes) == 0 &&
+		len(numStrStatus.FractionalRunes) == 0 {
+
+		return numStrStatusDto{},
+			errGenericCfg.GetErrorNativeToFunction(
+				fmt.Sprintf("floatNumStr= %s", floatNumStr),
+				"",
+				"",
+				"",
+				"No valid numerical digits were found in 'floatNumStr'",
+				"ERROR: Input parameter 'floatNumStr' contains invalid characters")
 	}
 
-	if integerStr == "1" && fractionalStr == "0" {
-		valueIsOne = true
+	if string(numStrStatus.IntegerRunes) == "0" && string(numStrStatus.FractionalRunes) == "0" {
+		numStrStatus.ValueIsZero = true
 	}
 
-	return numIntegerDigits, numFractionalDigits, valueIsZero, valueIsOne, nil
+	if string(numStrStatus.IntegerRunes) == "1" && string(numStrStatus.FractionalRunes) == "0" {
+		numStrStatus.ValueIsOne = true
+	}
+
+	return numStrStatus, nil
 }
 
 // calculateBigFloatPrecisionExponentMultiplication
@@ -422,8 +584,6 @@ func calculateBigFloatPrecisionExponentMultiplication(
 		"", // parentType (leave "" if none)
 		"calculateFloatPrecisionExponentMultiplication()") // thisFunction
 
-	totalFinalDigits := uint(0)
-
 	totalStartingDigits := baseIntegerDigits + baseFractionalDigits
 
 	if totalStartingDigits == 0 {
@@ -436,22 +596,72 @@ func calculateBigFloatPrecisionExponentMultiplication(
 			"ERROR: The total number of Integer and Fractional digits is zero")
 	}
 
-	additionalDigitsForMultiplication := exponent * uint(6)
+	projectedIntDigits := calculateUintToMultipleOfThree(baseIntegerDigits)
 
-	totalFinalDigits = totalStartingDigits + additionalDigitsForMultiplication
+	projectedFractionalDigits := calculateUintToMultipleOfThree(baseFractionalDigits)
 
-	deltaRequiredActualFracDigits := uint(0)
+	projectedIntDigits = projectedIntDigits * exponent
 
-	if requiredFractionalDigits > totalStartingDigits {
+	/*
+		projectedFractionalDigits = projectedFractionalDigits * exponent
 
-		deltaRequiredActualFracDigits = requiredFractionalDigits - totalStartingDigits
+		if requiredFractionalDigits > projectedFractionalDigits {
 
-		totalFinalDigits += deltaRequiredActualFracDigits
-	}
+			projectedFractionalDigits = requiredFractionalDigits
+
+		}
+	*/
+
+	projectedFractionalDigits = max(requiredFractionalDigits, projectedFractionalDigits*exponent)
+
+	totalFinalDigits := projectedIntDigits + projectedFractionalDigits
+
+	totalFinalDigits += uint(10) // Safety margin in extra digits
 
 	bigFloatPrecision = calculateBigFloatPrecision(totalFinalDigits)
 
 	return bigFloatPrecision, nil
+}
+
+// calculateUintToMultipleOfThree
+//
+// Receives an 'uint' value and modifies that value such that the value returned value
+// is a multiple of 3. This is useful in computing maximum precision requires for big.Float
+// values.
+//
+// Input Parameters
+// ================
+//
+//	baseUint uint
+//	  A base unsigned integer value.
+//
+// Return Parameters
+// =================
+//
+//	baseUnitToMultipleOf3 uint
+//	  The value of inputParameter 'baseUint' returned as a multiple of 3.
+//	  If the baseUint value is not initially a multiple of 3, that value will
+//	  be increased by one (1) until is a multiple of 3 before it is returned to
+//	  the calling function.
+func calculateUintToMultipleOfThree(baseUint uint) (baseUnitToMultipleOf3 uint) {
+
+	var modulo uint
+
+	baseUnitToMultipleOf3 = baseUint
+
+	for {
+
+		modulo = baseUint % 3
+
+		if modulo == 0 {
+			break
+		}
+
+		baseUint++
+
+	}
+
+	return baseUnitToMultipleOf3
 }
 
 // calculateBigFloatPrecisionOnFloatNumStr
@@ -490,7 +700,7 @@ func calculateBigFloatPrecisionOnFloatNumStr(floatNumStr string, requiredFractio
 			"ERROR: Input parameter 'floatNumStr' is an empty string")
 	}
 
-	integerDigits, fractionalDigits, valueIsZero, valueIsOne, err := analyzeFloatNumStr(floatNumStr)
+	numStrStatus, err := analyzeFloatNumStr(floatNumStr)
 
 	if err != nil {
 
@@ -502,31 +712,33 @@ func calculateBigFloatPrecisionOnFloatNumStr(floatNumStr string, requiredFractio
 			err)
 	}
 
-	if fractionalDigits < requiredFractionalDigits {
+	if numStrStatus.NumFractionalDigits < requiredFractionalDigits {
 
-		deltaFractionalDigits := requiredFractionalDigits - fractionalDigits
+		deltaFractionalDigits := requiredFractionalDigits - numStrStatus.NumFractionalDigits
 
 		floatNumStr = floatNumStr + strings.Repeat("0", int(deltaFractionalDigits))
 
-		fractionalDigits += deltaFractionalDigits
+		numStrStatus.NumFractionalDigits += deltaFractionalDigits
 
-	} else if fractionalDigits > requiredFractionalDigits {
+	} else if numStrStatus.NumFractionalDigits > requiredFractionalDigits {
 
-		fractionalDigits = requiredFractionalDigits
+		numStrStatus.NumFractionalDigits = requiredFractionalDigits
 	}
 
-	if valueIsZero {
+	if numStrStatus.ValueIsZero {
+
 		bigFloatPrecisionBits = 0
+
 		return bigFloatPrecisionBits, nil
 
 	}
 
-	if valueIsOne {
+	if numStrStatus.ValueIsOne {
 		bigFloatPrecisionBits = 8
 		return bigFloatPrecisionBits, nil
 	}
 
-	totalFinalDigits := integerDigits + fractionalDigits
+	totalFinalDigits := numStrStatus.NumIntegerDigits + numStrStatus.NumFractionalDigits
 
 	bigFloatPrecisionBits = calculateBigFloatPrecision(totalFinalDigits)
 
@@ -573,6 +785,27 @@ func calculateBigFloatPrecision(totalIntAndFracDigits uint) (bigFloatPrecisionBi
 	return bigFloatPrecisionBits
 }
 
+// multiplyFloatNumStrForExponentiation
+//
+// Receives a floating point number string, converts it to
+// a big.Float value and then raises that value to the power
+// of a positive, integer exponent.
+//
+// Input Parameters
+// ================
+//
+// baseFloatNumStr string
+//
+//	A valid floating point number string. Eligible string
+//	characters are:
+//	  (1) A minus sign ('-') in the first character position of
+//	      the string.
+//	  (2) A single decimal point (a.k.a. period ('.') ) located
+//	      anywhere in the string.
+//	  (3) Numeric characters '0' - '9'
+//
+//	 If any string characters fail to meet these criteria, an
+//	 error will be returned
 func multiplyFloatNumStrForExponentiation(
 	baseFloatNumStr string,
 	raiseToPowerExponent uint,
@@ -597,11 +830,13 @@ func multiplyFloatNumStrForExponentiation(
 	}
 
 	if raiseToPowerExponent == 0 {
+
 		raiseToPowerResult.SetString("1")
+
 		return raiseToPowerResult, nil
 	}
 
-	integerDigits, fractionalDigits, valueIsZero, valueIsOne, err := analyzeFloatNumStr(baseFloatNumStr)
+	numStrStatus, err := analyzeFloatNumStr(baseFloatNumStr)
 
 	if err != nil {
 
@@ -613,35 +848,49 @@ func multiplyFloatNumStrForExponentiation(
 			err)
 	}
 
-	if valueIsZero {
-		baseFloatNumStr = "0." + strings.Repeat("0", int(requiredFractionalDigits))
+	// If baseFloatNumStr is a negative number,
+	// convert it to positive number for calculation
+	// purposes.
+	if numStrStatus.ValueIsNegative {
+		baseFloatNumStr =
+			string(numStrStatus.IntegerRunes) + "." + string(numStrStatus.FractionalRunes)
 	}
 
-	if valueIsOne {
-		baseFloatNumStr = "1." + strings.Repeat("0", int(requiredFractionalDigits))
-	}
+	if numStrStatus.ValueIsZero {
 
-	if integerDigits == 0 {
+		raiseToPowerResult = big.NewFloat(0).SetPrec(0)
 
-		baseFloatNumStr = "0." + strconv.FormatUint(uint64(fractionalDigits), 10)
-
-		integerDigits = 1
-	}
-
-	if fractionalDigits == 0 {
-
-		baseFloatNumStr = strconv.FormatUint(uint64(integerDigits), 10)
-
-		baseFloatNumStr += ".0"
-
-		fractionalDigits = 1
-	}
-
-	//totalFinalDigits := integerDigits + fractionalDigits
-
-	if raiseToPowerExponent == 1 {
-		raiseToPowerResult.SetString(baseFloatNumStr)
 		return raiseToPowerResult, nil
+	}
+
+	if numStrStatus.ValueIsOne {
+
+		raiseToPowerResult = big.NewFloat(1)
+
+		if numStrStatus.ValueIsNegative {
+			raiseToPowerResult.Neg(raiseToPowerResult)
+		}
+
+		return raiseToPowerResult, nil
+	}
+
+	if numStrStatus.NumIntegerDigits == 0 {
+
+		numStrStatus.IntegerRunes = []rune("0")
+
+		baseFloatNumStr =
+			string(numStrStatus.IntegerRunes) + "." + string(numStrStatus.FractionalRunes)
+
+		numStrStatus.NumIntegerDigits = 1
+	}
+
+	if numStrStatus.NumFractionalDigits == 0 {
+
+		numStrStatus.FractionalRunes = []rune("0")
+
+		baseFloatNumStr = string(numStrStatus.IntegerRunes) + ".0"
+
+		numStrStatus.NumFractionalDigits = 1
 	}
 
 	baseFloatNumStrPrecisionBits, err := calculateBigFloatPrecisionOnFloatNumStr(baseFloatNumStr, requiredFractionalDigits)
@@ -654,6 +903,17 @@ func multiplyFloatNumStrForExponentiation(
 			fmt.Sprintf("calculateBigFloatPrecisionOnFloatNumStr(%s)", baseFloatNumStr),
 			"",
 			err)
+	}
+
+	if raiseToPowerExponent == 1 {
+
+		raiseToPowerResult.SetPrec(baseFloatNumStrPrecisionBits).SetString(baseFloatNumStr)
+
+		if numStrStatus.ValueIsNegative {
+			raiseToPowerResult.Neg(raiseToPowerResult)
+		}
+
+		return raiseToPowerResult, nil
 	}
 
 	baseMultiplier, ok := big.NewFloat(0).SetPrec(baseFloatNumStrPrecisionBits).SetString(baseFloatNumStr)
@@ -669,9 +929,13 @@ func multiplyFloatNumStrForExponentiation(
 
 	}
 
+	if numStrStatus.ValueIsNegative {
+		baseMultiplier.Neg(baseMultiplier)
+	}
+
 	requiredResultFloatPrecisionBits, err := calculateBigFloatPrecisionExponentMultiplication(
-		integerDigits,
-		fractionalDigits,
+		numStrStatus.NumIntegerDigits,
+		numStrStatus.NumFractionalDigits,
 		requiredFractionalDigits,
 		raiseToPowerExponent)
 
@@ -789,7 +1053,7 @@ func multiplyForExponentiation(
 
 	baseFloatNumStr := baseFloatValue.Text('f', int(baseFractionalDigits))
 
-	integerDigits, fractionalDigits, valueIsZero, valueIsOne, err := analyzeFloatNumStr(baseFloatNumStr)
+	numStrStatus, err := analyzeFloatNumStr(baseFloatNumStr)
 
 	if err != nil {
 
@@ -801,24 +1065,24 @@ func multiplyForExponentiation(
 			err)
 	}
 
-	if valueIsZero {
+	if numStrStatus.ValueIsZero {
 		raiseToPowerResult.SetString("0")
 		return raiseToPowerResult, nil
 
 	}
 
-	if valueIsOne {
+	if numStrStatus.ValueIsOne {
 		raiseToPowerResult.SetString("1")
 		return raiseToPowerResult, nil
 	}
 
-	totalBaseDigits := integerDigits + fractionalDigits
+	totalBaseDigits := numStrStatus.NumIntegerDigits + numStrStatus.NumFractionalDigits
 
 	baseMultiplierPrecisionBits := calculateBigFloatPrecision(totalBaseDigits)
 
 	requiredResultFloatPrecisionBits, err := calculateBigFloatPrecisionExponentMultiplication(
-		integerDigits,
-		fractionalDigits,
+		numStrStatus.NumIntegerDigits,
+		numStrStatus.NumFractionalDigits,
 		requiredFractionalDigits,
 		raiseToPowerExponent)
 
