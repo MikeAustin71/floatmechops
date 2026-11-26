@@ -1,3 +1,33 @@
+# PowerShell Script - Latest Version - File Collector
+
+## New version for multiple file types:
+
+### 2026-11-25
+
+```go
+
+Get-ChildItem -File | Where-Object {
+$_.Extension -in @('.go', '.txt', '.md')
+} | ForEach-Object {
+
+$header = @"
+
+**********************************************
+===== FILE: $($_.Name) =====
+**********************************************
+
+"@
+
+Add-Content -Path projectCode.txt -Value $header
+Add-Content -Path projectCode.txt -Value (Get-Content $_.FullName)
+}
+
+```
+
+
+
+
+
 That’s a great choice, Mike — the **here‑string** approach is clean, readable, and much easier to maintain than trying to escape newline characters inside a single quoted string. PowerShell’s here‑strings were practically *made* for exactly this kind of multi‑file bundling.
 
 Here’s a polished version of the script you liked, formatted in Typora‑friendly Markdown and ready for use.
@@ -32,21 +62,18 @@ Get-ChildItem *.go | ForEach-Object {
 
 ```go
 Get-ChildItem *.go | ForEach-Object {
-    $header = @"
+$header = @"
 
 **********************************************
 ===== FILE: $($_.Name) =====
 **********************************************
 
 "@
-    Add-Content -Path projectCode.txt -Value $header
-    Add-Content -Path projectCode.txt -Value (Get-Content $_)
+Add-Content -Path projectCode.txt -Value $header
+Add-Content -Path projectCode.txt -Value (Get-Content $_)
 }
 
 ```
-
-
-
 
 
 ## **Why this version is so good**
