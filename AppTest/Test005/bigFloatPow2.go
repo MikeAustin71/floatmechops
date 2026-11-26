@@ -35,7 +35,7 @@ func main() {
 		"Running Function: %s\n"+
 		"%s\n", lineBreakStr, fileName, funcName, lineBreakStr, targetFuncName, lineBreakStr)
 
-	TestRunner02(fileName)
+	testRunner02(fileName)
 
 	fmt.Printf("%s\n"+
 		"File Name: %s\n"+
@@ -45,7 +45,7 @@ func main() {
 		"%s\n\n", lineBreakStr, fileName, funcName, lineBreakStr, lineBreakStr)
 }
 
-func TestRunner01(homeFileName string) {
+func testRunner01(homeFileName string) {
 
 	lineBreakStr := strings.Repeat("-", 50)
 	funcName := "TestRunner01()"
@@ -134,7 +134,7 @@ func TestRunner01(homeFileName string) {
 	return
 }
 
-func TestRunner02(homeFileName string) {
+func testRunner02(homeFileName string) {
 
 	lineBreakStr := strings.Repeat("-", 50)
 	funcName := "TestRunner02()"
