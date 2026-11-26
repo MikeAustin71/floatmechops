@@ -138,52 +138,55 @@ const (
 	maxFracDigits = 1_000_000
 )
 
-// PowDecimal raises baseStr to a non-negative integer exponent (exp) and returns:
-//  1. A fixed-point decimal string rounded to reqFracDigits fractional places.
-//  2. A high-precision *big.Float representing that exact rounded result.
+//		PowDecimal raises baseStr to a non-negative integer exponent (exp) and returns:
+//	 	1. A fixed-point decimal string rounded to reqFracDigits fractional places.
+//	 	2. A high-precision *big.Float representing that exact rounded result.
 //
-// Special Cases:
-//   - Any valid base raised to exp == 0 (including "0"^0 and "-2.5"^0) returns 1.
-//   - exp == 1 performs direct rational rounding without an exponentiation loop.
-//   - Moderate inputs (exp <= 250 and reqFracDigits <= 1000) use exact [big.Rat]
-//     arithmetic; larger inputs automatically switch to guard-buffered [big.Float]
-//     exponentiation by squaring.
+//		Special Cases:
+//			- Any valid base raised to exp == 0 (including "0"^0 and "-2.5"^0) returns 1.
+//	  	- exp == 1 performs direct rational rounding without an exponentiation loop.
+//	  	- Moderate inputs (exp <= 250 and reqFracDigits <= 1000) use exact [big.Rat]
+//	    	arithmetic; larger inputs automatically switch to guard-buffered [big.Float]
+//	    	exponentiation by squaring.
 //
-// Input Format Requirements (baseStr):
+//		Input Parameters
+//		----------------
 //
-// baseStr must be a non-empty base-10 decimal or scientific notation string with no
-// whitespace, underscores ('_'), or fraction slashes ('/').
+//		baseStr string
+//			Input Format Requirements (baseStr):
 //
-// Allowable scientific notation strings follow the structure:
+//			baseStr must be a non-empty base-10 decimal or scientific notation string with no
+//			whitespace, underscores ('_'), or fraction slashes ('/').
 //
-//	[Sign][Mantissa][ExponentMarker][ExponentSign][ExponentDigits]
+//			Allowable scientific notation strings follow the structure:
 //
-// Where:
-//   - Sign (optional): '+' or '-' at index 0 only.
-//   - Mantissa (required): Base-10 digits ('0'-'9') with at most one decimal point
-//     ('.'). Leading or trailing decimal points (e.g., ".5" or "5.") are permitted.
-//   - ExponentMarker (required for scientific notation): 'e' or 'E'.
-//   - ExponentSign (optional): '+' or '-' immediately following 'e' or 'E'.
-//   - ExponentDigits (required): Base-10 integer digits representing a signed
-//     exponent within [-maxSciExp, maxSciExp] ([-10000, 10000]).
+//			[Sign][Mantissa][ExponentMarker][ExponentSign][ExponentDigits]
 //
-// Valid Examples:
+//			Where:
+//	  		- Sign (optional): '+' or '-' at index 0 only.
+//	  		- Mantissa (required): Base-10 digits ('0'-'9') with at most one decimal point
+//	    		('.'). Leading or trailing decimal points (e.g., ".5" or "5.") are permitted.
+//	  		- ExponentMarker (required for scientific notation): 'e' or 'E'.
+//	  		- ExponentSign (optional): '+' or '-' immediately following 'e' or 'E'.
+//	  		- ExponentDigits (required): Base-10 integer digits representing a signed
+//	    		exponent within [-maxSciExp, maxSciExp] ([-10000, 10000]).
 //
-//	"-2.5", "0", "-1.25e-10", "2.5E+4", ".5e-3", "1e10000"
+//			Valid Examples:
 //
-// Invalid Examples:
+//				"-2.5", "0", "-1.25e-10", "2.5E+4", ".5e-3", "1e10000"
 //
-//	" -2.5"      (leading/trailing whitespace)
-//	"1_000.5e2"  (underscore separators)
-//	"1/3"        (rational fraction slash)
-//	"12-3.4e5"   (minus sign not at index 0)
-//	"1.25e1-0"   (exponent minus sign not immediately after 'e'/'E')
-//	"1e10001"    (exponent exceeds [-maxSciExp, maxSciExp])
+//			Invalid Examples:
 //
-// Errors:
+//				" -2.5"      (leading/trailing whitespace)
+//				"1_000.5e2"  (underscore separators)
+//				"1/3"        (rational fraction slash)
+//				"12-3.4e5"   (minus sign not at index 0)
+//				"1.25e1-0"   (exponent minus sign not immediately after 'e'/'E')
+//				"1e10001"    (exponent exceeds [-maxSciExp, maxSciExp])
 //
-// Returns an error if baseStr violates the format or exponent bounds above, or if
-// reqFracDigits exceeds maxFracDigits (1,000,000).
+//		error
+//			Returns an error if baseStr violates the format or exponent bounds above, or if
+//			reqFracDigits exceeds maxFracDigits (1,000,000).
 func PowDecimal(baseStr string, exp uint, reqFracDigits uint) (string, *big.Float, error) {
 
 	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
