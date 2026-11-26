@@ -46,7 +46,7 @@ func (bigFloatHelp0020 *bigFloatHelper0020) computeBigFloatPrecisionBits(
 	// math.Log2(10) =
 	//  3.321 928 094 887 362 347 870 319 429 489 390 175 864 831 393 024 6
 	// float64 max 15-digits of precision
-	baseBits := float64(resultDecDigits) * 3.321928094887362
+	baseBits := float64(resultDecDigits) * 3.32192809488736
 
 	// Add safety margin for exponentiation
 	safety := 64.0 + (float64(multiplyCount) * 4.0)
