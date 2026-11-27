@@ -322,7 +322,14 @@ func (df *DecimalFloat) PowDecimal(
 	coarse, ok := new(big.Float).SetPrec(64).SetString(baseStr)
 
 	if !ok {
-		return "", nil, fmt.Errorf("invalid base number string: %q", baseStr)
+		return "", big.NewFloat(0),
+			errGenericCfg.GetErrorNativeToFunction(
+				"'ok' == false",
+				"",
+				"",
+				"",
+				fmt.Sprintf("'baseStr' = %v", baseStr),
+				fmt.Sprintf("new(big.Float).SetPrec(64).SetString(baseStr) returned 'ok' == false"))
 	}
 
 	// Estimate integer bits needed using absolute magnitude with overflow protection
