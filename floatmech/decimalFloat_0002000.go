@@ -64,6 +64,7 @@ func (df2 *decimalFloatUtil020) validateBaseFormat(s string) error {
 
 	// Split at 'e' or 'E' if scientific notation is present
 	mantissa := s
+
 	if idx := strings.IndexAny(s, "eE"); idx != -1 {
 		mantissa = s[:idx]
 		exponent := s[idx+1:]
