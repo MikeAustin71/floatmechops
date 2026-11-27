@@ -92,7 +92,7 @@ func (df *DecimalFloat) NewFromFloatNumStr(floatNumStr string, targetFractionalD
 		// Formats error message and error context for when nil pointers
 		// are passed as Function input parameters.
 		return &Decimal{}, errGenericCfg.GetErrorInputParameterNilPointer(
-			"d == nil",
+			"df == nil",
 			"",
 			"",
 			"",
@@ -207,12 +207,12 @@ func (df *DecimalFloat) PowDecimal(
 		// Formats error message and error context for when nil pointers
 		// are passed as Function input parameters.
 		return "", big.NewFloat(0), errGenericCfg.GetErrorInputParameterNilPointer(
-			"d == nil",
+			"df == nil",
 			"",
 			"",
 			"",
 			"Invalid Pointer Receiver",
-			"Error: Pointer Receiver 'd' is a nil pointer")
+			"Error: Pointer Receiver 'df' is a nil pointer")
 	}
 
 	df.mu.Lock()
@@ -266,12 +266,14 @@ func (df *DecimalFloat) PowDecimal(
 
 		if !ok {
 
-			return "", big.NewFloat(0), errGenericCfg.GetErrorFromFunctionCall(
-				"",
-				"new(big.Float).SetPrec(calcBits(1, reqFracDigits, 1)).SetString(resStr)",
-				fmt.Sprintf("baseStr: %s", baseStr),
-				"",
-				fmt.Errorf("new(big.Rat).SetString() returned 'ok' == false"))
+			return "", big.NewFloat(0),
+				errGenericCfg.GetErrorNativeToFunction(
+					"'ok' == false",
+					"",
+					"",
+					"",
+					fmt.Sprintf("'resStr' = %v", resStr),
+					fmt.Sprintf("new(big.Float).SetPrec(calcBits(1, reqFracDigits, 1)).SetString(resStr) returned 'ok' == false"))
 
 		}
 
@@ -396,7 +398,7 @@ func (df *DecimalFloat) PowDecimal(
 	workPrec, err := dfUtil030.calcBitsSafe(estIntBits, reqFracDigits, exp)
 
 	if err != nil {
-		return "", nil, err
+		return "", big.NewFloat(0), err
 	}
 
 	baseFloat, ok := new(big.Float).SetPrec(workPrec).SetString(baseStr)
