@@ -220,6 +220,7 @@ func (df *DecimalFloat) PowDecimal(
 	defer df.mu.Unlock()
 
 	if reqFracDigits > maxFracDigits {
+
 		return "", big.NewFloat(0),
 			errGenericCfg.GetErrorNativeToFunction(
 				fmt.Sprintf("reqFracDigits= %v", reqFracDigits),
@@ -230,7 +231,7 @@ func (df *DecimalFloat) PowDecimal(
 				fmt.Sprintf("ERROR: reqFracDigits (%d) exceeds maximum allowed (%d)", reqFracDigits, maxFracDigits))
 	}
 
-	if err := new(decimalFloatUtil01).validateBaseFormat(baseStr); err != nil {
+	if err := new(decimalFloatUtil020).validateBaseFormat(baseStr); err != nil {
 
 		return "", big.NewFloat(0), errGenericCfg.GetErrorFromFunctionCall(
 			"",
@@ -240,7 +241,7 @@ func (df *DecimalFloat) PowDecimal(
 			err)
 	}
 
-	dfUtil02 := new(decimalFloatUtil02)
+	dfUtil030 := new(decimalFloatUtil030)
 
 	// Fast path: exp == 0 (includes 0^0 = 1 and (-x)^0 = 1)
 	if exp == 0 {
@@ -261,7 +262,7 @@ func (df *DecimalFloat) PowDecimal(
 
 		resStr := ratOne.FloatString(int(reqFracDigits))
 
-		resFloat, ok := new(big.Float).SetPrec(dfUtil02.calcBits(1, reqFracDigits, 1)).SetString(resStr)
+		resFloat, ok := new(big.Float).SetPrec(dfUtil030.calcBits(1, reqFracDigits, 1)).SetString(resStr)
 
 		if !ok {
 
@@ -288,7 +289,7 @@ func (df *DecimalFloat) PowDecimal(
 
 		resStr := baseRat.FloatString(int(reqFracDigits))
 
-		finalPrec := dfUtil02.calcBits(uint(baseRat.Num().BitLen()), reqFracDigits, 1)
+		finalPrec := dfUtil030.calcBits(uint(baseRat.Num().BitLen()), reqFracDigits, 1)
 
 		resFloat, _ := new(big.Float).SetPrec(finalPrec).SetString(resStr)
 
@@ -305,11 +306,11 @@ func (df *DecimalFloat) PowDecimal(
 			return "", nil, fmt.Errorf("invalid base number string: %q", baseStr)
 		}
 
-		resRat := dfUtil02.powRat(baseRat, exp)
+		resRat := dfUtil030.powRat(baseRat, exp)
 
 		resStr := resRat.FloatString(int(reqFracDigits))
 
-		finalPrec := dfUtil02.calcBits(uint(resRat.Num().BitLen()), reqFracDigits, 1)
+		finalPrec := dfUtil030.calcBits(uint(resRat.Num().BitLen()), reqFracDigits, 1)
 
 		resFloat, _ := new(big.Float).SetPrec(finalPrec).SetString(resStr)
 
@@ -342,7 +343,7 @@ func (df *DecimalFloat) PowDecimal(
 		estIntBits = lo
 	}
 
-	workPrec, err := dfUtil02.calcBitsSafe(estIntBits, reqFracDigits, exp)
+	workPrec, err := dfUtil030.calcBitsSafe(estIntBits, reqFracDigits, exp)
 
 	if err != nil {
 		return "", nil, err
@@ -350,7 +351,7 @@ func (df *DecimalFloat) PowDecimal(
 
 	baseFloat, _ := new(big.Float).SetPrec(workPrec).SetString(baseStr)
 
-	resFloat := dfUtil02.powFloat(baseFloat, exp, workPrec)
+	resFloat := dfUtil030.powFloat(baseFloat, exp, workPrec)
 
 	resStr := resFloat.Text('f', int(reqFracDigits))
 

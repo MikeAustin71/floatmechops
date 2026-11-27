@@ -8,7 +8,7 @@ import (
 	ePref "github.com/MikeAustin71/errpref/v2"
 )
 
-type decimalFloatUtil01 struct {
+type decimalFloatUtil020 struct {
 }
 
 // validateBaseFormat verifies that s conforms to the strict base-10 decimal or
@@ -22,7 +22,7 @@ type decimalFloatUtil01 struct {
 //   - If 'e' or 'E' is present, the exponent must be a valid base-10 integer within
 //     [-maxSciExp, maxSciExp] to prevent excessive memory allocation during
 //     [big.Rat.SetString] parsing.
-func (df2 *decimalFloatUtil01) validateBaseFormat(s string) error {
+func (df2 *decimalFloatUtil020) validateBaseFormat(s string) error {
 
 	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
 		"floatmech/decimalFloat_0002000.go", // sourceFile

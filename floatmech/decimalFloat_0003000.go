@@ -7,10 +7,10 @@ import (
 	"math/bits"
 )
 
-type decimalFloatUtil02 struct {
+type decimalFloatUtil030 struct {
 }
 
-func (df3 *decimalFloatUtil02) calcBits(
+func (df3 *decimalFloatUtil030) calcBits(
 	intBits uint, reqFracDigits uint, exp uint) uint {
 
 	fracBits := uint(math.Ceil(float64(reqFracDigits) * 3.32192809488736))
@@ -20,7 +20,7 @@ func (df3 *decimalFloatUtil02) calcBits(
 	return intBits + fracBits + guardBits
 }
 
-func (df3 *decimalFloatUtil02) calcBitsSafe(
+func (df3 *decimalFloatUtil030) calcBitsSafe(
 
 	intBits uint64, reqFracDigits uint, exp uint) (uint, error) {
 
@@ -37,7 +37,7 @@ func (df3 *decimalFloatUtil02) calcBitsSafe(
 	return uint(total), nil
 }
 
-func (df3 *decimalFloatUtil02) powFloat(base *big.Float, exp uint, prec uint) *big.Float {
+func (df3 *decimalFloatUtil030) powFloat(base *big.Float, exp uint, prec uint) *big.Float {
 
 	result := new(big.Float).SetPrec(prec).SetFloat64(1)
 
@@ -61,7 +61,7 @@ func (df3 *decimalFloatUtil02) powFloat(base *big.Float, exp uint, prec uint) *b
 	return result
 }
 
-func (df3 *decimalFloatUtil02) powRat(
+func (df3 *decimalFloatUtil030) powRat(
 	base *big.Rat, exp uint) *big.Rat {
 
 	result := big.NewRat(1, 1)
