@@ -54,7 +54,7 @@ func (df2 *decimalFloatUtil020) validateBaseFormat(s string) error {
 	if strings.ContainsAny(s, "/_") {
 
 		return errGenericCfg.GetErrorNativeToFunction(
-			"",
+			"if strings.ContainsAny(s, \"/_\")",
 			"",
 			"",
 			"",
@@ -93,6 +93,7 @@ func (df2 *decimalFloatUtil020) validateBaseFormat(s string) error {
 
 		// Parse the exponent as an int64 to catch both malformed digits and huge magnitudes
 		sciExp, err := strconv.ParseInt(exponent, 10, 64)
+
 		if err != nil {
 
 			return errGenericCfg.GetErrorFromFunctionCall(
