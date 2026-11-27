@@ -284,14 +284,32 @@ func (df *DecimalFloat) PowDecimal(
 		baseRat, ok := new(big.Rat).SetString(baseStr)
 
 		if !ok {
-			return "", nil, fmt.Errorf("invalid base number string: %q", baseStr)
+			return "", big.NewFloat(0),
+				errGenericCfg.GetErrorNativeToFunction(
+					"'ok' == false",
+					"",
+					"",
+					"",
+					fmt.Sprintf("'baseStr' = %v", baseStr),
+					fmt.Sprintf("new(big.Rat).SetString(baseStr) returned 'ok' == false"))
 		}
 
 		resStr := baseRat.FloatString(int(reqFracDigits))
 
 		finalPrec := dfUtil030.calcBits(uint(baseRat.Num().BitLen()), reqFracDigits, 1)
 
-		resFloat, _ := new(big.Float).SetPrec(finalPrec).SetString(resStr)
+		resFloat, ok := new(big.Float).SetPrec(finalPrec).SetString(resStr)
+
+		if !ok {
+			return "", big.NewFloat(0),
+				errGenericCfg.GetErrorNativeToFunction(
+					"'ok' == false",
+					"",
+					"",
+					"",
+					fmt.Sprintf("'resStr' = %v", resStr),
+					fmt.Sprintf("new(big.Float).SetPrec(finalPrec).SetString(resStr) returned 'ok' == false"))
+		}
 
 		return resStr, resFloat, nil
 	}
@@ -303,7 +321,14 @@ func (df *DecimalFloat) PowDecimal(
 		baseRat, ok := new(big.Rat).SetString(baseStr)
 
 		if !ok {
-			return "", nil, fmt.Errorf("invalid base number string: %q", baseStr)
+			return "", big.NewFloat(0),
+				errGenericCfg.GetErrorNativeToFunction(
+					"'ok' == false",
+					"",
+					"",
+					"",
+					fmt.Sprintf("'baseStr' = %v", baseStr),
+					fmt.Sprintf("new(big.Rat).SetString(baseStr) returned 'ok' == false"))
 		}
 
 		resRat := dfUtil030.powRat(baseRat, exp)
@@ -312,7 +337,18 @@ func (df *DecimalFloat) PowDecimal(
 
 		finalPrec := dfUtil030.calcBits(uint(resRat.Num().BitLen()), reqFracDigits, 1)
 
-		resFloat, _ := new(big.Float).SetPrec(finalPrec).SetString(resStr)
+		resFloat, ok := new(big.Float).SetPrec(finalPrec).SetString(resStr)
+
+		if !ok {
+			return "", big.NewFloat(0),
+				errGenericCfg.GetErrorNativeToFunction(
+					"'ok' == false",
+					"",
+					"",
+					"",
+					fmt.Sprintf("'resStr' = %v", resStr),
+					fmt.Sprintf("new(big.Float).SetPrec(finalPrec).SetString(resStr) returned 'ok' == false"))
+		}
 
 		return resStr, resFloat, nil
 	}
@@ -344,7 +380,14 @@ func (df *DecimalFloat) PowDecimal(
 		hi, lo := bits.Mul64(uint64(binExp), uint64(exp))
 
 		if hi != 0 {
-			return "", nil, fmt.Errorf("result magnitude overflows precision limits")
+			return "", big.NewFloat(0),
+				errGenericCfg.GetErrorNativeToFunction(
+					"'hi' != 0",
+					"",
+					"",
+					"",
+					fmt.Sprintf("'binExp' = %v, 'exp' = %v", binExp, exp),
+					"result magnitude overflows precision limits")
 		}
 
 		estIntBits = lo
@@ -356,7 +399,18 @@ func (df *DecimalFloat) PowDecimal(
 		return "", nil, err
 	}
 
-	baseFloat, _ := new(big.Float).SetPrec(workPrec).SetString(baseStr)
+	baseFloat, ok := new(big.Float).SetPrec(workPrec).SetString(baseStr)
+
+	if !ok {
+		return "", big.NewFloat(0),
+			errGenericCfg.GetErrorNativeToFunction(
+				"'ok' == false",
+				"",
+				"",
+				"",
+				fmt.Sprintf("'baseStr' = %v", baseStr),
+				fmt.Sprintf("new(big.Float).SetPrec(workPrec).SetString(baseStr) returned 'ok' == false"))
+	}
 
 	resFloat := dfUtil030.powFloat(baseFloat, exp, workPrec)
 
@@ -366,7 +420,14 @@ func (df *DecimalFloat) PowDecimal(
 	finalFloat, ok := new(big.Float).SetPrec(workPrec).SetString(resStr)
 
 	if !ok {
-		return "", nil, fmt.Errorf("SetString(resStr) - result magnitude overflows precision limits")
+		return "", big.NewFloat(0),
+			errGenericCfg.GetErrorNativeToFunction(
+				"'ok' == false",
+				"",
+				"",
+				"",
+				fmt.Sprintf("'resStr' = %v", resStr),
+				"SetString(resStr) - result magnitude overflows precision limits")
 	}
 
 	return resStr, finalFloat, nil
