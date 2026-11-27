@@ -24,7 +24,7 @@ func (df3 *decimalFloatUtil030) calcBitsSafe(
 
 	intBits uint64, reqFracDigits uint, exp uint) (uint, error) {
 
-	fracBits := uint64(math.Ceil(float64(reqFracDigits) * 3.322))
+	fracBits := uint64(math.Ceil(float64(reqFracDigits) * 3.32192809488736))
 
 	guardBits := uint64(166 + bits.Len(exp)*2)
 

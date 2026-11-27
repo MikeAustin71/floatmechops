@@ -318,7 +318,7 @@ func (df *DecimalFloat) PowDecimal(
 	}
 
 	// TIER 2: Guard-buffered big.Float for large exponents
-	// (>250) or >1,000 fractional digits
+	// (exponent value >250) or reqFracDigits > 1,000 fractional digits
 	coarse, ok := new(big.Float).SetPrec(64).SetString(baseStr)
 
 	if !ok {
