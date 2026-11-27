@@ -230,7 +230,7 @@ func (df *DecimalFloat) PowDecimal(
 				fmt.Sprintf("ERROR: reqFracDigits (%d) exceeds maximum allowed (%d)", reqFracDigits, maxFracDigits))
 	}
 
-	if err := new(decimalFloatF0002000).validateBaseFormat(baseStr); err != nil {
+	if err := new(decimalFloatUtil01).validateBaseFormat(baseStr); err != nil {
 
 		return "", big.NewFloat(0), errGenericCfg.GetErrorFromFunctionCall(
 			"",
@@ -240,7 +240,7 @@ func (df *DecimalFloat) PowDecimal(
 			err)
 	}
 
-	df3 := new(decimalFloatF0003000)
+	dfUtil02 := new(decimalFloatUtil02)
 
 	// Fast path: exp == 0 (includes 0^0 = 1 and (-x)^0 = 1)
 	if exp == 0 {
@@ -261,7 +261,7 @@ func (df *DecimalFloat) PowDecimal(
 
 		resStr := ratOne.FloatString(int(reqFracDigits))
 
-		resFloat, ok := new(big.Float).SetPrec(df3.calcBits(1, reqFracDigits, 1)).SetString(resStr)
+		resFloat, ok := new(big.Float).SetPrec(dfUtil02.calcBits(1, reqFracDigits, 1)).SetString(resStr)
 
 		if !ok {
 
@@ -279,59 +279,87 @@ func (df *DecimalFloat) PowDecimal(
 
 	// Fast path: exp == 1 (exact rounding with no multiplication loop)
 	if exp == 1 {
+
 		baseRat, ok := new(big.Rat).SetString(baseStr)
+
 		if !ok {
 			return "", nil, fmt.Errorf("invalid base number string: %q", baseStr)
 		}
+
 		resStr := baseRat.FloatString(int(reqFracDigits))
-		finalPrec := df3.calcBits(uint(baseRat.Num().BitLen()), reqFracDigits, 1)
+
+		finalPrec := dfUtil02.calcBits(uint(baseRat.Num().BitLen()), reqFracDigits, 1)
+
 		resFloat, _ := new(big.Float).SetPrec(finalPrec).SetString(resStr)
+
 		return resStr, resFloat, nil
 	}
 
 	// TIER 1: Exact Rational Math for moderate exponents & fractional precision
+	// exp <= 250 && reqFracDigits <= 1000
 	if exp <= 250 && reqFracDigits <= 1000 {
+
 		baseRat, ok := new(big.Rat).SetString(baseStr)
+
 		if !ok {
 			return "", nil, fmt.Errorf("invalid base number string: %q", baseStr)
 		}
 
-		resRat := powRat(baseRat, exp)
+		resRat := dfUtil02.powRat(baseRat, exp)
+
 		resStr := resRat.FloatString(int(reqFracDigits))
 
-		finalPrec := calcBits(uint(resRat.Num().BitLen()), reqFracDigits, 1)
+		finalPrec := dfUtil02.calcBits(uint(resRat.Num().BitLen()), reqFracDigits, 1)
+
 		resFloat, _ := new(big.Float).SetPrec(finalPrec).SetString(resStr)
+
 		return resStr, resFloat, nil
 	}
 
-	// TIER 2: Guard-buffered big.Float for large exponents (>250) or >1,000 fractional digits
+	// TIER 2: Guard-buffered big.Float for large exponents
+	// (>250) or >1,000 fractional digits
 	coarse, ok := new(big.Float).SetPrec(64).SetString(baseStr)
+
 	if !ok {
 		return "", nil, fmt.Errorf("invalid base number string: %q", baseStr)
 	}
 
 	// Estimate integer bits needed using absolute magnitude with overflow protection
 	var mant big.Float
+
 	binExp := coarse.MantExp(&mant)
+
 	var estIntBits uint64
+
 	if binExp > 0 {
+
 		hi, lo := bits.Mul64(uint64(binExp), uint64(exp))
+
 		if hi != 0 {
 			return "", nil, fmt.Errorf("result magnitude overflows precision limits")
 		}
+
 		estIntBits = lo
 	}
 
-	workPrec, err := calcBitsSafe(estIntBits, reqFracDigits, exp)
+	workPrec, err := dfUtil02.calcBitsSafe(estIntBits, reqFracDigits, exp)
+
 	if err != nil {
 		return "", nil, err
 	}
 
 	baseFloat, _ := new(big.Float).SetPrec(workPrec).SetString(baseStr)
-	resFloat := powFloat(baseFloat, exp, workPrec)
+
+	resFloat := dfUtil02.powFloat(baseFloat, exp, workPrec)
+
 	resStr := resFloat.Text('f', int(reqFracDigits))
 
 	// Re-parse the formatted string so the returned big.Float matches resStr
-	finalFloat, _ := new(big.Float).SetPrec(workPrec).SetString(resStr)
+	finalFloat, ok := new(big.Float).SetPrec(workPrec).SetString(resStr)
+
+	if !ok {
+		return "", nil, fmt.Errorf("SetString(resStr) - result magnitude overflows precision limits")
+	}
+
 	return resStr, finalFloat, nil
 }
