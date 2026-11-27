@@ -1,0 +1,118 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+
+  // 1. Project rules (AGENTS.md is omitted as Kilo auto-discovers it at root)
+  "instructions": [
+    ".kilo/rules/*.md"
+  ],
+
+  // 2. Default main model
+  "model": "ollama/qwen38-dev:64kb",
+
+  // 3. Reuse loaded model for small tasks to prevent VRAM swapping
+  "small_model": "ollama/qwen38-dev:64kb",
+
+  // 4. Model Providers
+  "provider": {
+    "ollama": {
+      "name": "Ollama Local",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://localhost:11434/v1",
+        "timeout": false
+      },
+      "models": {
+        "gemma4-dev:64kb": {
+          "id": "gemma4-dev:64kb",
+          "name": "Gemma 64kb 4-31",
+          "tool_call": true,
+          "reasoning": true,
+          "limit": {
+            "context": 65536,
+            "output": 16384
+          },
+          "variants": {
+            "none":   { "reasoningEffort": "none" },
+            "low":    { "reasoningEffort": "low" },
+            "medium": { "reasoningEffort": "medium" },
+            "high":   { "reasoningEffort": "high" }
+          }
+        },
+        "gemma4-dev:32kb": {
+          "id": "gemma4-dev:32kb",
+          "name": "Gemma 32kb 4-31",
+          "tool_call": true,
+          "reasoning": true,
+          "limit": {
+            "context": 32768,
+            "output": 16384
+          },
+          "variants": {
+            "none":   { "reasoningEffort": "none" },
+            "low":    { "reasoningEffort": "low" },
+            "medium": { "reasoningEffort": "medium" },
+            "high":   { "reasoningEffort": "high" }
+          }
+        },
+        "qwen38-dev:64kb": {
+          "id": "qwen38-dev:64kb",
+          "name": "Qwen 3.8 27B Dev (64K)",
+          "tool_call": true,
+          "reasoning": true,
+          "limit": {
+            "context": 65536,
+            "output": 16384
+          },
+          "variants": {
+            "none":   { "reasoningEffort": "none" },
+            "low":    { "reasoningEffort": "low" },
+            "medium": { "reasoningEffort": "medium" },
+            "high":   { "reasoningEffort": "high" },
+            "xhigh":  { "reasoningEffort": "xhigh" }
+          }
+        },
+        "qwen38-dev:32kb": {
+          "id": "qwen38-dev:32kb",
+          "name": "Qwen 3.8 27B Dev (32K)",
+          "tool_call": true,
+          "reasoning": true,
+          "limit": {
+            "context": 32768,
+            "output": 16384
+          },
+          "variants": {
+            "none":   { "reasoningEffort": "none" },
+            "low":    { "reasoningEffort": "low" },
+            "medium": { "reasoningEffort": "medium" },
+            "high":   { "reasoningEffort": "high" },
+            "xhigh":  { "reasoningEffort": "xhigh" }
+          }
+        }
+      }
+    }
+  },
+
+  // 5. agent
+  "agent": {
+    "code": {
+      "model": "ollama/qwen38-dev:64kb",
+      "variant": "medium",
+      "temperature": 0.5,
+      "top_p": 0.95,
+      "steps": 30
+    },
+    "plan": {
+      "variant": "medium",
+      "temperature": 0.4,
+      "top_p": 0.95,
+      "steps": 20
+    },
+    "compaction": {
+      // Fast summarization without reasoning overhead
+      "variant": "none",
+      "temperature": 0.2,
+      "top_p": 0.9,
+      "steps": 3
+    }
+  }
+}
