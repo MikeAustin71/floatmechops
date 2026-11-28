@@ -54,7 +54,7 @@ type NumStrFloat struct {
 //	   number of integer and fractional digits in floatNumStr.
 //
 //		err error
-func (nsf *NumStrFloat) AnalyzeNumStrFloat(floatNumStr string) (numStrStatus NumStrFloatStatusDto, err error) {
+func (nsf *NumStrFloat) AnalyzeNumStrFloat(floatNumStr string, targetFractionalDigits uint) (numStrStatus NumStrFloatStatusDto, err error) {
 
 	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
 		"floatmech/numstrFloat_0001000.go", // sourceFile
@@ -88,7 +88,7 @@ func (nsf *NumStrFloat) AnalyzeNumStrFloat(floatNumStr string) (numStrStatus Num
 
 	defer nsf.mu.Unlock()
 
-	numStrStatus, err = new(numStrFloatUtil020).analyzeNumStrFloat(floatNumStr)
+	numStrStatus, err = new(numStrFloatUtil020).analyzeNumStrFloat(floatNumStr, targetFractionalDigits)
 
 	if err != nil {
 		return NumStrFloatStatusDto{}, errGenericCfg.GetErrorFromFunctionCall(
