@@ -2,24 +2,24 @@
   "$schema": "https://app.kilo.ai/config.json",
 
   // 1. External knowledge base reference
-  "references": {
-    "go_knowledge": {
-      "path": "F:/Go_Knowledge",
-      "description": "Central Go 1.27 documentation and release specifications",
-      "hidden": false
-    }
-  },
+//  "references": {
+//    "go_knowledge": {
+//      "path": "F:/Go_Knowledge",
+//      "description": "Central Go 1.27 documentation and release specifications",
+//      "hidden": false
+//    }
+//  },
 
   // 2. Project rules (AGENTS.md is omitted as Kilo auto-discovers it at root)
-  "instructions": [
-    ".kilo/rules/*.md"
-  ],
+ // "instructions": [
+ //   ".kilo/rules/*.md"
+ // ],
 
   // Default main model
-  "model": "ollama/qwen38-dev:64kb",
+  "model": "qwen38-dev:64kb",
 
   // Reuse loaded model for small tasks to prevent VRAM swapping
-  "small_model": "ollama/qwen38-dev:64kb",
+  "small_model": "qwen38-dev:64kb",
 
   "provider": {
     "ollama": {
@@ -75,7 +75,6 @@
             "none":   { "reasoningEffort": "none" },
             "low":    { "reasoningEffort": "low" },
             "medium": { "reasoningEffort": "medium" },
-            "high":   { "reasoningEffort": "high" },
             "xhigh":  { "reasoningEffort": "xhigh" }
           }
         },
@@ -86,10 +85,27 @@
           "reasoning": true,
           "limit": {
             "context": 32768,
-            "output": 8192
+            "output": 16384
           },
           "variants": {
-            "none":   { "reasoningEffort": "false" },
+            "none":   { "reasoningEffort": "none" },
+            "low":    { "reasoningEffort": "low" },
+            "medium": { "reasoningEffort": "medium" },
+            "high":   { "reasoningEffort": "high" },
+            "xhigh":  { "reasoningEffort": "xhigh" }
+          }
+        },
+        "qwen3.8:27b": {
+          "id": "qwen3.8:27b",
+          "name": "Qwen 3.8 27B Base",
+          "tool_call": true,
+          "reasoning": true,
+          "limit": {
+            "context": 32768,
+            "output": 16384
+          },
+          "variants": {
+            "none":   { "reasoningEffort": "none" },
             "low":    { "reasoningEffort": "low" },
             "medium": { "reasoningEffort": "medium" },
             "high":   { "reasoningEffort": "high" },
