@@ -12,7 +12,7 @@ type NumericValueType int
 const (
 	IntegerValue NumericValueType = iota + 1
 	FloatingPointValue
-	ScientificNotation
+	ScientificNotationValue
 )
 
 // NumericValueTypeNames
@@ -100,7 +100,7 @@ func (nvt *NumericValueType) IsFloatingPoint() bool {
 
 func (nvt *NumericValueType) IsScientificNotation() bool {
 
-	if *nvt == ScientificNotation {
+	if *nvt == ScientificNotationValue {
 		return true
 	}
 
@@ -109,7 +109,8 @@ func (nvt *NumericValueType) IsScientificNotation() bool {
 
 // IsValid
 //
-// Returns true if the NumericValueType value is IntegerValue or FloatingPointValue.
+// Returns true if the NumericValueType value is IntegerValue,
+// FloatingPointValue or ScientificNotationValue.
 //
 // Input Parameters
 // ----------------
@@ -132,7 +133,7 @@ func (nvt *NumericValueType) IsValid() bool {
 	case FloatingPointValue:
 		return true
 
-	case ScientificNotation:
+	case ScientificNotationValue:
 		return true
 
 	default:
@@ -142,9 +143,8 @@ func (nvt *NumericValueType) IsValid() bool {
 	return false
 }
 
-// SetInteger
-//
-// Sets the NumericValueType value to IntegerValue.
+// SetInteger sets the NumericValueType value to
+// 'IntegerValue'.
 //
 // Input Parameters
 // ----------------
@@ -159,9 +159,8 @@ func (nvt *NumericValueType) SetInteger() {
 	*nvt = IntegerValue
 }
 
-// SetFloatingPoint
-//
-// Sets the NumericValueType value to FloatingPointValue.
+// SetFloatingPoint sets the NumericValueType value to
+// FloatingPointValue'.
 //
 // Input Parameters
 // ----------------
@@ -174,4 +173,20 @@ func (nvt *NumericValueType) SetInteger() {
 // None
 func (nvt *NumericValueType) SetFloatingPoint() {
 	*nvt = FloatingPointValue
+}
+
+//		SetScientificNotation sets the NumericValueType value to
+//	 'ScientificNotationValue'.
+//
+//		Input Parameters
+//		----------------
+//
+//		None
+//
+//		Return Parameters
+//		-----------------
+//
+//		None
+func (nvt *NumericValueType) SetScientificNotation() {
+	*nvt = ScientificNotationValue
 }
