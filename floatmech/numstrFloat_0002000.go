@@ -13,7 +13,7 @@ type numStrFloatF0002000 struct {
 //	 to analysis and validation.
 //
 //	 If successful, the number of integer numerical digits and
-//	 fractional numeric digits are returned in a NumStrStatusDto
+//	 fractional numeric digits are returned in a NumStrFloatStatusDto
 //	 object.
 //
 //	 If the floating point number string is found to be invalid,
@@ -32,7 +32,7 @@ type numStrFloatF0002000 struct {
 //	 Return Parameters
 //	 -----------------
 //
-//		numStrStatus NumStrStatusDto
+//		numStrStatus NumStrFloatStatusDto
 //	   If successful, this method returns a NumStrStatusDto object
 //	   encapsulating detailed information on the floating point value
 //	   passed as input parameter floatNumStr. This information includes
@@ -40,7 +40,7 @@ type numStrFloatF0002000 struct {
 //
 //		err error
 func (nStr *numStrFloatF0002000) analyzeNumStrFloat(floatNumStr string) (
-	numStrStatus NumStrStatusDto, err error) {
+	numStrStatus NumStrFloatStatusDto, err error) {
 
 	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
 		"floatmech/numstrFloat_0002000.go", // sourceFile
@@ -63,16 +63,22 @@ func (nStr *numStrFloatF0002000) analyzeNumStrFloat(floatNumStr string) (
 
 	for i, char := range floatNumStr {
 
-		if char == '-' {
+		if i == 0 {
 
-			if i == 0 {
+			if char == '-' {
 
-				numStrStatus.ValueIsNegative = true
+				numStrStatus.NumericSign.SetNegative()
 
 				continue
 
 			} else {
 
+				numStrStatus.NumericSign.SetPositive()
+			}
+
+		} else {
+			// i != 0
+			if char == '-' {
 				return numStrStatus,
 					errGenericCfg.GetErrorNativeToFunction(
 						fmt.Sprintf("floatNumStr= %s", floatNumStr),
@@ -80,7 +86,7 @@ func (nStr *numStrFloatF0002000) analyzeNumStrFloat(floatNumStr string) (
 						"",
 						"",
 						"'floatNumStr' contains a minus sign (-), but NOT at the beginning of the number string.",
-						"ERROR: Input parameter 'floatNumStr' contains an invalid minus sigh (-).")
+						"ERROR: Input parameter 'floatNumStr' contains an invalid minus sign (-).")
 			}
 		}
 
@@ -114,7 +120,7 @@ func (nStr *numStrFloatF0002000) analyzeNumStrFloat(floatNumStr string) (
 
 			} else {
 
-				// Strip off leading zeros
+				// Strip off leading integer zeros
 				if char == '0' && len(numStrStatus.IntegerRunes) == 0 {
 					continue
 				}
@@ -127,7 +133,7 @@ func (nStr *numStrFloatF0002000) analyzeNumStrFloat(floatNumStr string) (
 			continue
 		}
 
-		return NumStrStatusDto{},
+		return NumStrFloatStatusDto{},
 			errGenericCfg.GetErrorNativeToFunction(
 				fmt.Sprintf("floatNumStr= %s", floatNumStr),
 				"",
@@ -140,7 +146,7 @@ func (nStr *numStrFloatF0002000) analyzeNumStrFloat(floatNumStr string) (
 	if len(numStrStatus.IntegerRunes) == 0 &&
 		len(numStrStatus.FractionalRunes) == 0 {
 
-		return NumStrStatusDto{},
+		return NumStrFloatStatusDto{},
 			errGenericCfg.GetErrorNativeToFunction(
 				fmt.Sprintf("floatNumStr= %s", floatNumStr),
 				"",
@@ -152,6 +158,7 @@ func (nStr *numStrFloatF0002000) analyzeNumStrFloat(floatNumStr string) (
 
 	if string(numStrStatus.IntegerRunes) == "0" && string(numStrStatus.FractionalRunes) == "0" {
 		numStrStatus.ValueIsZero = true
+		numStrStatus.NumericSign.SetZero()
 	}
 
 	if string(numStrStatus.IntegerRunes) == "1" && string(numStrStatus.FractionalRunes) == "0" {

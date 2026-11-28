@@ -6,12 +6,14 @@ import (
 	ePref "github.com/MikeAustin71/errpref/v2"
 )
 
-type NumStrStatusDto struct {
+type NumStrFloatStatusDto struct {
+	IsNumStrFloat       bool
+	NumType             NumericValueType
 	NumIntegerDigits    uint
 	IntegerRunes        []rune
 	NumFractionalDigits uint
+	NumericSign         NumericSignType
 	FractionalRunes     []rune
-	ValueIsNegative     bool
 	ValueIsZero         bool
 	ValueIsOne          bool
 }
@@ -26,7 +28,7 @@ type NumStrFloat struct {
 //		to analysis and validation.
 //
 //	 If successful, the number of integer numerical digits and
-//	 fractional numeric digits are returned in a NumStrStatusDto
+//	 fractional numeric digits are returned in a NumStrFloatStatusDto
 //	 object.
 //
 //	 If the floating point number string is found to be invalid,
@@ -45,14 +47,14 @@ type NumStrFloat struct {
 //	 Return Parameters
 //	 -----------------
 //
-//		numStrStatus NumStrStatusDto
+//		numStrStatus NumStrFloatStatusDto
 //	   If successful, this method returns a NumStrStatusDto object
 //	   encapsulating detailed information on the floating point value
 //	   passed as input parameter floatNumStr. This information includes
 //	   number of integer and fractional digits in floatNumStr.
 //
 //		err error
-func (nsf *NumStrFloat) AnalyzeNumStrFloat(floatNumStr string) (numStrStatus NumStrStatusDto, err error) {
+func (nsf *NumStrFloat) AnalyzeNumStrFloat(floatNumStr string) (numStrStatus NumStrFloatStatusDto, err error) {
 
 	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
 		"floatmech/numstrFloat_0001000.go", // sourceFile
@@ -73,7 +75,7 @@ func (nsf *NumStrFloat) AnalyzeNumStrFloat(floatNumStr string) (numStrStatus Num
 		//
 		// Formats error message and error context for when nil pointers
 		// are passed as Function input parameters.
-		return NumStrStatusDto{}, errGenericCfg.GetErrorInputParameterNilPointer(
+		return NumStrFloatStatusDto{}, errGenericCfg.GetErrorInputParameterNilPointer(
 			"nsf == nil",
 			"",
 			"",
@@ -89,7 +91,7 @@ func (nsf *NumStrFloat) AnalyzeNumStrFloat(floatNumStr string) (numStrStatus Num
 	numStrStatus, err = new(numStrFloatF0002000).analyzeNumStrFloat(floatNumStr)
 
 	if err != nil {
-		return NumStrStatusDto{}, errGenericCfg.GetErrorFromFunctionCall(
+		return NumStrFloatStatusDto{}, errGenericCfg.GetErrorFromFunctionCall(
 			"numStrFloatF0002000",
 			"analyzeNumStrFloat",
 			"",
