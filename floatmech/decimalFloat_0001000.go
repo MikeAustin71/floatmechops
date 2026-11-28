@@ -195,6 +195,20 @@ func (df *DecimalFloat) NewFromFloatNumStr(
 		return decFloat, nil
 	}
 
+	if !numValueType.IsScientificNotation() {
+
+		return &DecimalFloat{},
+			errGenericCfg.GetErrorNativeToFunction(
+				"if !numValueType.IsScientificNotation()",
+				"",
+				"",
+				"",
+				fmt.Sprintf("floatNumStr = %s", floatNumStr),
+				"Error: 'floatNumStr' did NOT qualify as an 'Integer',\n"+
+					"'Floating Point' or Scientific Notation value!")
+
+	}
+
 	// TODO Add Scientific Notation Handling
 	return &DecimalFloat{}, errGenericCfg.GetErrorNativeToFunction(
 		"",
