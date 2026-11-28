@@ -20,27 +20,27 @@ func TestDecimalFloat_NewFromFloatNumStr_00010(t *testing.T) {
 
 	df := &DecimalFloat{}
 
-	decimal, err := df.NewFromFloatNumStr(floatNumStr, targetFractionalDigits, mode)
+	decimalFloat, err := df.NewFromFloatNumStr(floatNumStr, targetFractionalDigits, mode)
 
 	if err != nil {
-		t.Errorf("NewFromFloatNumStr() failed: %s", err.Error())
+		t.Errorf("df.NewFromFloatNumStr() failed: %s", err.Error())
 
 		return
 	}
 
-	if decimal == nil {
-		t.Errorf("NewFromFloatNumStr() returned nil Decimal")
+	if decimalFloat == nil {
+		t.Errorf("df.NewFromFloatNumStr() returned nil Decimal")
 
 		return
 	}
 
-	if !decimal.IsValid() {
-		t.Errorf("NewFromFloatNumStr() returned an invalid Decimal (val is nil)")
+	if !decimalFloat.IsValid() {
+		t.Errorf("df.NewFromFloatNumStr() returned an invalid Decimal (val is nil)")
 
 		return
 	}
 
-	actualDecValueStr := decimal.String()
+	actualDecValueStr := decimalFloat.String()
 
 	if actualDecValueStr != expectedDecValueStr {
 		t.Errorf("\n"+
