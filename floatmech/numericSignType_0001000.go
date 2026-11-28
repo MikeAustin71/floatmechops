@@ -12,7 +12,7 @@ const (
 	NegativeValue NumericSignType = iota - 1
 	ZeroValue
 	PositiveValue
-	Invalid
+	InvalidSign
 )
 
 // NumericSignTypeNames
@@ -22,7 +22,7 @@ var NumericSignTypeNames = [...]string{
 	"Negative",
 	"Zero",
 	"Positive",
-	"Invalid",
+	"Invalid Sign",
 }
 
 // String
@@ -41,15 +41,21 @@ var NumericSignTypeNames = [...]string{
 //
 //	Returns the string representation of the NumericSignType value.
 func (nst *NumericSignType) String() string {
+
 	switch *nst {
+
 	case -1:
 		return "Negative"
+
 	case 0:
 		return "Zero"
+
 	case 1:
 		return "Positive"
+
 	default:
-		return "NOT SET - INVALID"
+		return "None - INVALID"
+
 	}
 }
 
@@ -257,5 +263,5 @@ func (nst *NumericSignType) SetNegative() {
 }
 
 func (nst *NumericSignType) SetInvalid() {
-	*nst = Invalid
+	*nst = InvalidSign
 }
