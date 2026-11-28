@@ -88,7 +88,7 @@ func (nsf *NumStrFloat) AnalyzeNumStrFloat(floatNumStr string) (numStrStatus Num
 
 	defer nsf.mu.Unlock()
 
-	numStrStatus, err = new(numStrFloatF0002000).analyzeNumStrFloat(floatNumStr)
+	numStrStatus, err = new(numStrFloatUtil020).analyzeNumStrFloat(floatNumStr)
 
 	if err != nil {
 		return NumStrFloatStatusDto{}, errGenericCfg.GetErrorFromFunctionCall(

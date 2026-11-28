@@ -2,11 +2,12 @@ package floatmech
 
 import (
 	"fmt"
+	"strings"
 
 	ePref "github.com/MikeAustin71/errpref/v2"
 )
 
-type numStrFloatF0002000 struct {
+type numStrFloatUtil020 struct {
 }
 
 //	 analyzeNumStrFloat subjects a floating point number string
@@ -39,7 +40,7 @@ type numStrFloatF0002000 struct {
 //	   number of integer and fractional digits in floatNumStr.
 //
 //		err error
-func (nStr *numStrFloatF0002000) analyzeNumStrFloat(floatNumStr string) (
+func (nStr *numStrFloatUtil020) analyzeNumStrFloat(floatNumStr string, targetFractionalDigits uint) (
 	numStrStatus NumStrFloatStatusDto, err error) {
 
 	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
@@ -154,6 +155,21 @@ func (nStr *numStrFloatF0002000) analyzeNumStrFloat(floatNumStr string) (
 				"",
 				"No valid numerical digits were found in 'floatNumStr'",
 				"ERROR: Input parameter 'floatNumStr' contains invalid characters")
+	}
+
+	if len(numStrStatus.IntegerRunes) == 0 && len(numStrStatus.FractionalRunes) > 0 {
+
+		numStrStatus.IntegerRunes = []rune("0")
+
+		numStrStatus.NumIntegerDigits = 1
+	}
+
+	if len(numStrStatus.IntegerRunes) > 0 && len(numStrStatus.FractionalRunes) == 0 {
+
+		numStrStatus.FractionalRunes = []rune(strings.Repeat("0", int(targetFractionalDigits)))
+
+		numStrStatus.NumFractionalDigits = targetFractionalDigits
+
 	}
 
 	if string(numStrStatus.IntegerRunes) == "0" && string(numStrStatus.FractionalRunes) == "0" {
