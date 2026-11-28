@@ -133,7 +133,7 @@ func (df *DecimalFloat) NewFromFloatNumStr(
 					targetFractionalDigits, maxFracDigits))
 	}
 
-	err := new(decimalFloatUtil040).validateFloatNumStr(
+	numValueType, err := new(decimalFloatUtil040).validateFloatNumStr(
 		floatNumStr)
 
 	if err != nil {
@@ -149,18 +149,60 @@ func (df *DecimalFloat) NewFromFloatNumStr(
 		//
 		// Adds error context to errors returned by other
 		// Functions.
-		err2 := errGenericCfg.GetErrorFromFunctionCall(
+		return &DecimalFloat{}, errGenericCfg.GetErrorFromFunctionCall(
 			"numStrConstructorMechanics",
 			"constructFromNumStr()",
 			"",
 			"",
 			err)
-
-		return &DecimalFloat{}, err2
 	}
 
-	// TODO - Fix &DecimalFloat{} return
-	return &DecimalFloat{}, nil
+	if numValueType.IsInteger() {
+
+		numValueType.SetFloatingPoint()
+
+	}
+
+	if numValueType.IsFloatingPoint() {
+
+		numStrStatus, err := new(numStrFloatUtil020).analyzeNumStrFloat(floatNumStr, targetFractionalDigits)
+
+		if err != nil {
+
+			return &DecimalFloat{}, errGenericCfg.GetErrorFromFunctionCall(
+				"numStrFloatF0002000",
+				"analyzeNumStrFloat()",
+				"",
+				"",
+				err)
+		}
+
+		decFloat, err := new(decimalFloatUtil050).getDecFloatFromNumStrDto(
+			numStrStatus,
+			targetFractionalDigits,
+			mode)
+
+		if err != nil {
+
+			return &DecimalFloat{}, errGenericCfg.GetErrorFromFunctionCall(
+				"decimalFloatUtil050",
+				"getDecFloatFromNumStrDto()",
+				"",
+				"",
+				err)
+		}
+
+		return decFloat, nil
+	}
+
+	// TODO Add Scientific Notation Handling
+	return &DecimalFloat{}, errGenericCfg.GetErrorNativeToFunction(
+		"",
+		"",
+		"",
+		"",
+		"",
+		"We currently have no way to calculate Scientific Notation Types")
 }
 
 //		PowDecimal raises baseStr to a non-negative integer exponent (exp) and returns:

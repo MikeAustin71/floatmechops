@@ -25,9 +25,9 @@ type decimalFloatUtil020 struct {
 func (df2 *decimalFloatUtil020) validateBaseFormat(s string) error {
 
 	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
-		"floatmech/decimalFloat_0002000.go", // sourceFile
-		"decimalFloatF0002000",              // parentType (leave "" if none)
-		"validateBaseFormat()")              // thisFunction
+		"decimalFloat_0002000.go", // sourceFile
+		"decimalFloatUtil020",     // parentType (leave "" if none)
+		"validateBaseFormat()")    // thisFunction
 
 	if len(s) == 0 {
 

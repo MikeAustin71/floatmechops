@@ -5,6 +5,8 @@ import (
 	"math"
 	"math/big"
 	"math/bits"
+
+	ePref "github.com/MikeAustin71/errpref/v2"
 )
 
 type decimalFloatUtil030 struct {
@@ -21,7 +23,6 @@ func (df3 *decimalFloatUtil030) calcBits(
 }
 
 func (df3 *decimalFloatUtil030) calcBitsSafe(
-
 	intBits uint64, reqFracDigits uint, exp uint) (uint, error) {
 
 	fracBits := uint64(math.Ceil(float64(reqFracDigits) * 3.32192809488736))
@@ -35,6 +36,61 @@ func (df3 *decimalFloatUtil030) calcBitsSafe(
 	}
 
 	return uint(total), nil
+}
+
+//		calcPrecisionSafe calculates the number of precision bits
+//		required for a big.Float number to accurately represent
+//	 the total number of digits specified by input parameters
+//	 'intDigits', 'reqFracDigits' and 'safetyDigits'.
+//
+//		Input Parameters
+//	 ----------------
+//
+//		intDigits uint
+//		The number of integer digits in the floating point number.
+//
+//		reqFracDigits uint
+//		The number of fractional digits to the right of the decimal
+//		point in the floating point number.
+//
+//		safetyDigits	uint
+//		The number of extra digit positions added for safety
+//
+//		Return Parameters
+//		-----------------
+//
+//		uint
+//		The total number of precision bits required to accurately
+//		represent the subject floating point number.
+//
+//		error
+func (df3 *decimalFloatUtil030) calcPrecisionSafe(
+	intDigits uint, reqFracDigits uint, safetyDigits uint) (uint, error) {
+
+	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
+		"decimalFloat_0003000.go", // sourceFile
+		"decimalFloatUtil030",     // parentType (leave "" if none)
+		"calcPrecisionSafe()")     // thisFunction
+
+	totalProjectedDigits := uint64(intDigits + reqFracDigits + safetyDigits)
+
+	totalBaseBits := uint64(math.Ceil(float64(totalProjectedDigits) * 3.32192809488736))
+
+	totalFinalBits := totalBaseBits
+
+	if totalFinalBits > uint64(big.MaxPrec) {
+
+		return 0, errGenericCfg.GetErrorNativeToFunction(
+			fmt.Sprintf("intDigits= '%d' reqFracDigits= '%d'", intDigits, reqFracDigits),
+			"",
+			"",
+			"",
+			fmt.Sprintf("Calculated Required Precision Bits= '%d'", totalFinalBits),
+			fmt.Sprintf("Total Precision Bits '%d' exceeds Maximum Precision Bits '%d'",
+				totalFinalBits, big.MaxPrec))
+	}
+
+	return uint(totalProjectedDigits), nil
 }
 
 func (df3 *decimalFloatUtil030) powFloat(base *big.Float, exp uint, prec uint) *big.Float {
@@ -86,10 +142,4 @@ func (df3 *decimalFloatUtil030) powRat(
 	}
 
 	return result
-}
-
-func (df3 *decimalFloatUtil030) analyzeFloatingPointNumStr(
-	floatNumStr string) error {
-
-	return nil
 }

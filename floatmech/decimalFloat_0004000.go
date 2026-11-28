@@ -12,16 +12,18 @@ type decimalFloatUtil040 struct {
 }
 
 func (df4 *decimalFloatUtil040) validateFloatNumStr(
-	floatNumStr string) error {
+	floatNumStr string) (NumericValueType, error) {
 
 	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
 		"decimalFloat_0004000.go",
 		"decimalFloatUtil040",
 		"validateFloatNumStr()")
 
+	numValueType := NumericValueType(0)
+
 	if len(floatNumStr) == 0 {
 
-		return errGenericCfg.GetErrorNativeToFunction(
+		return numValueType, errGenericCfg.GetErrorNativeToFunction(
 			"Input parameter 'floatNumStr' is an empty string",
 			"",
 			"",
@@ -32,7 +34,7 @@ func (df4 *decimalFloatUtil040) validateFloatNumStr(
 
 	if strings.TrimSpace(floatNumStr) != floatNumStr {
 
-		return errGenericCfg.GetErrorNativeToFunction(
+		return numValueType, errGenericCfg.GetErrorNativeToFunction(
 			"'floatNumStr' has leading or trailing whitespace",
 			"",
 			"",
@@ -55,7 +57,7 @@ func (df4 *decimalFloatUtil040) validateFloatNumStr(
 
 		if len(mantissa) == 0 || len(exponent) == 0 {
 
-			return errGenericCfg.GetErrorNativeToFunction(
+			return numValueType, errGenericCfg.GetErrorNativeToFunction(
 				"if len(mantissa) == 0 OR len(exponent) == 0",
 				"",
 				"",
@@ -67,7 +69,7 @@ func (df4 *decimalFloatUtil040) validateFloatNumStr(
 		// In the exponent, '-' is only allowed at index 0 of the exponent part
 		if expMinus := strings.LastIndexByte(exponent, '-'); expMinus > 0 {
 
-			return errGenericCfg.GetErrorNativeToFunction(
+			return numValueType, errGenericCfg.GetErrorNativeToFunction(
 				"expMinus := strings.LastIndexByte(exponent, '-'); expMinus > 0",
 				"",
 				"",
@@ -81,7 +83,7 @@ func (df4 *decimalFloatUtil040) validateFloatNumStr(
 
 		if err != nil {
 
-			return errGenericCfg.GetErrorFromFunctionCall(
+			return numValueType, errGenericCfg.GetErrorFromFunctionCall(
 				"",
 				"strconv.ParseInt(exponent, 10, 64)",
 				fmt.Sprintf("Input Parameter floatNumStr = '%q'", floatNumStr),
@@ -91,7 +93,7 @@ func (df4 *decimalFloatUtil040) validateFloatNumStr(
 
 		if sciExp > maxSciExp || sciExp < -maxSciExp {
 
-			return errGenericCfg.GetErrorNativeToFunction(
+			return numValueType, errGenericCfg.GetErrorNativeToFunction(
 				"if sciExp > maxSciExp || sciExp < -maxSciExp",
 				"",
 				"",
@@ -100,6 +102,7 @@ func (df4 *decimalFloatUtil040) validateFloatNumStr(
 				fmt.Sprintf("scientific notation exponent %d exceeds allowed range [-%d, %d]", sciExp, maxSciExp, maxSciExp))
 		}
 
+		numValueType = NumericValueType(ScientificNotationValue)
 	}
 
 	// For scientific notation, the mantissa (base), '-' is only
@@ -109,7 +112,7 @@ func (df4 *decimalFloatUtil040) validateFloatNumStr(
 	// only allowed at index 0.
 	if idx := strings.LastIndexByte(mantissa, '-'); idx > 0 {
 
-		return errGenericCfg.GetErrorNativeToFunction(
+		return numValueType, errGenericCfg.GetErrorNativeToFunction(
 			"if idx := strings.LastIndexByte(floatNumStr, '-'); idx > 0",
 			"",
 			"",
@@ -118,5 +121,9 @@ func (df4 *decimalFloatUtil040) validateFloatNumStr(
 			fmt.Sprintf("minus sign must be in the first string position: %q", floatNumStr))
 	}
 
-	return nil
+	if !numValueType.IsScientificNotation() {
+		numValueType = NumericValueType(FloatingPointValue)
+	}
+
+	return numValueType, nil
 }
