@@ -16,6 +16,27 @@ type floatEngine struct {
 	maxPrec uint
 }
 
+//	estimatePowExp2 estimates the base-2 exponent of x^exp so that
+//	calling code can derive the working precision needed before the
+//	actual power calculation. The estimate is computed as
+//	exp × (log₂|mantissa| + exp₂(x)) and clamped to [0, big.MaxExp].
+//	For x = 0, exp = 0, or x = ±Inf a neutral value of 1 is returned.
+//
+//	Input Parameters
+//	----------------
+//
+//	x *big.Float
+//	'x' is the base value whose power is to be estimated.
+//
+//	exp uint
+//	'exp' is the non-negative integer exponent.
+//
+//	Return Parameters
+//	-----------------
+//
+//	int
+//	Returns an upper-bound estimate of the base-2 exponent of x^exp,
+//	clamped to the range [0, big.MaxExp].
 func (e floatEngine) estimatePowExp2(x *big.Float, exp uint) int {
 	if exp == 0 || x.Sign() == 0 || x.IsInf() {
 		return 1
