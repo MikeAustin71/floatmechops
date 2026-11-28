@@ -12,6 +12,7 @@ type NumericValueType int
 const (
 	IntegerValue NumericValueType = iota + 1
 	FloatingPointValue
+	ScientificNotation
 )
 
 // NumericValueTypeNames
@@ -22,6 +23,7 @@ var NumericValueTypeNames = [...]string{
 	"INVALID",
 	"IntegerValue",
 	"FloatingPointValue",
+	"ScientificNotation",
 }
 
 // String
@@ -64,6 +66,7 @@ func (nvt *NumericValueType) String() string {
 //
 //	Returns true if the value is IntegerValue, otherwise false.
 func (nvt *NumericValueType) IsInteger() bool {
+
 	if *nvt == IntegerValue {
 		return true
 	}
@@ -87,7 +90,17 @@ func (nvt *NumericValueType) IsInteger() bool {
 //
 //	Returns true if the value is FloatingPointValue, otherwise false.
 func (nvt *NumericValueType) IsFloatingPoint() bool {
+
 	if *nvt == FloatingPointValue {
+		return true
+	}
+
+	return false
+}
+
+func (nvt *NumericValueType) IsScientificNotation() bool {
+
+	if *nvt == ScientificNotation {
 		return true
 	}
 
@@ -110,12 +123,16 @@ func (nvt *NumericValueType) IsFloatingPoint() bool {
 //
 //	Returns true if the value is a valid numeric value type, otherwise false.
 func (nvt *NumericValueType) IsValid() bool {
+
 	switch *nvt {
 
 	case IntegerValue:
 		return true
 
 	case FloatingPointValue:
+		return true
+
+	case ScientificNotation:
 		return true
 
 	default:
