@@ -5,7 +5,7 @@
 ## **Filesystem Boundary** 
 
 - Never create, modify, or delete files outside the active project root directory. Do not write temporary files to `%TEMP%` or `AppData`.
-- To Create temporary files -> load skill `go-coding-style-tempory-files`
+- To Create temporary files -> load skill `go-coding-style-temporary-files`
 
 ## Skill Routing
 - **Go (`.go` / `go.mod`) tasks**: Load skill `go-127-standards` before writing or refactoring Go code.
@@ -23,7 +23,7 @@
 
 -- Writing or modifying ***go*** stand alone functions -> load skill `go-coding-style-stand-alone-functions`
 
--- Creating or modifying temporary files -> load skill `go-coding-style-tempory-files`
+-- Creating or modifying temporary files -> load skill `go-coding-style-temporary-files`
 
 -- Writing or modifying ***go*** tests functions or test files -> load skill `go-coding-test-guidelines`
 
