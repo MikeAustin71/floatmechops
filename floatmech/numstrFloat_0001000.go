@@ -8,7 +8,7 @@ import (
 
 type NumStrFloatDto struct {
 	FractionalRunes     []rune
-	DecimalSeparator    rune
+	DecimalSeparator    []rune
 	NumType             NumericValueType
 	NumIntegerDigits    uint
 	IntegerRunes        []rune
