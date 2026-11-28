@@ -72,7 +72,7 @@ func (df2 *decimalFloatUtil020) validateBaseFormat(s string) error {
 		if len(mantissa) == 0 || len(exponent) == 0 {
 
 			return errGenericCfg.GetErrorNativeToFunction(
-				"if len(mantissa) == 0 || len(exponent) == 0",
+				"if len(mantissa) == 0 OR len(exponent) == 0",
 				"",
 				"",
 				"",

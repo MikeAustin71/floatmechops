@@ -27,6 +27,19 @@ type DecimalFloat struct {
 	mode                   big.RoundingMode
 }
 
+func (df *DecimalFloat) IsValid() bool {
+
+	if df == nil {
+		return false
+	}
+
+	df.mu.Lock()
+
+	defer df.mu.Unlock()
+
+	return df.val != nil
+}
+
 // NewFromFloatNumStr constructs an immutable Decimal sized to
 // preserve at least targetFractionalDigits decimal places for
 // the value's magnitude.
@@ -62,7 +75,10 @@ type DecimalFloat struct {
 //	Pointer to the newly constructed Decimal object.
 //
 // error
-func (df *DecimalFloat) NewFromFloatNumStr(floatNumStr string, targetFractionalDigits uint, mode big.RoundingMode) (*Decimal, error) {
+func (df *DecimalFloat) NewFromFloatNumStr(
+	floatNumStr string,
+	targetFractionalDigits uint,
+	mode big.RoundingMode) (*DecimalFloat, error) {
 
 	// NewErrorGenericConfig()
 	//
@@ -91,7 +107,7 @@ func (df *DecimalFloat) NewFromFloatNumStr(floatNumStr string, targetFractionalD
 		//
 		// Formats error message and error context for when nil pointers
 		// are passed as Function input parameters.
-		return &Decimal{}, errGenericCfg.GetErrorInputParameterNilPointer(
+		return &DecimalFloat{}, errGenericCfg.GetErrorInputParameterNilPointer(
 			"df == nil",
 			"",
 			"",
@@ -104,10 +120,21 @@ func (df *DecimalFloat) NewFromFloatNumStr(floatNumStr string, targetFractionalD
 
 	defer df.mu.Unlock()
 
-	constructedDecimal, err := new(numStrConstructorMechanics).constructFromNumStr(
-		floatNumStr,
-		targetFractionalDigits,
-		mode)
+	if targetFractionalDigits > maxFracDigits {
+
+		return &DecimalFloat{},
+			errGenericCfg.GetErrorNativeToFunction(
+				fmt.Sprintf("targetFractionalDigits= %v", targetFractionalDigits),
+				"",
+				"",
+				"",
+				"Input parameter 'targetFractionalDigits' exceeds maximum allowed value.",
+				fmt.Sprintf("ERROR: targetFractionalDigits (%d) exceeds maximum allowed (%d)",
+					targetFractionalDigits, maxFracDigits))
+	}
+
+	err := new(decimalFloatUtil040).validateFloatNumStr(
+		floatNumStr)
 
 	if err != nil {
 
@@ -129,10 +156,11 @@ func (df *DecimalFloat) NewFromFloatNumStr(floatNumStr string, targetFractionalD
 			"",
 			err)
 
-		return &Decimal{}, err2
+		return &DecimalFloat{}, err2
 	}
 
-	return constructedDecimal, nil
+	// TODO - Fix &DecimalFloat{} return
+	return &DecimalFloat{}, nil
 }
 
 //		PowDecimal raises baseStr to a non-negative integer exponent (exp) and returns:
@@ -433,4 +461,25 @@ func (df *DecimalFloat) PowDecimal(
 	}
 
 	return resStr, finalFloat, nil
+}
+
+func (df *DecimalFloat) String() string {
+
+	if df == nil {
+		return ""
+	}
+
+	df.mu.Lock()
+
+	defer df.mu.Unlock()
+
+	if df.val == nil {
+		return "0"
+	}
+
+	if df.val.IsInf() {
+		return df.val.String()
+	}
+
+	return df.val.Text('f', int(df.targetFractionalDigits))
 }

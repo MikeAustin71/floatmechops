@@ -87,3 +87,9 @@ func (df3 *decimalFloatUtil030) powRat(
 
 	return result
 }
+
+func (df3 *decimalFloatUtil030) analyzeFloatingPointNumStr(
+	floatNumStr string) error {
+
+	return nil
+}
