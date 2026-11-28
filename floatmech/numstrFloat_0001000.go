@@ -6,14 +6,13 @@ import (
 	ePref "github.com/MikeAustin71/errpref/v2"
 )
 
-type NumStrFloatStatusDto struct {
-	IsNumStrFloat       bool
+type NumStrFloatDto struct {
+	FractionalRunes     []rune
 	NumType             NumericValueType
 	NumIntegerDigits    uint
 	IntegerRunes        []rune
 	NumFractionalDigits uint
 	NumericSign         NumericSignType
-	FractionalRunes     []rune
 	ValueIsZero         bool
 	ValueIsOne          bool
 }
@@ -28,7 +27,7 @@ type NumStrFloat struct {
 //		to analysis and validation.
 //
 //	 If successful, the number of integer numerical digits and
-//	 fractional numeric digits are returned in a NumStrFloatStatusDto
+//	 fractional numeric digits are returned in a NumStrFloatDto
 //	 object.
 //
 //	 If the floating point number string is found to be invalid,
@@ -47,14 +46,14 @@ type NumStrFloat struct {
 //	 Return Parameters
 //	 -----------------
 //
-//		numStrStatus NumStrFloatStatusDto
+//		numStrStatus NumStrFloatDto
 //	   If successful, this method returns a NumStrStatusDto object
 //	   encapsulating detailed information on the floating point value
 //	   passed as input parameter floatNumStr. This information includes
 //	   number of integer and fractional digits in floatNumStr.
 //
 //		err error
-func (nsf *NumStrFloat) AnalyzeNumStrFloat(floatNumStr string, targetFractionalDigits uint) (numStrStatus NumStrFloatStatusDto, err error) {
+func (nsf *NumStrFloat) AnalyzeNumStrFloat(floatNumStr string, targetFractionalDigits uint) (numStrStatus NumStrFloatDto, err error) {
 
 	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
 		"floatmech/numstrFloat_0001000.go", // sourceFile
@@ -75,7 +74,7 @@ func (nsf *NumStrFloat) AnalyzeNumStrFloat(floatNumStr string, targetFractionalD
 		//
 		// Formats error message and error context for when nil pointers
 		// are passed as Function input parameters.
-		return NumStrFloatStatusDto{}, errGenericCfg.GetErrorInputParameterNilPointer(
+		return NumStrFloatDto{}, errGenericCfg.GetErrorInputParameterNilPointer(
 			"nsf == nil",
 			"",
 			"",
@@ -91,7 +90,7 @@ func (nsf *NumStrFloat) AnalyzeNumStrFloat(floatNumStr string, targetFractionalD
 	numStrStatus, err = new(numStrFloatUtil020).analyzeNumStrFloat(floatNumStr, targetFractionalDigits)
 
 	if err != nil {
-		return NumStrFloatStatusDto{}, errGenericCfg.GetErrorFromFunctionCall(
+		return NumStrFloatDto{}, errGenericCfg.GetErrorFromFunctionCall(
 			"numStrFloatF0002000",
 			"analyzeNumStrFloat",
 			"",

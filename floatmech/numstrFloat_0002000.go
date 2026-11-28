@@ -14,7 +14,7 @@ type numStrFloatUtil020 struct {
 //	 to analysis and validation.
 //
 //	 If successful, the number of integer numerical digits and
-//	 fractional numeric digits are returned in a NumStrFloatStatusDto
+//	 fractional numeric digits are returned in a NumStrFloatDto
 //	 object.
 //
 //	 If the floating point number string is found to be invalid,
@@ -33,7 +33,7 @@ type numStrFloatUtil020 struct {
 //	 Return Parameters
 //	 -----------------
 //
-//		numStrStatus NumStrFloatStatusDto
+//		numStrStatus NumStrFloatDto
 //	   If successful, this method returns a NumStrStatusDto object
 //	   encapsulating detailed information on the floating point value
 //	   passed as input parameter floatNumStr. This information includes
@@ -41,7 +41,7 @@ type numStrFloatUtil020 struct {
 //
 //		err error
 func (nStr *numStrFloatUtil020) analyzeNumStrFloat(floatNumStr string, targetFractionalDigits uint) (
-	numStrStatus NumStrFloatStatusDto, err error) {
+	numStrStatus NumStrFloatDto, err error) {
 
 	errGenericCfg := new(ePref.ErrorGenericFactory).NewErrorGenericConfig(
 		"floatmech/numstrFloat_0002000.go", // sourceFile
@@ -134,7 +134,7 @@ func (nStr *numStrFloatUtil020) analyzeNumStrFloat(floatNumStr string, targetFra
 			continue
 		}
 
-		return NumStrFloatStatusDto{},
+		return NumStrFloatDto{},
 			errGenericCfg.GetErrorNativeToFunction(
 				fmt.Sprintf("floatNumStr= %s", floatNumStr),
 				"",
@@ -147,7 +147,7 @@ func (nStr *numStrFloatUtil020) analyzeNumStrFloat(floatNumStr string, targetFra
 	if len(numStrStatus.IntegerRunes) == 0 &&
 		len(numStrStatus.FractionalRunes) == 0 {
 
-		return NumStrFloatStatusDto{},
+		return NumStrFloatDto{},
 			errGenericCfg.GetErrorNativeToFunction(
 				fmt.Sprintf("floatNumStr= %s", floatNumStr),
 				"",

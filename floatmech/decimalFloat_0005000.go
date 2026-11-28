@@ -12,7 +12,7 @@ type decimalFloatUtil050 struct{}
 // getDecFloatFromNumStrDto constructs and returns a
 // new, fully populated, DecimalFloat object.
 func (df5 *decimalFloatUtil050) getDecFloatFromNumStrDto(
-	numStrFloatStatus NumStrFloatStatusDto,
+	numStrFloatStatus NumStrFloatDto,
 	targetFractionalDigits uint,
 	mode big.RoundingMode) (*DecimalFloat, error) {
 
